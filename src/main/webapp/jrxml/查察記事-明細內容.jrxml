@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="download_log" pageWidth="690" pageHeight="832" whenNoDataType="AllSectionsNoDetail" columnWidth="670" leftMargin="10" rightMargin="10" topMargin="14" bottomMargin="0" uuid="b412cf41-b3bb-4458-ae90-b75542925b6d">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.4641000000000064"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="402"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="UNITNAME" class="java.lang.String"/>
+	<parameter name="STARTDATE" class="java.lang.String"/>
+	<parameter name="ENDDATE" class="java.lang.String"/>
+	<parameter name="PRINTUNIT" class="java.lang.String"/>
+	<parameter name="PRINTTIME" class="java.lang.String"/>
+	<parameter name="PRINTUSER" class="java.lang.String"/>
+	<field name="F01" class="java.lang.String"/>
+	<field name="F02" class="java.lang.String"/>
+	<field name="F03" class="java.lang.String"/>
+	<field name="F04" class="java.lang.String"/>
+	<field name="F05" class="java.lang.String"/>
+	<field name="F06" class="java.lang.String"/>
+	<field name="F07" class="java.lang.String"/>
+	<field name="F08" class="java.lang.String"/>
+	<field name="F09" class="java.lang.String"/>
+	<field name="F10" class="java.lang.String"/>
+	<field name="F11" class="java.lang.String"/>
+	<field name="F12" class="java.lang.String"/>
+	<field name="F13" class="java.lang.String"/>
+	<field name="F14" class="java.lang.String"/>
+	<field name="F15" class="java.lang.String"/>
+	<field name="F16" class="java.lang.String"/>
+	<field name="F17" class="java.lang.String"/>
+	<field name="F18" class="java.lang.String"/>
+	<field name="F19" class="java.lang.String"/>
+	<field name="F20" class="java.lang.String"/>
+	<field name="F21" class="java.lang.String"/>
+	<field name="F22" class="java.lang.String"/>
+	<field name="F23" class="java.lang.String"/>
+	<field name="F24" class="java.lang.String"/>
+	<field name="F25" class="java.lang.String"/>
+	<field name="F26" class="java.lang.String"/>
+	<field name="F27" class="java.lang.String"/>
+	<field name="F28" class="java.lang.String"/>
+	<field name="F29" class="java.lang.String"/>
+	<field name="F30" class="java.lang.String"/>
+	<field name="F31" class="java.lang.String"/>
+	<field name="F32" class="java.lang.String"/>
+	<field name="F33" class="java.lang.String"/>
+	<field name="F34" class="java.lang.String"/>
+	<field name="F35" class="java.lang.String"/>
+	<field name="F36" class="java.lang.String"/>
+	<field name="F37" class="java.lang.String"/>
+	<field name="F38" class="java.lang.String"/>
+	<field name="F39" class="java.lang.String"/>
+	<field name="F40" class="java.lang.String"/>
+	<field name="F41" class="java.lang.String"/>
+	<field name="F42" class="java.lang.String"/>
+	<field name="F43" class="java.lang.String"/>
+	<field name="F44" class="java.lang.String"/>
+	<field name="F45" class="java.lang.String"/>
+	<variable name="v01" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[new Integer($V{v01}.intValue()+1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(1)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8a502aaf-2e1b-49ed-a71b-45f2a69b7c45" x="0" y="0" width="670" height="51"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="標楷體" size="14"/>
+				</textElement>
+				<text><![CDATA[查察記事－明細內容]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="539" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="dad56e97-4c53-4ba4-a60e-d9a81b168851" x="0" y="0" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[英文姓名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="60ef0b93-a6e7-4631-b2bd-b4856be7c642" x="0" y="19" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[性別：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ca5489ac-ec00-4b10-bfd2-e8cff000402a" x="0" y="38" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[護照號碼：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d9343b01-0186-4bae-af26-14670d93144a" x="0" y="76" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[居留事由：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6f65ab67-7400-44b8-972e-1ab314453d36" x="0" y="95" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[服務處所：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c1ad7b39-8c37-4183-bdd2-18df57d688ce" x="0" y="57" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[抵台日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fd3e199e-72c2-400d-89b8-b882900cdc88" x="0" y="152" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[仲介公司：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ede0cae-40cb-4012-8772-4648b49955f5" x="0" y="114" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[工作地址：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="87b58b5f-a9d0-4723-ba87-c3db39c9520e" x="0" y="171" width="63" height="74"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[備註：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22cf822c-d66b-49a6-bd14-912677ba6c9c" x="0" y="133" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[居留地址：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6a73004e-1346-4b78-9662-e8ca308074fc" x="0" y="244" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[工作許可]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b4c68f7c-bff7-4cc5-a4c4-a4c3bcb20995" x="223" y="19" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[護照期限：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fbfac616-073d-41ce-993a-7d111d42e2c6" x="223" y="38" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[離台日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="894b8937-288b-4c1c-89b1-259786087d05" x="223" y="57" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[居留狀況：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6f810441-68c2-4ca7-abb9-38c96eaa5172" x="223" y="0" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[國籍：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1e79c929-d1d8-4fc5-9171-21dd5f777962" x="448" y="38" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[職業：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2f1b4234-bbdb-4b23-b2b4-e4447039a25b" x="448" y="0" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[中文姓名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="197c67f6-d3ce-4adb-b8fc-b32bfe14e27a" x="448" y="76" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[電話：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="251d41e0-fa1d-4fff-aced-9a70be801200" x="448" y="19" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[出生日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aeba9a67-2bc2-4e86-8f7b-7963f35ea21e" x="448" y="57" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[電話：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e27ad0f-ed60-450b-9bf8-944e97959cfe" x="448" y="95" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[電話：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="94147bdf-2977-49e4-8d9d-1f60367d62bb" x="448" y="114" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[電話：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="14b47bfc-d14a-4369-85f4-91ca65fb9018" x="0" y="263" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[機關：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4ddbfc5b-c498-42b8-925e-163e651627d5" x="0" y="282" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[文號：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80058fa5-87ce-4c44-bcb8-48a84e19c1a0" x="223" y="282" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[許可效期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c573b3f1-01c8-44c2-984b-82fc2917244d" x="223" y="263" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[許可日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7618f18d-68ed-463b-844a-e43bc73a1620" x="0" y="323" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[申請日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8576aa2b-1763-4d2c-abaf-0d6e6ec82f55" x="0" y="361" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[管轄分局：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30f3b753-61d0-405e-85c5-5c01c075b02d" x="0" y="342" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[外來人口統一證號：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e99aff9e-e04a-44bb-8db6-96d52bd41acd" x="223" y="323" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[收據號碼：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="929bcc0a-b38c-4670-abbe-62b88da331c3" x="223" y="342" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[居留效期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9a792319-ec33-4edd-a44c-dc6f0b889654" x="223" y="361" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[限期離境：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3bff85f8-6f8f-44df-8399-c031e579546f" x="223" y="423" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[類別：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e4b85ef-350c-4a39-a08b-74f7f73f6381" x="223" y="442" width="63" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[備考：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4d31c6c1-6222-46cd-abb1-bd9cf4039084" x="0" y="442" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[核准期限：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="de652609-b272-4986-a78f-40172debf00e" x="0" y="423" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[申請日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47280ed4-6673-41ca-a986-a13755aedb6d" x="0" y="404" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[重入國]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="43d2aaeb-7d55-41a0-8bd2-177fb9291a6e" x="448" y="442" width="118" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[新許可證號(10位)：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cc61b2c0-7db9-4ec6-a8c7-689f2df99ecd" x="448" y="423" width="118" height="20"/>
+				<textElement textAlignment="Justified" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[原許可證號(6位)：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8fb34498-b7c2-4b28-95bd-946c8292d9cd" x="0" y="500" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[處理情形：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1b9dc330-d5f4-4b1f-bf5f-b01b8c5a9566" x="0" y="519" width="84" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[報案方式：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d0d393dc-c681-46d5-9899-d80217ce9050" x="448" y="519" width="118" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[查獲日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2d2d6676-4e68-4228-b238-cd44a0e77fe5" x="223" y="519" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[查獲單位：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="71fb22fa-fda9-4d31-bab3-031c323e2243" x="0" y="481" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[協尋]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="919b6368-e9a4-4141-a8a5-93ab1e378fc4" x="448" y="500" width="118" height="20"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[報案日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aed994ea-2668-4894-a2e6-829851b50f68" x="223" y="500" width="63" height="20"/>
+				<textElement markup="none">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[逃逸日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="47caf8e2-68e3-465e-a983-0a8981a3c509" x="62" y="0" width="162" height="20"/>
+				<textElement markup="none"/>
+				<textFieldExpression><![CDATA[$F{F01}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="50de298e-9c4f-4b04-98ec-c3c5282993fb" x="62" y="19" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F02}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="92a7ebea-d835-43e5-838a-d240ba51d817" x="62" y="38" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F03}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="98f14019-095d-4ea5-82c8-344cd9096442" x="62" y="57" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F04}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6688f4b3-7000-4060-a525-ed579f582ff8" x="62" y="76" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F05}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d65a1b9e-7199-469e-bc06-421212935e8a" x="62" y="95" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F06}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e2ed2169-d68d-45be-9a11-4e7e0ae8d8f6" x="62" y="114" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F07}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b197fd1c-11a2-441c-be4a-016971c2acf2" x="62" y="133" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F08}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0bd1582a-3422-4fe3-80ad-0a53fc6c8c04" x="62" y="152" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F09}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f15259b9-ae0a-4c58-a1f6-9d3cbf31c86d" x="62" y="171" width="608" height="74"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F10}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c9dad554-2bfd-4af7-b814-6c6a8350d444" x="83" y="263" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F11}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f7ff7dd3-be58-415c-9ef8-58d865115bb1" x="83" y="282" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F12}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="531e6c68-1920-40e7-a7e9-5175e10775c7" x="62" y="323" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F13}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b2ba3bdc-17ba-4224-95e8-a5e954a0ba8e" x="62" y="342" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F14}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="bcdacea8-c673-486e-a00e-4827960b5ffb" x="62" y="361" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F15}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="67a82dd2-355f-43c9-9fcf-767bc839e65b" x="83" y="423" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F16}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3c09af3-e03c-4567-bcb1-a1ccd97ef45f" x="83" y="442" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F17}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="45747350-b9f8-4cf9-b986-532e64a04297" x="83" y="500" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F18}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4dd51405-c379-407f-93bd-df6ca9b9e0d6" x="285" y="0" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F20}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="080f2dcc-538d-4037-bdb6-dcd18475c6be" x="83" y="519" width="141" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F19}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="923a5e88-2b34-4542-a70c-5fc4acabc8c1" x="285" y="19" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F21}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="23a0d937-1e66-4c72-95ce-9cf55f07b447" x="285" y="38" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F22}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e11a4a21-f26f-4054-8549-eee9fcb3ee45" x="285" y="57" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F23}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="793af20c-f79f-459d-9745-2fdab53eb143" x="285" y="263" width="163" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F24}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="64035a5b-05b2-4705-ac61-cc6f1f43322f" x="285" y="282" width="163" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F25}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="96db2a6b-8cb2-4dad-96fc-682b54b4f53f" x="285" y="323" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F26}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0282908a-3611-49c3-a32c-07c4b10e6722" x="285" y="342" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F27}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="62bff412-e107-43ef-9c6c-cc26a5289739" x="285" y="361" width="162" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F28}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cfeb1cde-13ab-424b-ad4e-747e2e3b6343" x="285" y="423" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F29}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1d7bb4ff-1e96-43f8-94aa-89030d1fd77c" x="285" y="442" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F30}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="68bf05d0-dc02-4b80-b8b8-8c4bd50f060b" x="285" y="500" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F31}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0efb167f-2e7e-4411-9cb1-5aead3c011c3" x="285" y="519" width="164" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F32}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e1a548a7-6f01-4f56-b830-141066bbdb61" x="510" y="0" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F33}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d00fa1e-d7da-43cf-a76d-416eefd97b62" x="510" y="19" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F34}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9d6add93-8db6-445d-ba30-0b07074e3651" x="510" y="38" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F35}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ee4c4ef0-7188-4488-affa-b5711a2110f0" x="510" y="57" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F36}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ecd228f6-f4d8-4ad1-a923-9dcfe65ae946" x="510" y="76" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F37}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6ccc6ef0-e419-474a-b360-6ec1a684303f" x="510" y="95" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F38}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4d4f4970-d8b8-47da-a6ad-2fb396731a3f" x="510" y="114" width="160" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F39}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="12225d64-0ff8-4265-93a4-c4fbe01a771c" x="565" y="423" width="105" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F40}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2fa8be38-604f-44f0-957a-6409da899f31" x="565" y="442" width="105" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F41}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="83ed4dfb-cee2-4501-b797-a7e21431230b" x="565" y="500" width="105" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F42}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="de366c94-b5d1-4228-a240-352a98fd6c94" x="565" y="519" width="105" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{F43}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

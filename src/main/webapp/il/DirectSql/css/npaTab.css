@@ -1,0 +1,67 @@
+.tabItem {
+	border-top: 1px solid Black;
+	border-left: 1px solid Black;
+	border-right: 1px solid Black;
+	padding-left: 6px;
+	padding-right: 6px;
+	padding-top: 5px;
+	background-color: darkgray;
+	color: White;
+	cursor: hand;
+    Height: 19px;
+}
+
+.tabItemSelected {
+  border-top: 1px solid Black;
+	border-left: 1px solid Black;
+	border-right: 1px solid Black;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	background-color: White;
+	color: Black;
+	cursor: hand;
+	border-bottom: 1px solid White;
+	font-weight: bold;
+}
+
+.tabRowTop {
+  margin-bottom:0px; 
+  padding-top:5px;
+  padding-left:15px;
+}
+
+.tabRowBottom {
+  margin-bottom:0px; 
+  padding-left:10px;
+  padding-top:5px; 
+  border-bottom: 1px solid Black;
+}
+
+
+.tabContent {
+	border-right: 1px solid Black;
+	border-left: 1px solid Black;
+	border-bottom: 1px solid Black;
+	margin: 0px;
+	padding: 5px;
+	display: none;
+	overflow: auto;
+}
+
+
+.tabContentSelected {
+  border-right: 1px solid Black;
+	border-left: 1px solid Black;
+	border-bottom: 1px solid Black;
+	margin: 0px;
+	padding: 5px;
+	display: block;
+	overflow: auto;
+}
+
+.compositPage {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}

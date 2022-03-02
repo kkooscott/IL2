@@ -1,0 +1,80 @@
+/**Shaw Wu's Stlye for 102 �j�Ʈ�**/
+
+
+
+#myForm {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	/*
+	border-top: 2px solid #BDC9B6;
+	border-bottom: 2px solid #BDC9B6;
+	*/
+	margin-right: 5px;/*#F8FBF2;*/
+	margin-top: 3px;
+	background-color: #f8fbf2;
+	text-align: center;
+	padding-right: 1%;
+	padding-left: 1%;
+	
+}
+#myForm table {
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+#myForm table td {
+	margin: 0px;	
+	/*
+	padding-right: 15px;
+	padding-left: 3px;
+	*/
+	text-align: left;
+	padding-bottom: 3px;
+	vertical-align: top;
+}
+#myForm table td span.Select {
+	padding-right: 0.5em;
+	display: inline-block;
+	width: 7em;
+	padding-top: 5px;
+}
+#myForm td.Label {
+	color: #344b69;/*#005555;*/
+	text-align: right;
+	vertical-align: top;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+#myForm td.LabelLeft {
+	color: #005555;
+	text-align: left;
+	vertical-align: top;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+#myForm td.LabelCenter {
+	color: #005555;
+	text-align: center;
+	vertical-align: top;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+#myForm fieldset 
+{
+	/*
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #f8fbf2;
+	border: 1px solid #848681;
+	*/
+}
+#myForm legend{
+     color: #143a85;
+     /*padding: 10px; 
+     margin: -26px 0 -5px -11px;*/
+}
+
+

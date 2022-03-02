@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   						   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   						   http://www.springframework.org/schema/jdbc
+  						   http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+  						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  						   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+  						   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+    
+    <util:properties id="applicationProps" location="file:${user.home}/il.properties"/>
+    <context:property-placeholder
+            properties-ref="applicationProps"/>
+    
+    <!--  -->
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="#{applicationProps['db.driver']}"/>
+        <property name="url" value="#{applicationProps['db.url']}"/>
+        <property name="username" value="#{applicationProps['db.username']}"/>
+        <property name="password" value="#{applicationProps['db.password']}"/>
+    </bean>	
+    <bean id="dataSourceABDB"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="#{applicationProps['abdb.driver']}" />
+        <property name="url" value="#{applicationProps['abdb.url']}" />
+        <property name="username" value="#{applicationProps['abdb.username']}" />
+        <property name="password" value="#{applicationProps['abdb.password']}" />
+    </bean>
+    
+    
+    <!-- 警署環境-Database connection pool  
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/>
+        <property name="url" value="jdbc:sybase:Tds:200.200.68.70:4100/IL2DB"/>
+        <property name="username" value="ILU001"/>
+        <property name="password" value="#il-ps01"/>
+    </bean> 
+    <bean id="dataSourceABDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/>
+        <property name="url" value="jdbc:sybase:Tds:200.200.68.70:4100/ABDB"/>
+        <property name="username" value="ILU001"/>
+        <property name="password" value="#il-ps01"/>
+    </bean>        
+    -->
+    
+    <!-- 本機測試-Database connection pool 
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/>
+        <property name="url" value="jdbc:sybase:Tds:172.20.10.4:4100/IL2DB"/>
+        <property name="username" value="ilu001"/>
+        <property name="password" value="ilu001"/>
+    </bean>
+    <bean id="dataSourceABDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/>
+        <property name="url" value="jdbc:sybase:Tds:172.20.10.4:4100/ABDB"/>
+        <property name="username" value="ilu001"/>
+        <property name="password" value="ilu001"/>
+    </bean>
+	--> 
+    <!-- Dao -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSourceABDB"/>
+    </bean> 
+        
+    <!-- 公司測試-Database connection pool  
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/>
+        <property name="url" value="jdbc:sybase:Tds:192.168.2.253:4100/IL2DB"/>
+        <property name="username" value="ilu001"/>
+        <property name="password" value="ilu001"/>
+    </bean>   
+    -->
+	<!-- DAO-->
+    <bean id="il07ADao" class="tw.gov.npa.il.myDao.IL07ADao">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="il07BDao" class="tw.gov.npa.il.myDao.IL07BDao">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="il07CDao" class="tw.gov.npa.il.myDao.IL07CDao">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="il07DDao" class="tw.gov.npa.il.myDao.IL07DDao">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean id="othersDAO" class="tw.gov.npa.il.myDao.OthersDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+    <!-- 
+    <bean id="IL08B01U01Dao" class="tw.gov.npa.il.myDao.IL08B01U01Dao">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    -->
+    <!-- Report 
+    <bean id="dailyReport" class="tw.gov.npa.il.report.DailyReport">
+    </bean>
+    -->
+    <!-- Scheduler 
+    <bean id="reportScheduler" class="tw.gov.npa.il.schedule.ReportScheduler">
+        <property name="dailyReport" ref="dailyReport"/>
+    </bean>
+    <bean id="asycReportExecutor" class="tw.gov.npa.il.schedule.AsycReportExecutor">
+        <property name="dailyReport" ref="dailyReport"/>
+    </bean>
+    -->
+    <!-- 單一簽入-->
+    <bean id="portal" scope="prototype" class="tw.gov.npa.il.action.Portal">
+        <property name="wsUtil" ref="wsUtil"/>
+    </bean>
+    <bean id="wsUtil" class="tw.gov.npa.il.util.WSUtil">
+    </bean>
+    
+    <!-- 公用資料用 -->
+    <bean id="appUseDAO" class="tw.gov.npa.il.myDao.AppUseDAO">
+        <property name="jdbcTemplate" ref="jdbcTemplate"/>
+    </bean>
+	<bean id="searcher" scope="prototype" class="tw.gov.npa.il.action.Searcher">
+        <property name="appUseDAO" ref="appUseDAO"/>
+    </bean>
+		 
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation"
+			value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>	 
+</beans>

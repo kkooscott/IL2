@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Slider</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script language="JavaScript" type="text/javascript">
+var Slider="left";
+var menuSize = "180";
+function goMove() {
+    Slider = document.getElementById("Slider").value;
+    var existCols = window.parent.document.getElementById('bottomFrame').getAttribute("cols");
+  if (Slider=="right") {
+     Slider="left";
+	 parent.document.getElementById("bottomFrame").setAttribute("cols",menuSize + ",7,*");
+     document.getElementById("btimg").src = "images/bt_left.gif";
+  }
+  else {
+     Slider="right";
+	 parent.document.getElementById("bottomFrame").setAttribute("cols","4,7,*");
+     document.getElementById("btimg").src = "images/bt_right.gif";
+ }
+ document.getElementById("Slider").value = Slider;
+}
+</script>
+
+</head>
+<body style="margin:0px">
+ <input id="Slider" type="hidden" value="left" />
+<table width="100%" height="800" border="0" cellpadding="0" cellspacing="0" style="background-image: url('images/bt_bg.gif'); background-repeat: repeat-y;">
+<tr><td style="height:400px" valign="bottom"><img id="btimg" src="images/bt_left.gif" onclick="goMove()" style="cursor:pointer"></td></tr>
+<tr><td style="height:1000px"><img src="images/blank.gif" /></td></tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,84 @@
+BODY
+{
+	background-color:#FFFFFF;
+    COLOR: #006600;
+    font-family: "verdana", "新細明體", "細明體", "Arial", "MingliU"; 
+    font-size: 13px; 
+    font-style: normal;    
+    LINE-HEIGHT: 130%;
+    margin-left:6px;
+    margin-top:6px;
+    margin-right:0px;
+}
+
+A:hover
+{
+    COLOR: #006600;
+    CURSOR: pointer;
+    TEXT-DECORATION: none
+}
+A {
+    COLOR: #006600;
+    LINE-HEIGHT: 130%;
+    TEXT-DECORATION: underline;
+}
+P {
+	FONT-VARIANT: normal;
+	MARGIN: 3px 3px 0px;
+	color: #006600;
+
+}
+
+.menuBody
+{
+    color:#006600;
+    font-size: 14px;
+    margin-left:0px;
+    margin-top:6px;
+}
+.menuLeftNavOff
+{
+	COLOR: #063676;
+	CURSOR: pointer;
+	FONT-FAMILY:"verdana", "新細明體", "細明體", "MingliU";
+	FONT-SIZE: 13px;
+	LINE-HEIGHT: 20px;
+	MARGIN: 2px 0px;
+	PADDING-BOTTOM: 1px;
+	PADDING-LEFT: 3px;
+	PADDING-RIGHT: 3px;
+	PADDING-TOP: 2px;
+	TEXT-DECORATION: none;
+
+	 }
+.menuLeftNavUp
+{
+	  COLOR: #6B00FC;
+	  CURSOR: pointer;
+	  FONT-FAMILY: "verdana", "新細明體", "細明體", "MingliU";
+	  FONT-SIZE: 13px;
+	  LINE-HEIGHT: 20px;
+	  MARGIN: 2px 0px;
+	  PADDING-BOTTOM: 1px;
+	  PADDING-LEFT: 3px;
+	  PADDING-RIGHT: 3px;
+	  PADDING-TOP: 2px;
+	  TEXT-DECORATION: none;
+
+	}
+.menuLeftNavDown
+{
+	background-image:url(../images/menumask.png);
+	background-repeat:no-repeat;
+	  COLOR: #006600;
+	  CURSOR: pointer;
+	  FONT-FAMILY: "verdana", "新細明體", "細明體", "MingliU";
+	  FONT-SIZE: 13px;
+	  LINE-HEIGHT: 20px;
+	  MARGIN: 2px 0px;
+	  PADDING-BOTTOM: 1px;
+	  PADDING-LEFT: 3px;
+	  PADDING-RIGHT: 3px;
+	  PADDING-TOP: 2px;
+	  TEXT-DECORATION: none;
+    }

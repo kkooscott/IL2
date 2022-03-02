@@ -1,0 +1,136 @@
+
+		div.domtab{
+			margin:0;
+			padding:0 0em;
+			width:90%;
+			font-size:13px;
+			list-style:none;
+			border:none;
+			margin-left:auto; 
+			margin-right:auto;
+		}
+		ul.domtabs{
+			padding:0;
+			list-style:none;
+			border:none;
+			float:left;
+			width:100%;
+			margin:2em 0 0 0;				
+		}
+		ul.domtabs li{
+			float:left;
+			padding:0 .1em 0 0;
+		}
+		ul.domtabs a:link,
+		ul.domtabs a:visited,
+		ul.domtabs a:active,
+		ul.domtabs a:hover{
+			width:5em;
+			padding:.4em 0.5em;
+			display:block;
+			background:#899BA9;
+			color:#575556;
+			height:1.4em;
+			font-weight:bold;
+			text-decoration:none;
+			text-align:center;
+			white-space:nowrap;
+		}
+		html>body ul.domtabs a:link,
+		html>body ul.domtabs a:visited,
+		html>body ul.domtabs a:active,
+		html>body ul.domtabs a:hover{
+			/*height:auto;
+			min-height:3em;*/
+		}
+		ul.domtabs a:hover{
+			background:#BACCD8;
+		}
+		div.domtab .domtabsDiv{
+			clear:both;
+			width:auto;
+			background:#BACCD8;
+			color:#032251;
+			padding:1em 1.5em;
+		}
+		ul.domtabs li.active a:link,
+		ul.domtabs li.active a:visited,
+		ul.domtabs li.active a:active,
+		ul.domtabs li.active a:hover{
+			background:#BACCD8;
+			color:#032251;
+		}
+		#domtabprintview{
+			float:right;
+			padding-right:1em;
+			text-align:right;
+		}
+		#domtabprintview a:link,
+		#domtabprintview a:visited,
+		#domtabprintview a:active,
+		#domtabprintview a:hover{
+			color:#032251;
+		}
+
+		div.domtab .domtabsDiv .domtabsA:link,
+		div.domtab .domtabsDiv .domtabsA:visited,
+		div.domtab .domtabsDiv .domtabsA:active
+		{
+			color:#032251;
+			display:block;
+			padding:1em .5em;
+			font-weight:bold;
+			font-size:1.3em;
+		}
+		div.domtab .domtabsDiv h2 a,
+		div.domtab .domtabsDiv h2 a:hover,
+		div.domtab .domtabsDiv h2 a:active
+		{
+			color:#cfc;
+			display:inline;
+			padding:0;
+			font-weight:normal;
+			font-size:1em;
+		}
+		
+/* other scheme! */
+#other{
+	font-size:.8em;
+	margin-left:.3em;
+	width:60em;
+	margin-bottom:3em;
+	float:left;
+}
+div#other.domtab div{
+	clear:both;
+	width:54em;
+	background:#669;
+	color:#032251;
+	padding:1em 3em;
+}
+		
+#other ul.domtabs a:hover{
+	background:#669;
+}
+div#other ul.domtabs li.active a:link,
+div#other ul.domtabs li.active a:visited,
+div#other ul.domtabs li.active a:active,
+div#other ul.domtabs li.active a:hover{
+	background:#669;
+	color:#032251;
+}
+#other div{
+	float:left;
+}
+ul.prevnext{
+	float:left;
+	width:100%;
+}
+ul.prevnext li{
+	float:left;
+	width:49%;
+}
+ul.prevnext li.next{
+	float:right;
+	text-align:right;
+}

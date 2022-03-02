@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+"http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.devMode" value="false"/>
+    <constant name="struts.i18n.reload" value="false"/>
+    <constant name="struts.configuration.xml.reload" value="false"/>
+    <constant name="struts.multipart.parser" value="jakarta" />
+    <constant name="struts.multipart.maxSize" value="10000000" />
+        
+	<package name="IL" namespace="/" extends="struts-default">
+		<global-results>
+			<result name="error">/il/util/errorPage.jsp</result>
+	        <result name="downloadPDF" type="stream">
+	            <param name="contentType">application/vnd.ms-excel</param>
+	            <param name="inputName">pdfStream</param>
+	            <param name="contentDisposition">contentDisposition</param>
+	            <param name="bufferSize">1024</param>
+	        </result>
+	        <result name="downloadExcel" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">contentDisposition</param>
+                <param name="bufferSize">1024</param>
+            </result>
+	    </global-results>
+	    
+		<!--居留外僑動態管理系統-勤區查察作業選單  -->
+		<action name="IL02000M" class="tw.gov.npa.il.action.IL02000M" method="toQuery">
+            <result>/il/IL02000M.jsp</result>
+		</action>
+		<!--查察記事-條件輸入畫面  -->
+		<action name="IL02A01U01" class="tw.gov.npa.il.action.IL02A01U01" method="toQuery">
+            <result>/il/IL02A01U01.jsp</result>
+		</action>
+		<!--查察記事-資料選取畫面  -->
+		<action name="IL02A01U02" class="tw.gov.npa.il.action.IL02A01U02" method="toMain">
+            <result>/il/IL02A01U02.jsp</result>
+		</action>
+		<!--查察記事-明細內容顯示畫面  -->
+		<action name="IL02A01U03" class="tw.gov.npa.il.action.IL02A01U03" method="toMain">
+            <result>/il/IL02A01U03.jsp</result>
+            <result name="resultTest">/result.jsp</result>
+		</action>
+		<!--查察記事-資料輸入畫面  -->
+		<action name="IL02A01U04" class="tw.gov.npa.il.action.IL02A01U04" method="toMain">
+            <result>/il/IL02A01U04.jsp</result>
+		</action>
+		<!--查察記事-資料輸入畫面-新增 -->
+		<action name="IL02A01U04New" class="tw.gov.npa.il.action.IL02A01U04" method="toNew">
+            <result>/il/IL02A01U04.jsp</result>
+        </action>
+        <!--查察記事-資料輸入畫面-更新 -->
+        <action name="IL02A01U04Update" class="tw.gov.npa.il.action.IL02A01U04" method="toUpdate">
+            <result>/result.jsp</result>
+        </action>
+        	
+		<!--外責區註記-條件輸入畫面  -->
+		<action name="IL02C01U01" class="tw.gov.npa.il.action.IL02C01U01" method="toMain">
+            <result>/il/IL02C01U01.jsp</result>
+		</action>
+		<!--外責區註記-條件輸入畫面-Ajax取得郵遞區號內容  -->
+		<action name="IL02C01U01G" class="tw.gov.npa.il.action.IL02C01U01" method="toGetZipCode">
+            <result name="IL02C01U01">/il/util/resultZipCode.jsp</result>
+            <result name="IL03B01P00">/il/util/resultZipCodeMulti.jsp</result>
+            <result>/il/util/resultZipCode.jsp</result>
+		</action>
+		<!--外責區註記-資料顯示及登錄畫面  -->
+		<action name="IL02C01U02" class="tw.gov.npa.il.action.IL02C01U02" method="toMain">
+            <result>/il/IL02C01U02.jsp</result>
+		</action>	
+		<!--外責區註記-資料顯示及登錄畫面-更新 -->
+        <action name="IL02C01U02Update" class="tw.gov.npa.il.action.IL02C01U02" method="toUpdate">
+            <result>/result.jsp</result>
+        </action>
+        
+		<!--居留外僑動態管理系統-居留資料查詢作業選單  -->
+		<action name="IL03000M" class="tw.gov.npa.il.action.IL03000M" method="toMain">
+            <result>/il/IL03000M.jsp</result>
+		</action>
+		<!--外僑居留資料查詢-條件輸入畫面  -->
+		<action name="IL03A01Q01" class="tw.gov.npa.il.action.IL03A01Q01" method="toMain">
+            <result>/il/IL03A01Q01.jsp</result>
+		</action>
+		<!--外僑居留資料查詢-資料選取畫面 -->
+		<action name="IL03A01Q02" class="tw.gov.npa.il.action.IL03A01Q02" method="toMain">
+            <result>/il/IL03A01Q02.jsp</result>
+		</action>
+        <action name="IL03A01Q02_2" class="tw.gov.npa.il.action.IL03A01Q02" method="downloadExcel">
+        </action>
+        <action name="IL03A01Q02_3" class="tw.gov.npa.il.action.IL03A01Q02" method="downloadPdf">
+        </action>
+		<!--外僑居留資料查詢-外僑明細內容顯示畫面 -->
+		<action name="IL03A01Q04" class="tw.gov.npa.il.action.IL03A01Q04" method="toMain">
+            <result>/il/IL03A01Q04.jsp</result>
+		</action>
+		<action name="IL03A01Q04_2" class="tw.gov.npa.il.action.IL03A01Q04" method="downloadExcel">
+		</action>
+		<action name="IL03A01Q04_3" class="tw.gov.npa.il.action.IL03A01Q04" method="downloadPdf">
+		</action>
+		<!--外僑居留資料查詢畫面-歷史資料 -->
+		<action name="IL03A01Q06" class="tw.gov.npa.il.action.IL03A01Q06" method="toMain">
+            <result>/il/IL03A01Q06.jsp</result>
+		</action>
+		<!--外僑居留資料查詢-警政署查察記事資料畫面 -->
+		<action name="IL03A01Q07" class="tw.gov.npa.il.action.IL03A01Q07" method="toMain">
+            <result>/il/IL03A01Q07.jsp</result>
+		</action>
+		<!--外僑居留資料查詢-移民署查察記事資料畫面 -->
+		<action name="IL03A01Q07A" class="tw.gov.npa.il.action.IL03A01Q07A" method="toMain">
+            <result>/il/IL03A01Q07A.jsp</result>
+		</action>
+		<!--外僑居留資料查詢(二)-資料選取畫面 -->
+		<action name="IL03A01Q02A" class="tw.gov.npa.il.action.IL03A01Q02A" method="toMain">
+            <result>/il/IL03A01Q02.jsp</result>
+		</action>
+		<!--轄區狀況統計資料-條件輸入畫面  -->
+		<action name="IL03B01P00" class="tw.gov.npa.il.action.IL03B01P00" method="toMain">
+            <result>/il/IL03B01P00.jsp</result>
+		</action>
+		<!--轄區狀況統計資料-表冊選擇畫面  -->
+		<action name="IL03B01P01" class="tw.gov.npa.il.action.IL03B01P01" method="toMain">
+            <result>/il/IL03B01P01.jsp</result>
+		</action>
+		<!--轄區狀況統計資料-自由檢索條件輸入畫面和其他報表處理作業  -->
+		<action name="IL03B01P02" class="tw.gov.npa.il.action.IL03B01P02" method="toMain">
+            <result name="report1">/il/IL03B01P02.jsp</result>
+            <result name="reportOther">/il/IL03B01P01.jsp</result>
+		</action>
+		<!--轄區狀況統計資料-自由檢索條件報表處理作業  -->
+		<action name="IL03B01P03" class="tw.gov.npa.il.action.IL03B01P03" method="toMain">
+            <result name="success">/il/savedIL03.jsp</result>
+		</action>
+				
+		<!--轄區狀況統計資料-線上報表管理作業  -->
+		<action name="IL03D01P01" class="tw.gov.npa.il.action.IL03D01P01" method="toMain">
+            <result>/il/IL03D01P01.jsp</result>
+		</action>
+		<!--線上報表管理作業-處理結果顯示畫面  -->
+		<action name="IL03D01P02" class="tw.gov.npa.il.action.IL03D01P02" method="toMain">
+            <result name="report1">/il/IL03D01P02/IL03D01P02_1.jsp</result>
+            <result name="report2">/il/IL03D01P02/IL03D01P02_2.jsp</result>
+            <result name="report3">/il/IL03D01P02/IL03D01P02_3.jsp</result>
+            <result name="report4">/il/IL03D01P02/IL03D01P02_4.jsp</result>
+            <result name="report5">/il/IL03D01P02/IL03D01P02_5.jsp</result>
+            <result name="report6">/il/IL03D01P02/IL03D01P02_6.jsp</result>
+		</action>
+
+		<!--居留外僑動態管理系統-統計報表作業選單  -->
+		<action name="IL04000M" class="tw.gov.npa.il.action.IL04000M" method="toMain">
+            <result>/il/IL04000M.jsp</result>
+		</action>
+		<!--月統計報表下載-警政署選取畫面  -->
+		<action name="IL04A01Q01" class="tw.gov.npa.il.action.IL04A01Q01" method="toMain">
+            <result>/il/IL04A01Q01.jsp</result>
+		</action>
+		<!--月統計報表下載-欄項選取畫面  -->
+		<action name="IL04A01Q02" class="tw.gov.npa.il.action.IL04A01Q02" method="toMain">
+            <result>/il/IL04A01Q02.jsp</result>
+		</action>
+		<!--月統計報表下載-報表顯示畫面  -->
+		<action name="IL04A01Q03" class="tw.gov.npa.il.action.IL04A01Q03" method="toMain">
+            <result name="report1">/il/IL04A01Q03/IL04A01Q03_1.jsp</result>
+            <result name="report2">/il/IL04A01Q03/IL04A01Q03_2.jsp</result>
+            <result name="report3">/il/IL04A01Q03/IL04A01Q03_3.jsp</result>
+            <result name="report4">/il/IL04A01Q03/IL04A01Q03_4.jsp</result>
+            <result name="report5">/il/IL04A01Q03/IL04A01Q03_5.jsp</result>
+            <result name="report6">/il/IL04A01Q03/IL04A01Q03_6.jsp</result>
+            <result name="report7">/il/IL04A01Q03/IL04A01Q03_7.jsp</result>
+            <result name="report8">/il/IL04A01Q03/IL04A01Q03_8.jsp</result>
+            <result name="report9">/il/IL04A01Q03/IL04A01Q03_9.jsp</result>
+            <result name="report10">/il/IL04A01Q03/IL04A01Q03_10.jsp</result>
+            <result name="report11">/il/IL04A01Q03/IL04A01Q03_11.jsp</result>
+            <result name="report12">/il/IL04A01Q03/IL04A01Q03_12.jsp</result>
+            <result name="report13">/il/IL04A01Q03/IL04A01Q03_13.jsp</result>
+            <result name="report14">/il/IL04A01Q03/IL04A01Q03_14.jsp</result>
+            <result name="report15">/il/IL04A01Q03/IL04A01Q03_15.jsp</result>
+		</action>
+		<!--自由檢索報表(固定欄項)-條件輸入畫面  -->
+		<action name="IL04B01Q01" class="tw.gov.npa.il.action.IL04B01Q01" method="toMain">
+            <result>/il/IL04B01Q01.jsp</result>
+		</action>
+		<action name="IL04B01Q01_2" class="tw.gov.npa.il.action.IL04B01Q01" method="getListByDeptCd">
+		</action>
+		<!--自由檢索報表(固定欄項)-報表選取畫面  -->
+		<action name="IL04B01Q02" class="tw.gov.npa.il.action.IL04B01Q02" method="toMain">
+            <result>/il/IL04B01Q02.jsp</result>
+		</action>
+		<!--自由檢索報表(固定欄項)-處理結果顯示畫面  -->
+		<action name="IL04B01Q03" class="tw.gov.npa.il.action.IL04B01Q03" method="toMain">
+            <result name="report1">/il/IL04B01Q03/IL04B01Q03_1.jsp</result>
+            <result name="report2">/il/IL04B01Q03/IL04B01Q03_2.jsp</result>
+            <result name="report3">/il/IL04B01Q03/IL04B01Q03_3.jsp</result>
+            <result name="report4">/il/IL04B01Q03/IL04B01Q03_4.jsp</result>
+            <result name="report5">/il/IL04B01Q03/IL04B01Q03_5.jsp</result>
+            <result name="report6">/il/IL04B01Q03/IL04B01Q03_6.jsp</result>
+            <result name="report7">/il/IL04B01Q03/IL04B01Q03_7.jsp</result>
+            <result name="success">/il/saved.jsp</result>
+		</action>		
+		
+		<action name="IL04C01Q03" class="tw.gov.npa.il.action.IL04C01Q03" method="toMain">
+            <result name="success">/il/saved.jsp</result>
+		</action>
+			
+		<!--線上報表管理作業  -->
+		<action name="IL04D01P01" class="tw.gov.npa.il.action.IL04D01P01" method="toMain">
+            <result>/il/IL04D01P01.jsp</result>
+		</action>		
+
+		<!--居留外僑動態管理系統-轉出入資料處理作業子功能表選單  -->
+		<action name="IL05000M" class="tw.gov.npa.il.action.IL05000M" method="toMain">
+            <result>/il/IL05000M.jsp</result>
+		</action>
+		<!--居留外僑動態管理系統-轉入資料處理作業選單  -->
+		<action name="IL05A00M" class="tw.gov.npa.il.action.IL05A00M" method="toMain">
+            <result>/il/IL05A00M.jsp</result>
+		</action>
+		<!--轉出入資料處理作業-轉入資料-境管局轉入資料  -->
+		<action name="IL05A03U" class="tw.gov.npa.il.action.IL05A03U" method="toMain">		
+            <result>/il/IL05A03U.jsp</result>
+		</action>
+		<!--居留外僑動態管理系統-轉出資料處理作業選單  -->
+		<action name="IL05B00M" class="tw.gov.npa.il.action.IL05B00M" method="toMain">
+            <result>/il/IL05B00M.jsp</result>
+		</action>
+		<!--轉出入資料處理作業-轉出資料-境管局轉出資料  -->
+		<action name="IL05B03U" class="tw.gov.npa.il.action.IL05B03U" method="toMain">
+            <result>/il/IL05B03U.jsp</result>
+		</action>
+		<!--居留外僑動態管理系統-轉出入結果查詢畫面  -->
+		<action name="IL05C01Q01" class="tw.gov.npa.il.action.IL05C01Q01" method="toMain">
+            <result>/il/IL05C01Q01.jsp</result>
+		</action>
+
+		<!--居留外僑動態管理系統-共用代碼維護作業  -->
+		<action name="IL07000M" class="tw.gov.npa.il.action.IL07000M" method="toMain">
+            <result>/il/IL07000M.jsp</result>
+		</action>
+		<!--共用代碼維護作業-國籍代碼維護子功能表選單  -->
+		<action name="IL07A00M" class="tw.gov.npa.il.action.IL07A00M" method="toMain">
+            <result>/il/IL07A00M.jsp</result>
+		</action>
+		<action name="IL07A00A" class="tw.gov.npa.il.action.IL07A00M" method="doInsert">
+            <result>/il/IL07A00M.jsp</result>
+		</action>
+		<action name="IL07A00U" class="tw.gov.npa.il.action.IL07A00M" method="doUpdate">
+            <result>/il/IL07A00M.jsp</result>
+		</action>
+		<action name="IL07A00D" class="tw.gov.npa.il.action.IL07A00M" method="doDelete">
+            <result>/il/IL07A00M.jsp</result>
+		</action>
+		<!--國籍代碼新增-資料輸入畫面  -->
+		<action name="IL07A01A01" class="tw.gov.npa.il.action.IL07A01A01" method="toMain">
+            <result>/il/IL07A01A01.jsp</result>
+		</action>
+		<action name="IL07A01A02" class="tw.gov.npa.il.action.IL07A01A01" method="doCheck">
+		</action>
+		<!--國籍代碼修改-條件輸入畫面  -->
+		<action name="IL07A02U01" class="tw.gov.npa.il.action.IL07A02U01" method="toMain">
+            <result>/il/IL07A02U01.jsp</result>
+		</action>
+		<!--國籍代碼修改-資料選取畫面  -->
+		<action name="IL07A02U02" class="tw.gov.npa.il.action.IL07A02U02" method="toMain">
+            <result>/il/IL07A02U02.jsp</result>
+		</action>
+		<!--國籍代碼修改-資料輸入畫面  -->
+		<action name="IL07A02U03" class="tw.gov.npa.il.action.IL07A02U03" method="toMain">
+            <result>/il/IL07A02U03.jsp</result>
+		</action>
+		<!--國籍代碼刪除-條件輸入畫面  -->
+		<action name="IL07A03D01" class="tw.gov.npa.il.action.IL07A03D01" method="toMain">
+            <result>/il/IL07A03D01.jsp</result>
+		</action>
+		<!--國籍代碼刪除-資料選取畫面  -->
+		<action name="IL07A03D02" class="tw.gov.npa.il.action.IL07A03D02" method="toMain">
+            <result>/il/IL07A03D02.jsp</result>
+		</action>
+		<!--國籍代碼查詢-條件輸入畫面  -->
+		<action name="IL07A04Q01" class="tw.gov.npa.il.action.IL07A04Q01" method="toMain">
+            <result>/il/IL07A04Q01.jsp</result>
+		</action>
+		<!--國籍代碼查詢-資料顯示畫面  -->
+		<action name="IL07A04Q02" class="tw.gov.npa.il.action.IL07A04Q02" method="toMain">
+            <result>/il/IL07A04Q02.jsp</result>
+		</action>
+		<!--國籍代碼查詢-列印  -->
+		<action name="IL07A04Q02_2" class="tw.gov.npa.il.action.IL07A04Q02" method="doExcel">
+		</action>
+	
+		<!--共用代碼維護作業-職業類別代碼維護子功能表選單  -->
+		<action name="IL07B00M" class="tw.gov.npa.il.action.IL07B00M" method="toMain">
+            <result>/il/IL07B00M.jsp</result>
+		</action>
+		<action name="IL07B00A" class="tw.gov.npa.il.action.IL07B00M" method="doInsert">
+            <result>/il/IL07B00M.jsp</result>
+		</action>
+		<action name="IL07B00U" class="tw.gov.npa.il.action.IL07B00M" method="doUpdate">
+            <result>/il/IL07B00M.jsp</result>
+		</action>
+		<action name="IL07B00D" class="tw.gov.npa.il.action.IL07B00M" method="doDelete">
+            <result>/il/IL07B00M.jsp</result>
+		</action>		
+		<!--職業類別代碼新增-資料輸入畫面  -->
+		<action name="IL07B01A01" class="tw.gov.npa.il.action.IL07B01A01" method="toMain">
+            <result>/il/IL07B01A01.jsp</result>
+		</action>		
+		<action name="IL07B01A02" class="tw.gov.npa.il.action.IL07B01A01" method="doCheck">
+		</action>		
+		<!--職業類別代碼修改-條件輸入畫面  -->
+		<action name="IL07B02U01" class="tw.gov.npa.il.action.IL07B02U01" method="toMain">
+            <result>/il/IL07B02U01.jsp</result>
+		</action>
+		<!--職業類別代碼修改-資料選取畫面  -->
+		<action name="IL07B02U02" class="tw.gov.npa.il.action.IL07B02U02" method="toMain">
+            <result>/il/IL07B02U02.jsp</result>
+		</action>
+		<!--職業類別代碼修改-資料輸入畫面  -->
+		<action name="IL07B02U03" class="tw.gov.npa.il.action.IL07B02U03" method="toMain">
+            <result>/il/IL07B02U03.jsp</result>
+		</action>
+		<!--職業類別代碼刪除-條件輸入畫面  -->
+		<action name="IL07B03D01" class="tw.gov.npa.il.action.IL07B03D01" method="toMain">
+            <result>/il/IL07B03D01.jsp</result>
+		</action>
+		<!--職業類別代碼刪除-資料選取畫面  -->
+		<action name="IL07B03D02" class="tw.gov.npa.il.action.IL07B03D02" method="toMain">
+            <result>/il/IL07B03D02.jsp</result>
+		</action>
+		<!--職業類別代碼查詢-條件輸入畫面  -->
+		<action name="IL07B04Q01" class="tw.gov.npa.il.action.IL07B04Q01" method="toMain">
+            <result>/il/IL07B04Q01.jsp</result>
+		</action>
+		<!--職業類別代碼查詢-資料顯示畫面  -->
+		<action name="IL07B04Q02" class="tw.gov.npa.il.action.IL07B04Q02" method="toMain">
+            <result>/il/IL07B04Q02.jsp</result>
+		</action>
+		<!--職業類別代碼查詢-列印Excel  -->
+		<action name="IL07B04Q02_2" class="tw.gov.npa.il.action.IL07B04Q02" method="doExcel">
+		</action>
+		
+		<!--共用代碼維護作業-大專院校代碼維護子功能表選單  -->
+		<action name="IL07C00M" class="tw.gov.npa.il.action.IL07C00M" method="toMain">
+            <result>/il/IL07C00M.jsp</result>
+		</action>
+		<action name="IL07C00A" class="tw.gov.npa.il.action.IL07C00M" method="doInsert">
+            <result>/il/IL07C00M.jsp</result>
+		</action>
+		<action name="IL07C00U" class="tw.gov.npa.il.action.IL07C00M" method="doUpdate">
+            <result>/il/IL07C00M.jsp</result>
+		</action>
+		<action name="IL07C00D" class="tw.gov.npa.il.action.IL07C00M" method="doDelete">
+            <result>/il/IL07C00M.jsp</result>
+		</action>		
+		<!--大專院校代碼新增-資料輸入畫面  -->
+		<action name="IL07C01A01" class="tw.gov.npa.il.action.IL07C01A01" method="toMain">
+            <result>/il/IL07C01A01.jsp</result>
+		</action>		
+		<action name="IL07C01A02" class="tw.gov.npa.il.action.IL07C01A01" method="doCheck">
+		</action>		
+		<!--大專院校代碼修改-條件輸入畫面  -->
+		<action name="IL07C02U01" class="tw.gov.npa.il.action.IL07C02U01" method="toMain">
+            <result>/il/IL07C02U01.jsp</result>
+		</action>
+		<!--大專院校代碼修改-資料選取畫面  -->
+		<action name="IL07C02U02" class="tw.gov.npa.il.action.IL07C02U02" method="toMain">
+            <result>/il/IL07C02U02.jsp</result>
+		</action>
+		<!--大專院校代碼修改-資料輸入畫面  -->
+		<action name="IL07C02U03" class="tw.gov.npa.il.action.IL07C02U03" method="toMain">
+            <result>/il/IL07C02U03.jsp</result>
+		</action>
+		<!--大專院校代碼刪除-條件輸入畫面  -->
+		<action name="IL07C03D01" class="tw.gov.npa.il.action.IL07C03D01" method="toMain">
+            <result>/il/IL07C03D01.jsp</result>
+		</action>
+		<!--大專院校代碼刪除-資料選取畫面  -->
+		<action name="IL07C03D02" class="tw.gov.npa.il.action.IL07C03D02" method="toMain">
+            <result>/il/IL07C03D02.jsp</result>
+		</action>
+		<!--大專院校代碼查詢-條件輸入畫面  -->
+		<action name="IL07C04Q01" class="tw.gov.npa.il.action.IL07C04Q01" method="toMain">
+            <result>/il/IL07C04Q01.jsp</result>
+		</action>
+		<!--大專院校代碼查詢-資料顯示畫面  -->
+		<action name="IL07C04Q02" class="tw.gov.npa.il.action.IL07C04Q02" method="toMain">
+            <result>/il/IL07C04Q02.jsp</result>
+		</action>
+		<!--大專院校代碼查詢-列印  -->
+		<action name="IL07C04Q02_2" class="tw.gov.npa.il.action.IL07C04Q02" method="doExcel">
+		</action>
+		
+		
+		<!--共用代碼維護作業-特殊身份代碼維護子功能表選單  -->
+		<action name="IL07D00M" class="tw.gov.npa.il.action.IL07D00M" method="toMain">
+            <result>/il/IL07D00M.jsp</result>
+		</action>
+		<action name="IL07D00A" class="tw.gov.npa.il.action.IL07D00M" method="doInsert">
+            <result>/il/IL07D00M.jsp</result>
+		</action>
+		<action name="IL07D00U" class="tw.gov.npa.il.action.IL07D00M" method="doUpdate">
+            <result>/il/IL07D00M.jsp</result>
+		</action>
+		<action name="IL07D00D" class="tw.gov.npa.il.action.IL07D00M" method="doDelete">
+            <result>/il/IL07D00M.jsp</result>
+		</action>		
+		<!--特殊身份代碼新增-資料輸入畫面  -->
+		<action name="IL07D01A01" class="tw.gov.npa.il.action.IL07D01A01" method="toMain">
+            <result>/il/IL07D01A01.jsp</result>
+		</action>		
+		<action name="IL07D01A02" class="tw.gov.npa.il.action.IL07D01A01" method="doCheck">
+		</action>		
+		<!--特殊身份代碼修改-條件輸入畫面  -->
+		<action name="IL07D02U01" class="tw.gov.npa.il.action.IL07D02U01" method="toMain">
+            <result>/il/IL07D02U01.jsp</result>
+		</action>
+		<!--特殊身份代碼修改-資料選取畫面  -->
+		<action name="IL07D02U02" class="tw.gov.npa.il.action.IL07D02U02" method="toMain">
+            <result>/il/IL07D02U02.jsp</result>
+		</action>
+		<!--特殊身份代碼修改-資料輸入畫面  -->
+		<action name="IL07D02U03" class="tw.gov.npa.il.action.IL07D02U03" method="toMain">
+            <result>/il/IL07D02U03.jsp</result>
+		</action>
+		<!--特殊身份代碼刪除-條件輸入畫面  -->
+		<action name="IL07D03D01" class="tw.gov.npa.il.action.IL07D03D01" method="toMain">
+            <result>/il/IL07D03D01.jsp</result>
+		</action>
+		<!--特殊身份代碼刪除-資料選取畫面  -->
+		<action name="IL07D03D02" class="tw.gov.npa.il.action.IL07D03D02" method="toMain">
+            <result>/il/IL07D03D02.jsp</result>
+		</action>
+		<!--特殊身份代碼查詢-條件輸入畫面  -->
+		<action name="IL07D04Q01" class="tw.gov.npa.il.action.IL07D04Q01" method="toMain">
+            <result>/il/IL07D04Q01.jsp</result>
+		</action>
+		<!--特殊身份代碼查詢-資料顯示畫面  -->
+		<action name="IL07D04Q02" class="tw.gov.npa.il.action.IL07D04Q02" method="toMain">
+            <result>/il/IL07D04Q02.jsp</result>
+		</action>
+		<action name="IL07D04Q02_2" class="tw.gov.npa.il.action.IL07D04Q02" method="doExcel">
+		</action>
+		
+		
+		
+		
+
+		<!--居留外僑動態管理系統-影像資料匯入  -->
+		<action name="IL08A01U01" class="tw.gov.npa.il.action.IL08A01U01" method="toMain">
+            <result>/il/IL08A01U01.jsp</result>
+		</action>
+		<!--居留外僑動態管理系統-排程狀態管理  -->
+		<action name="IL08B01U01" class="tw.gov.npa.il.action.IL08B01U01" method="toMain">
+            <result>/il/IL08B01U01.jsp</result>
+		</action>
+        <action name="CV08A02A" class="tw.gov.npa.il.action.IL08B01U01" method="toCV08A02A">
+            <result>/il/IL08B01U01.jsp</result>
+        </action>
+        <action name="CV08A02Q" class="tw.gov.npa.il.action.IL08B01U01" method="doQuery">
+            <result>/il/IL08B01U01.jsp</result>
+        </action>
+        <action name="CV08A02R" class="tw.gov.npa.il.action.IL08B01U01" method="doRestart">
+            <result>/il/IL08B01U01.jsp</result>
+        </action>
+        <action name="CV08A02S" class="tw.gov.npa.il.action.IL08B01U01" method="doStop">
+            <result>/il/IL08B01U01.jsp</result>
+        </action>
+		
+		
+		<!--居留外僑動態管理系統-選單  -->
+		<action name="ILMenuList" class="tw.gov.npa.il.action.ILMenuList" method="toMain">
+            <result>/il/sys/ILMenuList.jsp</result>
+		</action>
+		<!-- 權限管理-查詢 -->
+        <action name="IL09A01Query" class="tw.gov.npa.il.action.IL09A01" method="toCW08A00M">
+            <result>/il/sys/IL09A01Q.jsp</result>
+        </action>
+        <!-- 權限管理-更新 -->
+        <action name="IL09A01Update" class="tw.gov.npa.il.action.IL09A01" method="doUpdate08A">
+            <result>/result.jsp</result>
+        </action>
+        
+        <!-- 功能清單維護 -->
+        <action name="IL09B01Query" class="tw.gov.npa.il.action.IL09B01" method="toQuery">
+            <result>/il/sys/IL09B01Q.jsp</result>
+        </action>
+        <action name="IL09B01New" class="tw.gov.npa.il.action.IL09B01" method="toNew">
+            <result>/il/sys/IL09B01New.jsp</result>
+        </action>
+        <action name="IL09B01Update" class="tw.gov.npa.il.action.IL09B01" method="toUpdate">
+            <result>/result.jsp</result>
+        </action>
+        <action name="IL09B01Del" class="tw.gov.npa.il.action.IL09B01" method="toDelete">
+            <result>/result.jsp</result>
+        </action>
+        
+		<!-- 登入作業 -->
+        <action name="IL09C01U01" class="tw.gov.npa.il.action.IL09C01U01" method="toMain">
+            <result>/il/IL09C01U01.jsp</result>
+        </action>
+		
+		<!--公告顯示 IL09A-->
+        <action name="IL10A01Q01" class="tw.gov.npa.il.action.IL09AAction" method="toCW09A01Q">
+            <result>/il/sys/CW09A01Q.jsp</result>
+        </action>
+        
+        <!--公告維護 IL09B-->
+        <action name="IL10A002M" class="tw.gov.npa.il.action.IL09BAction" method="toCW09B01Q">
+            <result>/il/sys/CW09B01Q.jsp</result>
+        </action>
+        <action name="doQuery09B" class="tw.gov.npa.il.action.IL09BAction" method="doQuery09B">
+            <result>/il/sys/CW09B01Q.jsp</result>
+        </action>
+        
+        <!--刪除公告'-->
+        <action name="doDelete09B" class="tw.gov.npa.il.action.IL09BAction" method="doDelete09B">
+            <result>/il/sys/CW09B01Q.jsp</result>
+        </action>
+
+        <!--新增公告-->
+        <action name="toCW09B02A" class="tw.gov.npa.il.action.IL09BAction" method="toCW09B02A">
+            <result>/il/sys/CW09B02A.jsp</result>
+        </action>
+        <action name="doAdd09B" class="tw.gov.npa.il.action.IL09BAction" method="doAdd09B">
+            <result>/il/sys/CW09B02A.jsp</result>
+        </action>
+
+        <!--更新公告-->
+        <action name="toCW09B03U" class="tw.gov.npa.il.action.IL09BAction" method="toCW09B03U">
+            <result>/il/sys/CW09B03U.jsp</result>
+        </action>
+        <action name="doUpdate09B" class="tw.gov.npa.il.action.IL09BAction" method="doUpdate09B">
+            <result>/il/sys/CW09B03U.jsp</result>
+        </action>
+        
+        <!-- 登入作業 -->
+        <action name="doAudit" class="tw.gov.npa.il.action.Login" method="doAudit">
+            <result>/index.html</result>
+			<result name="fail">login.jsp</result>
+        </action>
+		
+		<!-- 模擬登入作業 -->
+        <action name="doSimuAudit" class="tw.gov.npa.il.action.Login" method="doSimuAudit">
+            <result>/index.html</result>
+			<result name="fail">login.jsp</result>
+        </action>
+		
+		<!--登入頁-->
+        <action name="toLogin" class="tw.gov.npa.il.action.Login" method="toLogin">
+            <result>/il/login.jsp</result>
+        </action>
+		
+		<!--模擬登入頁-->
+		<action name="toSimuLogin" class="tw.gov.npa.il.action.Login" method="toSimuLogin">
+            <result>/il/simulogin.jsp</result>
+        </action>
+        
+        <!-- 單一簽入 -->       
+        <action name="index" class="tw.gov.npa.il.action.Portal" method="index">
+            <result>/index.html</result>
+        </action>
+        <!-- 實際查詢人 -->
+        <action name="searcher" class="tw.gov.npa.il.action.Searcher" >
+            <result>/il/util/searcher.jsp</result>
+        </action>
+        <action name="getDetails" class="tw.gov.npa.il.action.Searcher" method="getDetails">
+        </action>
+        
+        <!-- 新日誌 -->
+        <action name="doLog" class="tw.gov.npa.il.action.AjaxForNewNpalog" method="doLog">
+        </action>
+        
+        <!-- 歸戶歷程 -->
+        <action name="arcnoHistoryAjax" class="tw.gov.npa.il.action.IL03A01Q04" method="arcnoHistoryAjax">
+        </action>
+        
+        <!-- Top -->
+        <action name="top" class="tw.gov.npa.il.action.Top" method="toMain">
+            <result>/Top.jsp</result>
+        </action>
+	</package>
+
+	<package name="IL_Test" namespace="/" extends="struts-default">
+		<global-results>
+	        <result name="downloadPDF" type="stream">
+	            <param name="contentType">application/vnd.ms-excel</param>
+	            <param name="inputName">pdfStream</param>
+	            <param name="contentDisposition">contentDisposition</param>
+	            <param name="bufferSize">1024</param>
+	        </result>
+	        <result name="downloadExcel" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">contentDisposition</param>
+                <param name="bufferSize">1024</param>
+            </result>
+	    </global-results>
+		<action name="downloadAddress" class="tw.gov.npa.il.test.PeopleAction" method="doAddress">
+        </action>
+        <action name="address" class="tw.gov.npa.il.test.PeopleAction" method="toMain">
+        	<result>/il/test/address.jsp</result>
+        </action>
+        <action name="doDownloadLogExcel" class="tw.gov.npa.il.test.LogAction" method="doDownloadLogExcel">
+        	<result>/il/test/log.jsp</result>
+        	<result name="downloadExcel" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">excelStream</param>
+                <param name="contentDisposition">contentDisposition</param>
+                <param name="bufferSize">1024</param>
+            </result>
+        </action>
+    </package>
+ 
+</struts>    

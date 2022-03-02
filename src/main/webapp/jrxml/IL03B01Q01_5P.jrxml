@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="download_log" pageWidth="690" pageHeight="832" whenNoDataType="AllSectionsNoDetail" columnWidth="670" leftMargin="10" rightMargin="10" topMargin="14" bottomMargin="0" uuid="ba381d34-d59a-44b0-a4d8-792eea9f5325">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="UNITNAME" class="java.lang.String"/>
+	<parameter name="STARTDATE" class="java.lang.String"/>
+	<parameter name="ENDDATE" class="java.lang.String"/>
+	<parameter name="PRINTUNIT" class="java.lang.String"/>
+	<parameter name="PRINTTIME" class="java.lang.String"/>
+	<parameter name="PRINTUSER" class="java.lang.String"/>
+	<parameter name="ALLSIZE" class="java.lang.String"/>
+	<field name="f01" class="java.lang.String"/>
+	<field name="f02" class="java.lang.String"/>
+	<field name="f03" class="java.lang.String"/>
+	<field name="f04" class="java.lang.String"/>
+	<field name="f05" class="java.lang.String"/>
+	<field name="f06" class="java.lang.String"/>
+	<field name="f07" class="java.lang.String"/>
+	<field name="f08" class="java.lang.String"/>
+	<field name="f09" class="java.lang.String"/>
+	<field name="f10" class="java.lang.String"/>
+	<field name="f11" class="java.lang.String"/>
+	<field name="f12" class="java.lang.String"/>
+	<field name="f13" class="java.lang.String"/>
+	<field name="f14" class="java.lang.String"/>
+	<field name="f15" class="java.lang.String"/>
+	<variable name="v01" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[new Integer($V{v01}.intValue()+1)]]></variableExpression>
+		<initialValueExpression><![CDATA[new Integer(1)]]></initialValueExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="f03a8421-b452-4e13-b4f2-992b84d5a10c" key="textField" x="0" y="49" width="407" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["製表日期："+$P{STARTDATE}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="8ccb0f6f-c555-4fe4-9560-2017ad4eba6a" key="textField-4" x="407" y="49" width="263" height="16"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["頁次："+$V{PAGE_COUNT}+"頁"]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="354f1ecf-80ad-4e94-9b76-f9348cc70d69" key="textField" x="0" y="33" width="407" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["製表單位："+$P{PRINTUNIT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="55f85723-83c5-4cb4-ae3d-1d21a4795327" key="textField" x="0" y="0" width="670" height="33"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{UNITNAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="93bd936a-6cef-484d-97cb-a8ca9e35b89a" key="staticText-1" mode="Transparent" x="0" y="0" width="60" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[統一證號]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e642f3cb-0ae6-4cbc-b42f-4fc833e45377" key="staticText-1" mode="Transparent" x="0" y="16" width="60" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[居留期限]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="497ec168-4248-4522-ba40-b74516d72ebc" key="staticText-1" mode="Transparent" x="60" y="0" width="60" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[英文姓名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6030c1b5-5fa7-41a8-bbe8-96c52adc47c3" key="staticText-1" mode="Transparent" x="60" y="16" width="60" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[護照號碼]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="04289c98-e976-4156-876f-3f4e61176628" key="staticText-1" mode="Transparent" x="120" y="16" width="160" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[居留地址]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f28b24f3-ed05-4db5-9e4c-2888e853b686" key="staticText-1" mode="Transparent" x="280" y="16" width="80" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[居留電話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="93fe0a10-7d03-425d-a2c4-eaea25dfbd1c" key="staticText-1" mode="Transparent" x="280" y="0" width="50" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[國籍]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d81f184b-aaf6-464b-90f1-1a18ec63c9b9" key="staticText-1" mode="Transparent" x="330" y="0" width="30" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[性別]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="956b21a4-25bd-4473-8112-c623e05cc0a5" key="staticText-1" mode="Transparent" x="360" y="0" width="60" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[出生日期]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5dfc6142-afc1-46df-8b79-905e5346eed5" key="staticText-1" mode="Transparent" x="360" y="16" width="160" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[工作地址]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a501808f-ee47-4917-8341-10d2efdd899c" key="staticText-1" mode="Transparent" x="420" y="0" width="50" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[職業]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d267b57-c672-4cae-87a1-c3c1802f8231" key="staticText-1" mode="Transparent" x="470" y="0" width="50" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[居留事由]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67807ef3-777f-416c-a901-f88e2883f422" key="staticText-1" mode="Transparent" x="520" y="0" width="150" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[服務處所/讀學校/依親對象]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="93e7b6fa-2fd4-47b5-b488-c321adf18292" key="staticText-1" mode="Transparent" x="520" y="16" width="80" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[工作電話]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d3fcd31f-ff29-45e0-821a-6b9b41732253" key="staticText-1" mode="Transparent" x="600" y="16" width="70" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[備考]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b5c1e7b-ffa9-4961-a3ab-9341e3c45443" key="staticText-1" mode="Transparent" x="0" y="32" width="670" height="16" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" isBold="false" isStrikeThrough="false" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[================================================================================================================]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="82fec4e2-2d2c-44c2-8f70-4f3bd62e4957" key="textField" x="0" y="0" width="60" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f01}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="1ae8da1d-a354-478a-861a-8c7b196345f6" key="textField" x="60" y="0" width="60" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f02}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="fae12bfd-b267-4c30-9828-1daa438f0c35" key="textField" stretchType="RelativeToBandHeight" x="0" y="16" width="60" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f09}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="8080a003-f63b-4ef1-a735-f3bc2cca9e62" key="textField" stretchType="RelativeToBandHeight" x="60" y="16" width="60" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f10}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="c737844e-1662-4cf3-b673-126523d66550" key="textField" stretchType="RelativeToBandHeight" x="120" y="16" width="160" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f11}.trim()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="8201b357-3946-4b36-b605-ce0df0e9064e" key="textField" x="280" y="0" width="50" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f03}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="7989b310-9bfe-417e-a5fc-6e2569417dfd" key="textField" stretchType="RelativeToBandHeight" x="280" y="16" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f12}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="cdb98a97-2932-42e5-873c-215c5eff25c7" key="textField" x="330" y="0" width="30" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f04}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="6fe36435-c49c-425d-a3d4-3b5edba5f19c" key="textField" x="360" y="0" width="60" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f05}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="b5c4fe56-e896-4ef3-af34-aa29109efbeb" key="textField" stretchType="RelativeToBandHeight" x="360" y="16" width="160" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f13}.trim()]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="64955e62-f0aa-465f-877f-01783f654df0" key="textField" x="420" y="0" width="50" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f06}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="9caa4525-c961-4bb5-84d3-72e96fb91631" key="textField" x="470" y="0" width="50" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f07}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="4b6ef460-e246-47f4-9ea8-cb155f94d0b6" key="textField" x="520" y="0" width="150" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f08}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="7974f9a3-67d7-45bf-941b-e8e71288d031" key="textField" stretchType="RelativeToBandHeight" x="520" y="16" width="80" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f14}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="5ed13c8d-99d0-4573-9c63-41e373d98845" key="textField" stretchType="RelativeToBandHeight" x="600" y="16" width="70" height="16"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{f15}.trim()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement uuid="fa96aba8-9d8f-4f4e-9ecd-fcd80f90f9f7" key="textField" x="0" y="7" width="670" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="標楷體" size="12" pdfFontName="kaiu.ttf" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["合計："+$P{ALLSIZE}+"人"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

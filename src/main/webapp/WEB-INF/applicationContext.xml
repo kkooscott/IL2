@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   						   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   						   http://www.springframework.org/schema/jdbc
+  						   http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+  						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  						   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd 
+  						   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<util:properties id="applicationProps" location="classpath:il.properties" />
+	<context:property-placeholder properties-ref="applicationProps" />
+
+	<!-- il.property -->
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="#{applicationProps['db.driver']}" />
+		<property name="url" value="#{applicationProps['db.url']}" />
+		<property name="username" value="#{applicationProps['db.username']}" />
+		<property name="password" value="#{applicationProps['db.password']}" />
+	</bean>
+
+	<bean id="dataSourceABDB"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="#{applicationProps['abdb.driver']}" />
+		<property name="url" value="#{applicationProps['abdb.url']}" />
+		<property name="username"
+			value="#{applicationProps['abdb.username']}" />
+		<property name="password"
+			value="#{applicationProps['abdb.password']}" />
+	</bean>
+
+	<!-- 警署環境-Database connection pool <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/> 
+		<property name="url" value="jdbc:sybase:Tds:200.200.68.70:4100/IL2DB"/> <property 
+		name="username" value="ILU001"/> <property name="password" value="#il-ps01"/> 
+		</bean> <bean id="dataSourceABDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/> 
+		<property name="url" value="jdbc:sybase:Tds:200.200.68.70:4100/ABDB"/> <property 
+		name="username" value="ILU001"/> <property name="password" value="#il-ps01"/> 
+		</bean> -->
+	<!-- 本機測試-Database connection pool <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/> 
+		<property name="url" value="jdbc:sybase:Tds:172.20.10.4:4100/IL2DB"/> <property 
+		name="username" value="ilu001"/> <property name="password" value="ilu001"/> 
+		</bean> <bean id="dataSourceABDB" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="com.sybase.jdbc3.jdbc.SybDriver"/> 
+		<property name="url" value="jdbc:sybase:Tds:172.20.10.4:4100/ABDB"/> <property 
+		name="username" value="ilu001"/> <property name="password" value="ilu001"/> 
+		</bean> -->
+	<!-- Dao -->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSourceABDB" />
+	</bean>
+	<bean id="iL07C01A" class="tw.gov.npa.il.tranceData.IL07C01A">
+		<property name="il07C01ADao" ref="il07C01ADao" />
+		<property name="relationDAO" ref="relationDAO" />
+	</bean>
+	<bean id="iL07C01B" class="tw.gov.npa.il.tranceData.IL07C01B">
+		<property name="il07C01BDao" ref="il07C01BDao" />
+		<property name="relationDAO" ref="relationDAO" />
+	</bean>
+	<bean id="iL07C01C" class="tw.gov.npa.il.tranceData.IL07C01C">
+		<property name="il07C01CDao" ref="il07C01CDao" />
+	</bean>
+	<bean id="il05B03A" class="tw.gov.npa.il.tranceData.IL05B03A">
+		<property name="il05B03ADao" ref="il05B03ADao" />
+		<property name="relationDAO" ref="relationDAO" />
+	</bean>
+	<bean id="iL08A01" class="tw.gov.npa.il.tranceData.IL08A01">
+		<property name="il08A01Dao" ref="il08A01Dao" />
+		<property name="relationDAO" ref="relationDAO" />
+	</bean>
+	<bean id="iL09AAction" class="tw.gov.npa.il.action.IL09AAction">
+		<property name="cw09ADAO" ref="cw09ADAO" />
+	</bean>
+	<bean id="iL09A01" class="tw.gov.npa.il.action.IL09A01">
+		<property name="il09A01Dao" ref="il09A01Dao" />
+	</bean>
+	<!-- DAO -->
+	<bean id="il03ADao" class="tw.gov.npa.il.myDao.IL03ADao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il07ADao" class="tw.gov.npa.il.myDao.IL07ADao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il07BDao" class="tw.gov.npa.il.myDao.IL07BDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il07CDao" class="tw.gov.npa.il.myDao.IL07CDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+    <bean id="il07DDao" class="tw.gov.npa.il.myDao.IL07DDao">
+    	<property name="dataSource" ref="dataSource"/>
+    </bean>
+    
+	<bean id="il07C01ADao" class="tw.gov.npa.il.myDao.IL07C01ADao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il07C01BDao" class="tw.gov.npa.il.myDao.IL07C01BDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il07C01CDao" class="tw.gov.npa.il.myDao.IL07C01CDao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il05B03ADao" class="tw.gov.npa.il.myDao.IL05B03ADao">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il08A01Dao" class="tw.gov.npa.il.myDao.IL08A01DAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="cw09ADAO" class="tw.gov.npa.il.dao.CW09ADAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="il09A01Dao" class="tw.gov.npa.il.e0db.myDao.CW08ADAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="myIlScheduleDAO"
+		class="tw.gov.npa.il.myDao.MyIlScheduleDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="relationDAO"
+		class="tw.gov.npa.il.e0db.myDao.RelationDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="othersDAO"
+		class="tw.gov.npa.il.myDao.OthersDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- <bean id="IL08B01U01Dao" class="tw.gov.npa.il.myDao.IL08B01U01Dao"> 
+		<property name="dataSource" ref="dataSource"/> </bean> -->
+
+	<!-- 排程作業 -->
+	<import resource="applicationContextSchdule.xml" />
+
+	<!-- 單一簽入 -->
+	<bean id="portal" scope="prototype"
+		class="tw.gov.npa.il.action.Portal">
+		<property name="wsUtil" ref="wsUtil" />
+	</bean>
+	<bean id="reportScheduler" class="tw.gov.npa.il.schedule.ReportScheduler">
+		<property name="wsUtil" ref="wsUtil" />
+    </bean>
+	<bean id="wsUtil" class="tw.gov.npa.il.util.WSUtil">
+	</bean>
+
+	<!-- 公用資料用 -->
+	<bean id="appUseDAO" class="tw.gov.npa.il.myDao.AppUseDAO">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	<bean id="searcher" scope="prototype"
+		class="tw.gov.npa.il.action.Searcher">
+		<property name="appUseDAO" ref="appUseDAO" />
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+</beans>

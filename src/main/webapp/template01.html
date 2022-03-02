@@ -1,0 +1,436 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+    <HEAD>
+        
+        <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <META name="GENERATOR" content="IBM Software Development Platform">
+        <META http-equiv="Content-Style-Type" content="text/css">
+        <LINK href="css/e8.css" rel="stylesheet" type="text/css">
+
+        <script src="scripts/Validator.js"></script>
+        <script src="scripts/utility.js"></script>
+        <script src="scripts/prototype.js"></script>
+        <script src="scripts/postback.js"></script>
+        <TITLE>汽機車尋獲查詢作業</TITLE>
+    </HEAD>
+    <script language="javascript">
+        // 送出查詢
+        function doAction(oForm, sMethod){
+            /*** 208 for NPALOG ***/
+            document.getElementById("ButtonAction").value = sMethod;
+            /*** 208 for NPALOG ***/
+            // clear non-query fileds before validation
+            var selectedRow = clearNoneSelectedFields();
+
+            Validator.init(oForm);
+            if( oForm.elements["acUnit1Cd"].options != null)
+                Validator.checkUnit("acUnit1Cd", "acUnit2Cd", "acUnit3Cd", "尋獲單位");
+            if( Validator.isValid() ){
+                Validator.checkDate("rptDtS", false, "尋獲時間起");
+                Validator.checkDate("rptDtE", false, "尋獲時間迄");
+                if(selectedRow == 1){
+                    Validator.checkECaseNo('clFind.id',true,'e化案號',15);
+                }else if(selectedRow == 2){
+                    Validator.checkCombo('clFind.e8CarTypeCd','牌照種類');
+                    Validator.checkLength('clFind.e8CarId',true,'牌照號碼',10);
+                }else if(selectedRow == 3){
+                    Validator.compareWithSysDate("rptDtS", "<=", false, "尋獲時間", "起始日期");
+                    Validator.compareWithSysDate("rptDtE", "<=", false, "尋獲時間", "結束日期");
+                    if( Validator.isValid() ){
+                        if(oForm.elements["rptDtS"].value.length == 0)
+                            oForm.elements["rptDtS"].value = oForm.elements["rptDtE"].value;
+                        if(oForm.elements["rptDtE"].value.length == 0)
+                            oForm.elements["rptDtE"].value = oForm.elements["rptDtS"].value;
+
+                        Validator.checkDateInterval("rptDtS", "rptDtE", true, "尋獲時間");
+
+                        //099.05.04 by KevinKuo 改善程式效能及速度, 限制查詢起訖時間(半年)
+                        if(!checkDateInterval(oForm, "rptDtS", "rptDtE", 183) ){
+                            Validator.setMessage("欄位「尋獲時間」：查詢起訖時間 不可大於半年！");
+                            Validator.setBGColor("rptDtS");
+                            Validator.setBGColor("rptDtE");
+                        }
+                    }
+                }else{
+                    Validator. setMessage('請至少輸入一組主要條件');
+                    document.all.legendMainCon.style.background = getHighLightBGColor();
+                }
+            }else{
+                Validator.showMessage();
+                return;
+            }
+            oForm.method.value = sMethod;
+            if( Validator.isValid() ){
+                //實際查詢人
+                submitAppUse(oForm);
+                oForm.submit();
+            }
+            else
+                Validator.showMessage();
+        }
+
+        //更新被選取列的底色
+        function changeTRbg(rowId, bgColor){
+            clearTable2BGcolor();
+            setBGColor(rowId, bgColor);
+            document.all.rdoMainConstraint[ rowId.charAt(rowId.length - 1) - 1 ].checked = true;
+        }
+        // 還原底色
+        function clearTable2BGcolor(){
+            var defaultBGColor = getDefaultBGColor();
+            document.all.legendMainCon.style.background=defaultBGColor;
+            document.all.table2row1.style.background=defaultBGColor;
+            document.all.table2row2.style.background=defaultBGColor;
+            document.all.table2row3.style.background=defaultBGColor;
+        }
+        // 清除沒有被選取的主要條件
+        function clearNoneSelectedFields(){
+            var selectedRow = getSelectedRadio();
+            if(selectedRow!= 1){
+                document.forms[0].elements['clFind.id'].value='';
+            }
+            if(selectedRow!= 2){
+                document.forms[0].elements['clFind.e8CarTypeCd'].options[0].selected = true;
+                document.forms[0].elements['clFind.e8CarId'].value='';
+            }
+            if(selectedRow!= 3){
+                document.forms[0].elements['rptDtS'].value='YYYMMDD';
+                document.forms[0].elements['rptDtE'].value='YYYMMDD';
+                document.forms[0].elements['clLost.e8RpmNm'].value='';
+                document.forms[0].elements['clFind.e8BrStaffNm'].value='';
+            }
+            return selectedRow;
+        }
+        // 被選取的列號
+        function getSelectedRadio(){
+            var selectedRow;
+            for(i=0; i< document.all.rdoMainConstraint.length; i++)
+                if(document.all.rdoMainConstraint[i].checked)
+                    selectedRow = i + 1;
+            return selectedRow;
+        }
+        // 查詢後保持主要條件的底色
+        function onLoadAppearance(){
+            if(getSelectedRadio() > 0)
+                setBGColor('table2row'+getSelectedRadio(), getHighLightBGColor());
+        }
+    </script>
+
+    
+
+    <BODY onload="trimAll();Validator.markError(document.forms[0]);onLoadAppearance();">
+        <div class="FuncName">
+            汽機車尋獲查詢作業
+            
+            
+        </div>
+        <form name="e821A05Q_01Form" method="post" action="/NPA94-208Web/e821A05Q_01Action.do" class="Form1">
+            <input type="hidden" name="method" value="doList">
+            <input type="hidden" name="actionTag" value="query">
+            
+            <input type="hidden" name="ValidatorErrorIdList" value=''>
+            <table border="0" width="90%" align="center">
+                <tbody>
+                    <tr><td>
+                    </td></tr>
+                    <tr>
+                        <td>
+                            <table border="0" width="100%">
+                                
+
+
+
+
+<tr>
+    <td>
+        <fieldset>
+            <legend>委託查詢者</legend>
+            <table width='100%'>
+                <tr>
+                    <td class='Label' width ="10%">委託查詢者</td>
+                    <td width ="10%">
+                        <input type='text' name='logOprNm' maxlength='60' size='10' class='InputText' value="林阿鑫"/>
+                    </td>
+                    <td class='Label' width ="10%">委託單位</td>
+                    <td width ="15%">
+                        <input type='text' name='logOprDn' maxlength='150' size='40' class='InputText' value="警政署資訊室作業設計科"/>
+                    </td>
+                    <td class='Label' width ="5%">用途</td>
+                    <td width="1%">
+                        <select name='appUseMain' class='InputSelect' onchange="showOprText(this.Form, 'appUseMain', 'appUse', 'appUseText');sAppUse(this.form, 'appUseMain', 'appUse', 'name');">
+                            <option value=''></option>
+                            <option value='100'>交通類</option><option value='200'>刑案類</option><option value='300'>行政類</option><option value='400'>戶口類</option><option value='500'>外事類</option><option value='600'>自行輸入</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name='appUse' class='InputSelect' style="display:none">
+</select>
+
+                        
+                            <input type='text' name='appUseText' maxlength='60' size='15' class='InputText' style="display:none"/>
+                        
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </td>
+</tr>
+
+                                <tr>
+                                    <td>
+                                        <fieldset><legend>必要條件</legend>
+                                            <table border="0" width="100%">
+
+                                                <tr>
+                                                    <td class="Label"><span class="Must">*尋獲單位</span></td>
+                                                    <td colspan="3">
+                                                        
+                                                            <select name="acUnit1Cd" onchange="sUnit1(this.form, 'acUnit1Cd', '', 'acUnit2Cd', '', 'acUnit3Cd', '', 'cdName');" class="InputSelect"><option value=""></option>
+                                                                <option value="A1000" selected="selected">A1000.警政署</option>
+<option value="AD000">AD000.新北市政府警察局</option>
+<option value="AW000">AW000.臺北市政府警察局</option>
+<option value="AB000">AB000.臺中市政府警察局</option>
+<option value="AC000">AC000.臺南市政府警察局</option>
+<option value="AV000">AV000.高雄市政府警察局</option>
+<option value="BA000">BA000.基隆市警察局</option>
+<option value="BF000">BF000.新竹市警察局</option>
+<option value="BM000">BM000.嘉義市政府警察局</option>
+<option value="BE000">BE000.桃園縣政府警察局</option>
+<option value="BG000">BG000.新竹縣政府警察局</option>
+<option value="BH000">BH000.苗栗縣警察局</option>
+<option value="BJ000">BJ000.彰化縣警察局</option>
+<option value="BK000">BK000.南投縣政府警察局</option>
+<option value="BL000">BL000.雲林縣警察局</option>
+<option value="BN000">BN000.嘉義縣警察局</option>
+<option value="BQ000">BQ000.屏東縣政府警察局</option>
+<option value="BT000">BT000.宜蘭縣政府警察局</option>
+<option value="BS000">BS000.花蓮縣警察局</option>
+<option value="BR000">BR000.臺東縣警察局</option>
+<option value="BU000">BU000.澎湖縣政府警察局</option>
+<option value="BY000">BY000.金門縣警察局</option>
+<option value="BZ000">BZ000.連江縣警察局</option>
+<option value="A2200">A2200.刑事警察局</option>
+<option value="A2300">A2300.航空警察局</option>
+<option value="A2400">A2400.國道公路警察局</option>
+<option value="A2Y00">A2Y00.國家公園警察大隊</option>
+<option value="A2N00">A2N00.鐵路警察局</option>
+<option value="A2900">A2900.保安警察第一總隊</option>
+<option value="A2A00">A2A00.保安警察第二總隊</option>
+<option value="A2B00">A2B00.保安警察第三總隊</option>
+<option value="A2C00">A2C00.保安警察第四總隊</option>
+<option value="A2D00">A2D00.保安警察第五總隊</option>
+<option value="A2E00">A2E00.保安警察第六總隊</option>
+<option value="A2G00">A2G00.臺灣保安警察總隊</option>
+<option value="A2H00">A2H00.基隆港務警察局</option>
+<option value="A2I00">A2I00.臺中港務警察局</option>
+<option value="A2J00">A2J00.高雄港務警察局</option>
+<option value="A2K00">A2K00.花蓮港務警察局</option>
+<option value="A2X00">A2X00.電信警察隊</option>
+<option value="A2Z00">A2Z00.環保警察隊</option>
+<option value="A2W00">A2W00.森林保育警察隊</option>
+<option value="A2O00">A2O00.警察電訊所</option>
+<option value="A2M00">A2M00.警察廣播電台</option>
+<option value="A2U00">A2U00.民防防情指揮管制所</option>
+<option value="A2L00">A2L00.警察機械廠</option>
+<option value="A2700">A2700.中央警察大學</option>
+<option value="A2800">A2800.臺灣警察專科學校</option></select>
+                                                            <select name="acUnit2Cd" onchange="sUnit2(this.form, 'acUnit2Cd', '', 'acUnit3Cd', '', 'cdName');" class="InputSelect"><option value="" selected="selected"></option></select>
+                                                            <select name="acUnit3Cd" class="InputSelect"><option value="" selected="selected"></option>
+                                                                
+                                                                    <option value="2AK3">2AK3.保二保智高雄</option>
+<option value="2AK4">2AK4.花東分隊</option>
+<option value="2AK5">2AK5.嘉義分隊</option></select>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <fieldset><legend id="legendMainCon">主要條件</legend>
+                                            <table border="0" width="100%" id="table2">
+                                                <tbody>
+                                                    <tr id="table2row1" onclick="changeTRbg('table2row1', getHighLightBGColor())">
+                                                        <td><input type="radio" name="rdoMainConstraint" value="1"></td>
+                                                        <td class="Label"><span class="Must">*e化案號</span></td>
+                                                        <td colspan="5"><input type="text" name="clFind.id" maxlength="15" size="20" value="" class="InputText"></td>
+                                                    </tr>
+                                                    <tr id="table2row2" onclick="changeTRbg('table2row2', getHighLightBGColor())">
+                                                        <td><input type="radio" name="rdoMainConstraint" value="2"></td>
+                                                        <td class="Label"><span class="Must">*牌照種類</span></td>
+                                                        <td>
+                                                            <select name="clFind.e8CarTypeCd" class="InputSelect"><option value="" selected="selected"></option>
+                                                                <option value="A">A.汽車</option>
+                                                                <option value="B">B.重機</option>
+                                                                <option value="C">C.輕機</option>
+                                                                <option value="D">D.臨時汽車</option>
+                                                                <option value="E">E.臨時重機</option>
+                                                                <option value="F">F.臨時輕機</option></select>
+                                                        </td>
+                                                        <td class="Label"><span class="Must">*牌照號碼</span></td>
+                                                        <td colspan="3"><input type="text" name="clFind.e8CarId" maxlength="10" size="10" value="" onblur="toUpperCase(this)" class="InputText"></td>
+                                                    </tr>
+                                                    <tr id="table2row3" onclick="changeTRbg('table2row3', getHighLightBGColor())">
+                                                        <td><input type="radio" name="rdoMainConstraint" value="3" checked="checked"></td>
+                                                        <td class="Label"><span class="Must">*尋獲時間起迄</span></td>
+                                                        <td>
+                                                            <input type="text" name="rptDtS" maxlength="7" size="10" value="1010101" onfocus="dateOnFocus(this)" class=" InputText ">
+                                                        至&nbsp;<input type="text" name="rptDtE" maxlength="7" size="10" value="1010701" onfocus="dateOnFocus(this)" class=" InputText "></td>
+                                                        <td class="Label">報案人姓名</td>
+                                                        <td><input type="text" name="clLost.e8RpmNm" maxlength="10" size="10" value="" class="InputText"></td>
+                                                        <td class="Label">尋獲人員姓名</td>
+                                                        <td><input type="text" name="clFind.e8BrStaffNm" maxlength="10" size="10" value="" class="InputText"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </fieldset>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    資料類型
+                                    <input type="radio" name="rdoDataSource" value="3">三年內資料
+                                    <input type="radio" name="rdoDataSource" value="10" checked="checked">十年內資料
+                                    <input type="radio" name="rdoDataSource" value="0">全部資料
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    
+                    <input type="hidden" name="rdoWuBaoDeletion" value="0">
+                    <tr>
+                        <td>
+                            <center>
+                                <input
+                                    name="btnQuery" type="button" value="查詢" class="InputButton"
+                                    onClick="javascript:doAction(this.form, 'doQuery');" />
+                            </center>
+                        </td>
+                    </tr>
+
+                    
+
+                    <tr>
+                        <td>
+                            
+                            
+<table id="clTable" class="ListTable">
+<thead>
+<tr>
+<th class="First sorted order2">選取</th>
+<th>e化案號</th>
+<th>牌照種類</th>
+<th>牌照號碼</th>
+<th>尋獲部分</th>
+<th>尋獲日期</th>
+<th>尋獲人員</th></tr></thead>
+<tbody>
+<tr class="odd">
+<td class="Center">
+                                    <a target="detail" href="e821A05Q_01Action.do?method=doSelect&amp;action=query&amp;case_class=01&amp;cl_type=find&amp;case_no=F10106111100001"> 選取
+                                    </a>
+                                </td>
+<td class="Center">F10106111100001</td>
+<td>汽車</td>
+<td>KMT-781</td>
+<td>汽牌一面</td>
+<td class="Center">101/06/25 13:00</td>
+<td>陳小車</td></tr>
+<tr class="even">
+<td class="Center">
+                                    <a target="detail" href="e821A05Q_01Action.do?method=doSelect&amp;action=query&amp;case_class=01&amp;cl_type=find&amp;case_no=F10104111100002"> 選取
+                                    </a>
+                                </td>
+<td class="Center">F10104111100002</td>
+<td>汽車</td>
+<td>AAA-1235</td>
+<td>車身</td>
+<td class="Center">101/04/17 13:50</td>
+<td>陳小車</td></tr>
+<tr class="odd">
+<td class="Center">
+                                    <a target="detail" href="e821A05Q_01Action.do?method=doSelect&amp;action=query&amp;case_class=01&amp;cl_type=find&amp;case_no=F10104111100001"> 選取
+                                    </a>
+                                </td>
+<td class="Center">F10104111100001</td>
+<td>汽車</td>
+<td>AAA-1235</td>
+<td>汽牌一面</td>
+<td class="Center">101/04/17 13:20</td>
+<td>陳小車</td></tr>
+<tr class="even">
+<td class="Center">
+                                    <a target="detail" href="e821A05Q_01Action.do?method=doSelect&amp;action=query&amp;case_class=01&amp;cl_type=find&amp;case_no=F10103111100001"> 選取
+                                    </a>
+                                </td>
+<td class="Center">F10103111100001</td>
+<td>汽車</td>
+<td>BDI-872</td>
+<td>車身</td>
+<td class="Center">101/03/15 10:30</td>
+<td>陳小車</td></tr></tbody></table><center><span class="pagebanner">共1頁, 4筆</span></center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            
+
+
+
+<!--bean:parameter id="ButtonAction" name="ButtonAction" value="" /-->
+
+<input type="hidden" name="ButtonAction" value='doQuery'>
+
+
+
+
+
+
+
+            
+ <input type="hidden" name="QS_Name" value="***clFind.e8CarTypeCd*clFind.e8CarId">
+ <input type="hidden" name="QS_CName" value="acUnit1Cd:尋獲單位[1]*acUnit2Cd:尋獲單位[2]*acUnit3Cd:尋獲單位[3]*clFind.id:E化案號*rptDtS:尋獲時間起*rptDtE:尋獲時間迄*clLost.e8RpmNm:報案人姓名*clFind.e8BrStaffNm:尋獲人員姓名*rdoWuBaoDeletion:查詢種類*rdoDataSource:資料類型">
+        </form>
+    </body>
+</html>
+
+
+<script language="javascript">setQueryStatFrame(true);</script>
+<script language="javascript">NPALOGaddHidden();</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,211 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 15px;
+	font-family: "PMingLiU","MingLiU";
+}
+INPUT Text{
+	border:1px solid #949494;	
+}
+SELECT {
+	border:1px solid #949494;	
+}
+.bannerBg {
+	background-image:url(../images/bannerBg.jpg);
+	background-repeat:no-repeat;	
+	 min-width:800px;
+}
+.welcomeMsg {
+	color: #ffffff;
+	padding-left: 20px;
+	padding-right: 10px;
+	font-size: 15px;
+}
+.pageTitle {
+	font-size: 15px;
+	font-weight:bold;
+	color:#2F4159;	
+	line-height:150%;
+}
+.queryOuterTable {
+	background-color:#E3E8EE;
+	width:90%;
+	padding:0px;
+	border-spacing: 0px;
+	white-space:nowrap;
+	 margin-left:auto; 
+    margin-right:auto;
+}
+.queryOuterTable Table {
+	padding:0px;
+	border-spacing: 0px;
+	width:100%;
+}
+.queryOuterTable TH {
+	background-color:#9FB0C4;
+	font-size:110%;
+	line-height:130%;
+	padding:2px 0px 2px 5px;
+	text-align:left;
+	border-spacing: 0px;
+}
+.queryOuterTable TD {
+	background-color:#E3E8EE;
+	padding:0px;
+}
+.queryTable {
+	background-color:#E3E8EE;
+	width:100%;
+	padding:0px;
+	border-spacing: 0px;
+	white-space:nowrap;
+	 margin-left:auto; 
+    margin-right:auto;
+}
+
+.queryTable .labelField{
+	text-align:right;
+	white-space:nowrap;
+	color:#015555;
+	padding:4px 0px 4px 0px;
+}
+.queryTable .labelField.required{
+	color:#CD0000;
+}
+.queryTable .dataField{
+	text-align:left;
+	padding:4px 0px 4px 10px;
+	white-space:nowrap;
+}
+.queryTable .plaintext{
+	color:#0145D6;
+	padding-left:10px;
+}
+/* button */
+.buttonS {
+	background-image:url(../images/buttonS.png);
+	background-repeat:no-repeat;
+	padding-top:7px;	
+	width:70px;
+	height:30px;
+	text-align:center;
+	color: #3D6C98;
+	cursor:pointer;
+	display:block;
+}
+.buttonSinLine {
+	background-image:url(../images/buttonS.png);
+	background-repeat:no-repeat;
+	padding-top:0px;	
+	width:70px;
+	height:30px;
+	text-align:center;
+	color: #3D6C98;
+	cursor:pointer;
+	background-color:inherit;
+	border:0;
+}
+.innerDiv {
+	background-color:#E3E8EE !important;
+}
+/* Data Grid */
+.gridLayout {
+	border-collapse:collapse;
+	width:100%;
+	padding:0px;
+	border-spacing: 0px;
+	white-space:nowrap;
+	background-color:#E3E8EE;
+	font-size:15px;
+}
+.gridLayout A {
+	font-size:15px !important;
+	text-decoration:none !important;
+	color:#0145D6;
+	text-decoration:none;
+} 
+.gridLayout  TD {
+	white-space:nowrap;
+}
+/* Query dataGrid */ 
+.gridTable {
+	width:100%;	
+	cell-spacing:1px;
+}	
+.gridHeader TR{
+	font-weight: normal;
+}
+.gridHeader TD{
+	font-weight: normal;
+	color:#004785;
+	background-color:#9CABBE;
+	padding-left:5px;
+	white-space:nowrap;
+	padding-top:4px;
+	padding-bottom:4px;
+}
+.gridHeader TH{
+	font-weight: normal;
+	color:#004785;
+	background-color:#9CABBE;
+	padding-left:5px;
+	white-space:nowrap;
+	padding-top:4px;
+	padding-bottom:4px;
+}
+
+.gridOddRow TR{
+	color: #000000;
+	background-color:#CFDCE5;
+}
+.gridOddRow TD{
+	color: #000000;
+	background-color:#CFDCE5;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-left:3px;
+}
+.gridOddRow .readOnly{
+	color: #000000;
+	background-color:#CFDCE5;
+}
+
+.gridEvenRow TR{
+	color: #000000;
+	background-color:#BCCEDC;
+}
+.gridEvenRow TD{
+	color: #000000;
+	background-color:#BCCEDC;
+	padding-top:4px;
+	padding-bottom:4px;
+	padding-left:3px;
+}
+/* page navigator */
+.pageNavigator {
+	/*background-color: #F0F0F0;*/
+	text-align:center;
+	vertical-align:bottom;	
+	padding-right:10px;
+}
+.pageNavigatorTable {
+	float:right;	
+	padding:0px;
+	border-spacing: 0px;
+	white-space:nowrap;
+}
+.pageNavigatorTable TD {
+	/*background-color: #F0F0F0;*/
+	white-space:nowrap;
+	vertical-align:bottom;
+}
+
+.GridPager{
+    display:none;
+}.wMsg {
+	background-image: url(../images/welmsg.png);
+	background-repeat: no-repeat;
+	padding-right: 10px;
+	font-size: 15px;
+	white-space: nowrap;
+}

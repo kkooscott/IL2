@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+        <script language="javascript" type="text/javascript">
+            var TIME_COUNTDOWN = 40*60; /* 設定倒數計時時間總長度(秒) */
+            var timeRemain;
+            var timerID = null;
+            
+            function start_countdown(){
+                if (timeRemain <= 0 ){ /* 剩餘時間為0, 把視窗關閉 */
+                    window.top.ResetCountDown = null;
+                    window.top.index.rows="0,0,*";
+                    alert("您已經太久沒有使用系統，為保護帳號及系統安全，請重新登入系統！");
+                    window.top.close();
+                    return;
+                } else {
+                    timerID = setTimeout(start_countdown, 1000);
+                    timeRemain --;
+                    show_timer();
+                }
+            }
+            
+            function show_timer(){
+                var elm = document.getElementById("timerDisplay");
+                if (elm == null) return;
+                var intH, intM;
+                var strH, strM;
+                intH = Math.floor(timeRemain / 60);
+                intM = timeRemain % 60;
+                strH = "00" + intH.toString();
+                strM = "00" + intM.toString();
+                strH = strH.substr(strH.length-2, 2);
+                strM = strM.substr(strM.length-2, 2);
+                
+                elm.innerHTML = " " + strH + ":" + strM + " ";
+            }
+            
+            function reset_timer(){
+                if (timerID != null)
+                    clearTimeout(timerID);
+                timeRemain = TIME_COUNTDOWN;
+                start_countdown();
+            }
+            window.top.ResetCountDown = reset_timer;
+        </script>
+        <style>
+        .timer {
+                color: Lime;
+                font-weight: bold;
+                font-family: monospace;
+                background: Black;
+				width:100px;
+        }
+        .bannerFont {
+            color: #ff8e29;
+            font-size: 18px;
+        }
+        </style>
+
+</head>
+<body onload="reset_timer();">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#7C91AC">
+  <tr>
+    <td class="bannerBg" width="100%" height="60">
+    <div style="position:relative">
+        <div style="position:absolute; right:10px; top:20px;z-index:99">
+            <span class="welcomeMsg">
+                歡迎&nbsp;林阿鑫&nbsp;登入，您將<span class="timer" id="timerDisplay">&nbsp;&nbsp;</span>後登出&nbsp;&nbsp;   
+          </span>
+            <a href="" style="color:#FF0000;text-decoration:none">測試登入</a>&nbsp;
+            <a href="" style="color:#03F;text-decoration:none">離開</a>
+            <span id="testspan"></span>
+        </div>
+	</div>     
+    &nbsp;
+    </td>
+  </tr>
+</table>
+<div style="position:absolute; top:30px; left:250px; z-index:10"><img src="images/sysname.png" border="0" align="absmiddle" /></div>
+
+</body>
+</html>

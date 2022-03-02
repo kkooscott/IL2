@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+   						   http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   						   http://www.springframework.org/schema/jdbc
+  						   http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+  						   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+  						   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+  						   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+    
+    <util:properties id="applicationProps" location="file:${user.home}/il.properties"/>
+    <context:property-placeholder
+            properties-ref="applicationProps"/>
+    
+    <!-- 排程作業 -->
+    <bean id="testScheduler" class="tw.gov.npa.il.test.Test"></bean>
+    <bean id="ilReportSchedule" class="tw.gov.npa.il.schedule.ILReportSchedule">
+		<property name="il05B03A" ref="il05B03A"/>
+		<property name="iL07C01A" ref="iL07C01A"/>
+		<property name="iL07C01B" ref="iL07C01B"/>
+		<property name="iL08A01" ref="iL08A01"/>
+		<property name="myIlScheduleDAO" ref="myIlScheduleDAO"/>
+		<property name="wsUtil" ref="wsUtil" />
+    </bean>
+	<bean id="wsUtil" class="tw.gov.npa.il.util.WSUtil">
+	</bean>
+    <task:scheduled-tasks> 
+    	<!--排程測試
+    	<task:scheduled ref="testScheduler" method="test1" cron="#{applicationProps['cron.expression']}"/> 
+    	--> 
+    	<!--月統計報表
+    	<task:scheduled ref="ilReportSchedule" method="runMonthReport" cron="#{applicationProps['cron.expressionMonth']}"/>
+    	-->
+    	<!--轄區狀況統計資料排程管理-->
+    	<task:scheduled ref="ilReportSchedule" method="runIL03Report" cron="#{applicationProps['cron.expression']}"/>   	
+    	
+    	
+    	<!--自由檢索(固定欄項)排程管理-->
+    	<task:scheduled ref="ilReportSchedule" method="runReportFixColumn" cron="#{applicationProps['cron.expression']}"/>    	 
+    	
+    	 
+    	<!--轉出入排程管理(自動)
+    	<task:scheduled ref="ilReportSchedule" method="runIL05A" cron="#{applicationProps['cron.expressionDay']}"/>
+    	 -->
+    	
+    	<!--轉出入排程管理(手動)
+    	<task:scheduled ref="ilReportSchedule" method="runIL05B" cron="#{applicationProps['cron.expression']}"/>
+     	-->
+    	  
+    	<!--錄檔排程管理(半自動)
+    	<task:scheduled ref="ilReportSchedule" method="runIL08" cron="#{applicationProps['cron.expression']}"/>
+    	 -->
+	
+    </task:scheduled-tasks>
+ 
+</beans>

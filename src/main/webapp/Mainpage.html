@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
+<link rel="stylesheet" type="text/css" href="css/domtab.css"/>
+<script language="javascript" type="text/javascript" src="js/datepicker/WdatePicker.js"></script>
+<script type="text/javascript" src="js/domtab.js"></script>
+</head>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color:#ACB8C6;">
+  <tr>
+    <td width="120" align="center"><img src="images/arrow.jpg" border="0" align="absmiddle" /></td>
+    <td width="98%" class="pageTitle">一般查詢及列印</td>
+  </tr>
+</table>
+<p></p>
+<!-- 查詢條件視窗-->
+<div id="queryDiv">
+
+<table class="queryOuterTable">
+<tr><td width="100%">
+	<table><tr><th>必要條件</th></tr></table>
+</td></tr>
+<tr><td>
+    <table class="queryTable">
+    <tr><td width="20%" class="labelField required">*尋獲單位</td><td class="dataField" colspan="5"><select name="select" id="select">
+    </select>
+        <select name="select2" id="select2">
+        </select>
+        <select name="select3" id="select3">
+        </select></td></tr>
+    </table>
+</td></tr>
+</table>
+
+<p></p>
+<table class="queryOuterTable">
+<tr><td width="100%">
+	<table><tr><th>主要條件</th></tr></table>
+</td></tr>
+<tr><td>
+    <table class="queryTable">
+    <tr><td width="20%" class="labelField required">*e化案號</td><td class="dataField" colspan="5"><input type="text" name="textfield" id="textfield" /></td></tr>
+    <tr>
+      <td class="labelField required">*牌照種類</td>
+      <td class="dataField"><select name="select4" id="select4">
+      </select></td>
+      <td class="labelField required">*牌照號碼</td>
+      <td colspan="3" class="dataField"><input type="text" name="textfield2" id="textfield2" /></td>
+      </tr>
+    <tr>
+      <td class="labelField required">*尋獲時間起迄</td>
+      <td class="dataField"><input name="txtDeadLine3" type="text" id="txtDeadLine3" size="10" onclick="WdatePicker({dateFmt:'yyy/MM/dd'})" onfocus="WdatePicker({dateFmt:'yyy/MM/dd'})" tabindex="1"/>
+            &nbsp;<img onclick="WdatePicker({el:'txtDeadLine3',dateFmt:'yyy/MM/dd'})" onfocus="WdatePicker({el:'txtDeadLine3',dateFmt:'yyy/MM/dd'})"  tabindex="2"
+								src="./images/calendar.gif" align="absmiddle" alt="選擇日期"/>&nbsp;至
+            <input name="txtDeadLine3" type="text" id="txtDeadLine4" size="10" onclick="WdatePicker({dateFmt:'yyy/MM/dd'})" onfocus="WdatePicker({dateFmt:'yyy/MM/dd'})"  tabindex="3"/>
+            &nbsp;<img style="CURSOR: hand" onclick="WdatePicker({el:'txtDeadLine4',dateFmt:'yyy/MM/dd'})" onfocus="WdatePicker({el:'txtDeadLine4',dateFmt:'yyy/MM/dd'})"  tabindex="4"
+								src="./images/calendar.gif" align="absmiddle"  alt="選擇日期"/>
+        </td>
+      <td class="labelField">報案人姓名</td>
+      <td class="dataField"><input type="text" name="textfield5" id="textfield5" /></td>
+      <td class="labelField">尋獲人員姓名</td>
+      <td class="dataField"><input type="text" name="textfield6" id="textfield6" /></td>
+    </tr>
+    </table>
+</td></tr>
+</table>
+<p></p>
+<table align="center"  cellspacing="0" cellpadding="0">
+<tr><td><span class="buttonS">查 詢</span></td></tr>
+</table>
+</div>
+<div id="queryResult">
+<div class="domtab">
+  <ul class="domtabs">
+    <li><a class="domtabsA" href="#tab1">基本資料</a></li>
+    <li><a class="domtabsA" href="#tab2">筆錄</a></li>
+    <li><a class="domtabsA" href="#tab3">刑案記錄表</a></li>
+    <li><a class="domtabsA" href="#tab4">表單列印</a></li>
+  </ul>
+  <!-- tab 1 div -->
+  <div class="domtabsDiv">
+    <a name="tab1" id="tab1"></a>
+	<table class="queryTable">
+    <tr><td width="90%" class="plaintext" >e化案號：F10001111100001</td><td><span class="buttonS">儲 存</span></td></tr>
+    </table>
+    <p></p>
+	<table class="queryTable">
+    <tr><td colspan="4" class="plaintext">尋獲資料</td></tr>
+    <tr>
+    	<td width="20%" class="labelField">尋獲部分</td>
+        <td class="dataField"><input type="checkbox" checked="true"/>汽牌一面</td>
+    	<td width="20%" class="labelField">填表時間</td>
+        <td class="dataField"><input type="textbox" value="1000106" size="10"/>&nbsp;<input type="textbox" value="1844" size="10" /></td>
+    </tr>
+    <tr>
+    	<td width="20%" class="labelField required">*尋獲單位</td>
+        <td class="dataField" colspan="3"><select name="select" id="select">
+    	</select>
+        <select name="select2" id="select2">
+        </select>
+        <select name="select3" id="select3">
+        </select></td>
+    </tr>
+    </table>
+    
+  </div>
+  <!-- tab 2 div -->
+  <div class="domtabsDiv">
+    <a name="tab2" id="tab2"></a>
+    <div class="innerDiv">
+  <table class="gridLayout" >
+    <tr>
+      <td><table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+          <td >&nbsp;</td>
+	<td  class="pageNavigator">
+    <table class="pageNavigatorTable" >
+    <tr>
+  	<td style="width:50px;">共&nbsp;<font color="red">4</font>&nbsp;筆</td>
+  	<td style="width:50px;"><a href="#">上一頁</a></td>
+  	<td style="width:80px;">第
+  	  <select name="select" id="select">
+  	    <option>1</option>
+  	    <option>2</option>
+  	    <option>3</option>
+  	    <option>4</option>
+	    </select>
+	頁</td>
+  	<td style="width:50px;"><a href="#">下一頁</a></td>
+    </tr>
+    </table>
+    </td>          
+          </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td >
+          <table border="0" align="left" class="gridTable" cellspacing="1" cellpadding="0" >
+            <tr class="gridHeader">
+              <td rowspan="2" align="center" nowrap="nowrap" width="65">抽查案件<br />
+                勾選</td>
+              <td rowspan="2" align="center" nowrap="nowrap" width="65">明細</td>
+              <td rowspan="2" align="center" nowrap="nowrap">登錄序號</td>
+              <td rowspan="2" align="center">主管機關</td>
+              <td rowspan="2" align="center">受理登錄機關</td>
+              <td rowspan="2" align="center">登錄日期</td>
+              <td rowspan="2" align="center">請託關說<br />
+                事件分類</td>
+              <td rowspan="2" align="center">請託關說<br />
+                方式</td>
+              <td colspan="3" align="center">被請託關說者</td>
+              <td colspan="3" align="center">請託關說者</td>
+            </tr>
+            <tr class="gridHeader">
+              <td align="center">服務機關</td>
+              <td align="center">職稱</td>
+              <td align="center">姓名</td>
+              <td align="center">服務機關</td>
+              <td align="center">職稱</td>
+              <td align="center">姓名</td>
+            </tr>
+            <tr class="gridOddRow">
+              <td align="center" ><input type="checkbox" name="checkbox5" id="checkbox5" /></td>
+              <td align="center" >&nbsp;</td>
+              <td align="center" >1</td>
+              <td >法務部</td>
+              <td>法務部廉政署</td>
+              <td>2012/09/04</td>
+              <td>監理</td>
+              <td>口頭</td>
+              <td>交通部</td>
+              <td>組長</td>
+              <td>王ＯＯ</td>
+              <td>立法院</td>
+              <td>立法委員</td>
+              <td>張ＯＯ</td>
+            </tr>
+            <tr class="gridEvenRow">
+              <td align="center" ><input type="checkbox" name="checkbox6" id="checkbox6" /></td>
+              <td align="center" >&nbsp;</td>
+              <td align="center" >2</td>
+              <td>法務部</td>
+              <td>法務部廉政署</td>
+              <td>2012/09/04</td>
+              <td>金融</td>
+              <td>口頭</td>
+              <td>監管會</td>
+              <td>科長</td>
+              <td>李ＯＯ</td>
+              <td >立法院</td>
+              <td>立法委員</td>
+              <td >李ＯＯ</td>
+            </tr>
+            <tr class="gridOddRow">
+              <td align="center" ><input type="checkbox" name="checkbox7" id="checkbox7" /></td>
+              <td align="center" >&nbsp;</td>
+              <td align="center" >3</td>
+              <td>法務部</td>
+              <td>法務部廉政署</td>
+              <td>2012/09/04</td>
+              <td>稅務</td>
+              <td>口頭</td>
+              <td>北區國稅局</td>
+              <td>組長</td>
+              <td>王ＯＯ</td>
+              <td>新北市議會</td>
+              <td>市議員</td>
+              <td>林ＯＯ</td>
+            </tr>
+            <tr class="gridEvenRow">
+              <td align="center" ><input type="checkbox" name="checkbox8" id="checkbox8" /></td>
+              <td align="center" >&nbsp;</td>
+              <td align="center" >4</td>
+              <td>法務部</td>
+              <td>法務部廉政署</td>
+              <td>2012/09/04</td>
+              <td>警政</td>
+              <td>口頭</td>
+              <td>警政署</td>
+              <td>科長</td>
+              <td>李ＯＯ</td>
+              <td>立法院</td>
+              <td>立法委員</td>
+              <td>李ＯＯ</td>
+            </tr>
+          </table>
+        </td>
+    </tr>
+  </table>
+  <p>&nbsp;</p>
+  </div><!-- end of innerDiv -->
+  </div>
+  <div class="domtabsDiv">
+    <a name="tab3" id="tab3"></a>
+    <p>刑案記錄表</p>
+  </div>
+  <div class="domtabsDiv">
+    <a name="tab4" id="tab4"></a>
+    <p>表單列印</p>
+  </div>
+</div>
+</div>
+</body>
+</html>

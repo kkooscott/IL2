@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title></title>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/accordion.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+	<script type="text/javascript">
+            $(document).ready(function() {
+                $('.accordionSubHeaders:first').addClass('selected').next('.contentHolder').show().slideDown();
+				
+                $('.accordionHeaders').click(function() {
+                    $('.accordionHeaders').removeClass('selected');
+					$('.accordionHeadersSingle').removeClass('selectedcontent');
+					$('.accordionSubHeaders').removeClass('selected');
+                    $('.contentHolder').slideUp("fast");
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selected').next('.contentHolder').show();
+
+                });
+				
+              
+
+				
+
+                $('.accordionSubHeaders').click(function() {
+                    $('.accordionSubHeaders').removeClass('selected');
+					$('.accordionSubHeadersSingle').removeClass('selected');
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selected').next('.subContentHolder').show();
+                });
+
+                $('.accordionSubHeadersSingle').click(function() {
+                    $('.subContentHolder').slideUp("fast");
+                    $('.accordionSubHeadersSingle').removeClass('selected');
+					$('.accordionSubHeaders').removeClass('selected');
+                    $(this).addClass('selected').next('.subContentHolder').show();
+                });
+
+
+                $('.accordionContent').click(function() {
+                    $('.accordionContent').removeClass('selectedcontent');
+                    /*$('.accordionHeaders').removeClass('selected');*/
+                    $(this).addClass('selectedcontent');
+                    //點選menu功能時，呼叫cleanOprSessionCache 清掉實際查詢人session資料
+                    parent.frames["oprFrame"].location.href = "npalog/includeLOG/cleanOprSessionCache.jsp";
+                });
+				
+                 $('.accordionHeadersSingle').click(function() {
+                    $('.accordionHeaders').removeClass('selected');
+                    $('.contentHolder').slideUp("fast");
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selectedcontent').next('.subContentHolder').show();
+                });
+				
+				
+            });
+	
+	</script>
+<style type="text/css">
+.style1 {color: #0000FF}
+</style>
+</head>
+<body style="margin-left:0px;margin-top:0px;>
+<div class="accordion">
+			
+			<div class='accordionHeadersSingle'><a href='e820A01Q_01Action.do?method=doList' target='layout'>案件綜合查詢(無下一層)</a></div>
+			<div class='accordionHeaders'>平台管理</div>
+			<div class='contentHolder'>
+				<div class='accordionSubHeadersSingle'><a href='e820A06Q_01Action.do?method=doList' target='layout'>案件錯誤管理(無下一層)</a></div>
+                
+				<div class='accordionSubHeaders'>案件錯誤管理</div>
+				<div class='subContentHolder'>
+					<div class='accordionContent'><a href='e820A06Q_01Action.do?method=doList' target='layout'>案件錯誤審核作業</a></div>
+					<div class='accordionContent'><a href='e820A07P_01Action.do?method=doList&unitType=new' target='layout'>案件錯誤／案件未上傳清冊</a></div>
+				</div>
+				<div class='accordionSubHeaders'>統計分析報表</div>
+				<div class='subContentHolder'>
+					<div class='accordionContent'><a href='e820A08P_01Action.do?method=doList&unitType=new' target='layout'>查(尋)獲案類統計表</a></div>
+				</div>
+			</div>
+			<div class='accordionHeaders' style='cursor: hand'>失車資料處理系統</div>
+			<div class='contentHolder'>
+				<div class='accordionSubHeaders'>線上查詢</div>
+				<div class='subContentHolder'>
+					<div class='accordionContent'><a href='e821A01Q_01Action.do?method=doList&action=query&case_class=01&unitType=new' target='layout'>失車集中查詢</a></div>
+					<div class='accordionContent'><a href='e821A02Q_01Action.do?method=doList&action=query&case_class=01&unitType=new' target='layout'>失車完整鍵個別查詢</a></div>
+					<div class='accordionContent'><a href='e821A03Q_01Action.do?method=doList&action=query&case_class=01&unitType=new' target='layout'>失車不完整鍵個別查詢</a></div>
+				</div>
+				<div class='accordionSubHeaders'>線上新增修</div>
+				<div class='subContentHolder'>
+					<div class='accordionContent'>
+                    <a href='e821A07Q_01Action.do?method=doList&action=break&case_class=01&unitType=new' target='layout'>汽機車尋獲新增</a></div>
+					<div class='accordionContent'><a href='e821A04Q_01Action.do?method=doList&action=update&case_class=01&unitType=new' target='layout'>汽機車失竊修改</a></div>
+					<div class='accordionContent'><a href='e821A05Q_01Action.do?method=doList&action=update&case_class=01&unitType=new' target='layout'>汽機車尋獲修改</a></div>
+				</div>
+			</div>
+	</div>
+    
+</body></html>

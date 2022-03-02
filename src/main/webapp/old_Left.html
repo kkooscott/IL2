@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/accordion.css" type="text/css" media="screen"/>
+    <script type="text/javascript" src="js/jquery-1.10.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.accordionHeaders:first').addClass('selected').next('.contentHolder').slideDown();
+            $('.accordionHeaders').click(function () {
+                $('.accordionHeaders').removeClass('selected');
+                $('.contentHolder').slideUp();
+                $(this).addClass('selected').next('.contentHolder').slideDown();
+            });
+
+            $('.accordionContent').click(function () {
+                $('.accordionContent').removeClass('selectedcontent');
+                $('.grandchild').slideUp();
+                $(this).addClass('selectedcontent').next('.grandchild').slideDown();
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        .style1 {
+            color: #0000FF
+        }
+    </style>
+</head>
+<body style="margin-left:0px;margin-top:20px;background-color:#7C91AC">
+<div class="accordion">
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>被害人調查表維護作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>登錄</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>刪除</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>查詢</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>列印作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>實驗室資料登錄作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>更新作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="CV01A00M.action" target="mainFrame"><span></span>稽核報表作業</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>嫌疑人調查表維護作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>登錄作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>更新作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>列印作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>實驗室資料新增作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>刪除作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>查詢作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>稽核報表作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>例外列印作業</a>
+        </div>
+    </div>
+    <div class="accordionHeaders" data-amount="18">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>調查表備份刪除維護作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>被害人調查表備份刪除作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>被害人調查表備份回存作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>嫌疑人調查表備份刪除作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>嫌疑人調查表備份回存作業</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>調查表統計列印作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>被害人統計表統計作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>嫌疑人統計表統計作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>統計表列印作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>綜合統計作業</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>DNA鑑定比對作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA資料維護作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA各總類關係比對作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA統計表列印作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA資料備份作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA資料備份刪除作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA資料備份回存作業</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>DNA資料上傳</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>有無DNA資料查詢作業
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>代碼維護作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>時段代碼表維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>年齡層代碼表維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>基因型別機率表維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>鑑定人員代碼維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>案類代碼維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>檔案內容代碼維護</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>排程管理作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>資料匯入</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>排程狀態管理</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>權限管理作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>權限設定</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>功能清單維護</a>
+        </div>
+    </div>
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>系統公告作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>公告顯示</a>
+        </div>
+        <div class="accordionContent">
+            <a href="MainPage.html" target="mainFrame"><span></span>公告維護</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

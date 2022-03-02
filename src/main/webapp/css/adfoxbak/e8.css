@@ -1,0 +1,313 @@
+/* layout.css */
+
+body {
+	margin: 15px 15px 20px;
+	/*color: #555555;*/
+	background-color: #FFFFFF;
+	font-family: "PMingLiU","MingLiU";
+}
+
+a{
+	color:#005599;
+	cursor:pointer;
+	text-decoration: underline;
+	
+}
+
+a:link {
+	color: #005599;
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #005599;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #CC0000;
+	text-decoration: none;
+}
+
+.FuncName {
+	background: url('../images/001.png') no-repeat 2px 0px;
+	border-bottom: 3px dotted #7d91ac;
+	color: #6A01FE;/*#A24500;*/
+	/*
+	float: left;  
+	*/
+	font-size: 16px;
+	font-weight: normal;
+	letter-spacing: 0.15em;
+	margin-bottom: 8px;
+	padding-bottom: 3px;
+	padding-left: 15px;
+	margin-left: 0px;
+	margin-right: 0px;
+	margin-top: 0px;
+}
+
+/* @todo:pager*/
+
+/* layout.css */
+
+/* list.css */
+
+.ListTable {
+	font-size: 12px;
+	width: 100%;
+	border-top: 3px solid #848681;
+	border-bottom: 2px solid #848681;
+	border-left: 0px;
+	border-right: 0px;
+	margin-bottom: 15px;
+	padding: 0px;
+	margin-top: 3px;
+	
+}
+.ListTable img {
+	border: none;
+}
+.ListTable th, .ListTable th.First {
+	font-weight: normal;
+	border-bottom: 1px solid #BDC9B6;
+	border-left:0px;
+	border-right:0px;
+	padding-top: 5px;
+	padding-bottom: 3px;
+	white-space: nowrap;
+    vertical-align: middle;
+    text-align:center;
+    color: #344b69; 
+}
+.ListTable th {
+	background: #e8eef7 url('../images/thsep.gif') no-repeat left center;
+    vertical-align: middle;
+    color: #344b69;
+    
+}
+.ListTable th.First {
+	background: #e8eef7 url('e8/none');
+    vertical-align: middle;
+    color: #344b69;
+}
+.ListTable td {
+	border-bottom: 1px solid #D8E1D2;
+	text-align: left;
+	
+	border-left:1px;
+	border-right:1px;
+}
+.ListTable td.Center {
+	text-align: center;
+        vertical-align: middle;
+}
+.ListTable td.Right {
+	text-align: right;
+        vertical-align: middle;
+}
+.ListTable td.Left {
+	text-align: left;
+        vertical-align: middle;
+}
+.ListTable tr.even{
+    background: #cbd6e5;
+    border-top-width: 3px;
+    border-top-color: #F8FBF2;
+}
+.ListTable tr.odd{
+    border-bottom-width: 2px;
+    border-bottom-color:#DAEFD0;
+    background-color: #e8eef7;
+}
+/* list.css */
+
+/* form.css */
+
+.InputText {
+	font-size: 12px;
+	color: #333333;
+	border: 1px solid #719F7E;
+}
+.rdonly {
+	font-size: 12px;
+	border: 1px solid #719F7E;	
+	background-color: pink;
+}
+.InputSelect {
+	font-size: 12px;
+	color: #333333;
+	border: 1px solid #7DA783;
+}
+.InputButton {
+	font-size: 12px;
+	background: url('../images/Lbtn.jpg') repeat-x;
+	padding-top: 3px;
+	color: #233054;/*#2B4723;*/
+	border-top: 1px solid #BBBBBB;
+	border-right: 1px solid #888888;
+	border-bottom: 1px solid #888888;
+	border-left: 1px solid #BBBBBB;
+}
+.BlankFormButton {
+	font-size: 12px;
+	padding-top: 3px;
+	color: #2B4723;
+	border-top: 1px solid #BBBBBB;
+	border-right: 1px solid #888888;
+	border-bottom: 1px solid #888888;
+	border-left: 1px solid #BBBBBB;
+	width: 300;
+}
+.cbutton {
+	font-size: 12px;
+	background: url('../images/btn.jpg') repeat-x;
+	padding-top: 3px;
+	color: #2B4723;
+	border-top: 1px solid #BBBBBB;
+	border-right: 1px solid #888888;
+	border-bottom: 1px solid #888888;
+	border-left: 1px solid #BBBBBB;
+}
+.sedit {
+	border-top: none;
+	border-left: none;
+	border-bottom: none;
+	border-right: none;
+}
+.FormName {
+	font-size: 15px;
+	font-weight: normal;
+	margin-top: 15px;
+	text-align: center;
+	letter-spacing: 0.15em;
+	color: #333333;
+}
+.Form1 {
+	padding-top: 3px;
+	padding-bottom: 3px;
+	/*
+	border-top: 2px solid #BDC9B6;
+	border-bottom: 2px solid #BDC9B6;
+	*/
+	margin-right: 5px;/*#F8FBF2;*/
+	margin-top: 3px;
+	background-color: #f8fbf2;
+	text-align: center;
+	padding-right: 1%;
+	padding-left: 1%;
+	
+}
+.Form1 table {
+	font-size: 12px;
+	margin-bottom: 10px;
+}
+.Form1 table td {
+	margin: 0px;	
+	/*
+	padding-right: 15px;
+	padding-left: 3px;
+	*/
+	text-align: left;
+	padding-bottom: 3px;
+	vertical-align: top;
+}
+.Form1 table td span.Select {
+	padding-right: 0.5em;
+	display: inline-block;
+	width: 7em;
+}
+.Form1 td.Label {
+	color: #344b69;/*#005555;*/
+	text-align: right;
+	vertical-align: top;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+.Form1 td.LabelLeft {
+	color: #005555;
+	text-align: left;
+	vertical-align: top;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+.Form1 td.LabelCenter {
+	color: #005555;
+	text-align: center;
+	vertical-align: top;
+	padding-top: 5px;
+	padding-left: 15px;
+	padding-right: 3px;
+	white-space: nowrap;
+}
+.Form1 fieldset 
+{
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: #f8fbf2;
+	border: 1px solid #848681;
+}
+.Form1 legend{
+     color: #143a85;
+     /*padding: 10px; 
+     margin: -26px 0 -5px -11px;*/
+}
+.Must {
+	font-size: 12px;
+	color: #CC0000;
+	padding-right: 3px;
+	vertical-align: top;
+	padding-top: 5px;	
+}
+.FunctionArea {
+	height: 30px;
+	vertical-align: middle;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.imeOff {
+	ime-mode: disabled;
+}
+/* form.css */
+
+/* not from NPA template */
+
+
+/* not from NPA template */
+
+
+.GridPager{
+    display:none;
+}
+
+
+
+.ListTable td.tdth {
+	font-weight: normal;
+	border-bottom: 1px solid #BDC9B6;
+	border-left:0px;
+	border-right:0px;
+	padding-top: 5px;
+	padding-bottom: 3px;
+	white-space: nowrap;
+    vertical-align: middle;
+    text-align:center;
+    color: #344b69; 
+    background: #e8eef7 url('../images/thsep.gif') no-repeat left center;
+}
+.ListTable td.tdFirst {
+	background: #e8eef7 url('e8/none');
+    vertical-align: middle;
+    color: #344b69;
+}
+
+
+.Form1 Table TD.AspLabel{
+    vertical-align:bottom;
+}

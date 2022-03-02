@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="css/common.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="css/accordion.css" type="text/css" media="screen"/>
+    <!--<script type="text/javascript" src="js/jquery-1.10.0.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+    <link href="css/common.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/accordion.css" type="text/css" media="screen" />
+    <style type="text/css">
+        html
+        {
+            height:100%;
+        }
+        body
+        {       
+           height:100%;
+            /*background: rgb(255,93,177);  Old browsers */
+            /*background: -moz-linear-gradient(top, rgb(124,145,172) 0%, rgb(165,178,195) 100%);  FF3.6+ */
+            background: -ms-linear-gradient(rgb(124,145,172) 0%,rgb(165,178,195) 100%);
+            background: -moz-linear-gradient(top, rgb(124,145,172) 0%, rgb(165,178,195) 100%);
+            background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,rgb(124,145,172)), color-stop(100%,rgb(165,178,195)));
+            background: -webkit-linear-gradient(rgb(124,145,172) 0%,rgb(165,178,195) 100%);
+             /*背景在Y軸方向重覆*/
+            filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#7C91AC', endColorStr='#a5b2c3', gradientType='0')
+        }     
+	</style>
+    <style type="text/css">
+		body
+		{
+			background-color:#a5b2c3;
+		}
+	</style>
+	
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.accordionHeaders:first').addClass('selected').next('.contentHolder').slideDown();
+            $('.accordionHeaders').click(function () {
+                $('.accordionHeaders').removeClass('selected');
+                $('.contentHolder').slideUp();
+                $(this).addClass('selected').next('.contentHolder').slideDown();
+                
+				//Shaw新增;去除點選主選單功能時, 反白畫面留在原功能項目         
+              	$('.accordionContent').removeClass('selectedcontent');                
+            });
+
+            $('.accordionContent').click(function () {
+                $('.accordionContent').removeClass('selectedcontent');
+                $('.grandchild').slideUp();
+                $(this).addClass('selectedcontent').next('.grandchild').slideDown();
+            });
+
+        });
+    </script>
+    <style type="text/css">
+        .style1 {
+            color: #0000FF
+        }
+    </style>
+</head>
+<body style="margin-left: 0px; margin-top: 0px; ">
+<p style="background-color:#7C91AC; margin:0px;" >&nbsp;</p>
+<div class="accordion">
+
+	<div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>
+        <a href="IL02000M.action" target="mainFrame">勤區查察作業</a>
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL02A01U01.action" target="mainFrame"><span></span>查察記事</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL02C01U01.action" target="mainFrame"><span></span>外責區註記</a>
+        </div>
+    </div>
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>
+        <a href="IL03000M.action" target="mainFrame">居留資料查詢作業</a>
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL03A01Q01.action" target="mainFrame"><span></span>外僑居留資料查詢</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL03B01P00.action" target="mainFrame"><span></span>轄區狀況統計資料</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL03D01P01.action" target="mainFrame"><span></span>線上報表管理作業</a>
+        </div>	
+    </div>
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>
+        <a href="IL04000M.action" target="mainFrame">統計報表作業</a>
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL04A01Q01.action" target="mainFrame"><span></span>月統計報表下載</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL04B01Q01.action" target="mainFrame"><span></span>自由檢索報表</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL04D01P01.action" target="mainFrame"><span></span>線上報表管理作業</a>
+        </div>	
+    </div>
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>
+		<a href="IL05000M.action" target="mainFrame">轉出入資料處理作業</a>
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL05A00M.action" target="mainFrame"><span></span>移民署轉入資料</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL05B00M.action" target="mainFrame"><span></span>移民署轉出資料</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL05C01Q01.action" target="mainFrame"><span></span>轉出入結果查詢</a>
+        </div>
+    </div>
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>
+        <a href="IL07000M.action" target="mainFrame">共用代碼維護作業</a>
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL07A00M.action" target="mainFrame"><span></span>國籍代碼維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL07B00M.action" target="mainFrame"><span></span>職業類別代碼維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL07C00M.action" target="mainFrame"><span></span>大專院校代碼維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL07D00M.action" target="mainFrame"><span></span>特殊身份代碼維護</a>
+        </div>
+    </div>
+    
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>排程管理作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL08A01U01.action" target="mainFrame"><span></span>影像資料匯入</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL08B01U01.action" target="mainFrame"><span></span>排程狀態管理</a>
+        </div>
+    </div>
+    
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>權限管理作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+             <a href="IL09A01Query.action" target="mainFrame"><span></span>權限設定</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL09B01Query.action" target="mainFrame"><span></span>功能清單維護</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL09C01U01.action" target="mainFrame"><span></span>登入作業</a>
+        </div>
+    </div>
+    
+   <!-- CV10 -->
+    <div class="accordionHeaders">
+        <img src="images/ball1.png" border="0" align="absmiddle"/>系統公告作業
+    </div>
+    <div class="contentHolder">
+        <div class="accordionContent">
+            <a href="IL10A01Q01.action" target="mainFrame"><span></span>公告顯示</a>
+        </div>
+        <div class="accordionContent">
+            <a href="IL10A002M.action" target="mainFrame"><span></span>公告維護</a>
+        </div>
+    </div>
+      
+</div>
+
+</body>
+</html>

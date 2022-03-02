@@ -1,0 +1,56 @@
+
+
+/* 浮水印 */
+.dataTable-info-mask{
+	left: 7em;
+	height: 0;
+	/*z-index: 1;*/
+	opacity: 0.5;
+	width: 80%;
+/*	pointer-events: none;*/
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	position: absolute;
+}
+
+.info-text{
+    color: #c0c0c0;
+    font-size: 2em;
+    -webkit-transform: rotate(-30deg);  
+    -ms-transform: rotate(-30deg);  
+    line-height: 5em;
+    max-width:30em;
+    letter-spacing:30px;
+    padding-left:0.8em;
+}
+
+.info-text-left{
+	text-align: left;
+	color: darkgray;
+	font-size: 20px;
+	-webkit-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);  
+	letter-spacing:2px;
+	padding: 0 0 1em 0.8em;
+}
+
+.info-text-center{
+	text-align: center;
+	color: darkgray;
+	font-size: 20px;
+	-webkit-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);  
+	letter-spacing:2px;
+	padding: 0 0 1em 0.8em;
+}
+
+.info-text-right{
+	text-align: right;
+	color: darkgray;
+	font-size: 20px;
+	-webkit-transform: rotate(-10deg);
+    -ms-transform: rotate(-10deg);  
+	letter-spacing:2px;
+	padding: 0 0 0 0.8em;
+}

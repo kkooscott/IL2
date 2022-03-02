@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5" />
+<title></title>
+<link href="css/common.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/accordion.css" type="text/css" media="screen" />
+	<script type="text/javascript" src="jquery-1.10.0.min.js"></script>
+	<script type="text/javascript">
+           $(document).ready(function() {
+                $('.accordionSubHeaders:first').addClass('selected').next('.contentHolder').show().slideDown();
+				
+                $('.accordionHeaders').click(function() {
+                    $('.accordionHeaders').removeClass('selected');
+					$('.accordionHeadersSingle').removeClass('selectedcontent');
+					$('.accordionSubHeaders').removeClass('selected');
+                    $('.contentHolder').slideUp("fast");
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selected').next('.contentHolder').show();
+
+                });
+				
+              
+
+				
+
+                $('.accordionSubHeaders').click(function() {
+                    $('.accordionSubHeaders').removeClass('selected');
+					$('.accordionSubHeadersSingle').removeClass('selected');
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selected').next('.subContentHolder').show();
+                });
+
+                $('.accordionSubHeadersSingle').click(function() {
+                    $('.subContentHolder').slideUp("fast");
+                    $('.accordionSubHeadersSingle').removeClass('selected');
+					$('.accordionSubHeaders').removeClass('selected');
+                    $(this).addClass('selected').next('.subContentHolder').show();
+                });
+
+
+                $('.accordionContent').click(function() {
+                    $('.accordionContent').removeClass('selectedcontent');
+                    /*$('.accordionHeaders').removeClass('selected');*/
+                    $(this).addClass('selectedcontent');
+                    //點選menu功能時，呼叫cleanOprSessionCache 清掉實際查詢人session資料
+                    parent.frames["oprFrame"].location.href = "npalog/includeLOG/cleanOprSessionCache.jsp";
+                });
+				
+                 $('.accordionHeadersSingle').click(function() {
+                    $('.accordionHeaders').removeClass('selected');
+                    $('.contentHolder').slideUp("fast");
+                    $('.subContentHolder').slideUp("fast");
+                    $(this).addClass('selectedcontent').next('.subContentHolder').show();
+                });
+				
+				
+            });
+	</script>
+<style type="text/css">
+.style1 {color: #0000FF}
+</style>
+</head>
+<body style="margin-left:0px;margin-top:0px;>
+<div class="accordion">
+		<div class="accordionHeaders">
+			查詢作業
+		</div>
+			<div class="contentHolder">
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">一般查詢及列印</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">身分證號集中查詢及列印</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">姓名集中查詢及列印</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">自由條件檢索報表</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">身分證號集中查詢及列印</a>
+				</div>
+			</div>
+		<div class="accordionHeaders" >
+			執行作業
+		</div>
+			<div class="contentHolder">
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">轉檔資料分派作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">初審作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">審核作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">申請刪除作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">動態通報作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">動態回復作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">每月未查訪作業查詢</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">每半年分析研判作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">定期註銷作業</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">轉檔資料上傳</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">程式處理狀態查詢</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">未分派資料查詢</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">未初審資料查詢</a>
+				</div>
+			</div>
+		<div class="accordionHeaders" data-amount="18">
+			維護作業
+		</div>
+			<div class="contentHolder">
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">基本詳細資料維護</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">身分資料維護</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">住址資料維護</a>
+				</div>
+				<div class="accordionContent" >
+					<a href="template01.html" target="mainFrame">動態資料維護</a>
+				</div>
+			</div>
+		<div class="accordionHeaders" >
+			報表作業
+		</div>
+			<div class="contentHolder">
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">縣<市>人口統計表</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">協查治安顧慮人口回復</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">治安顧慮人口動態通報</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">分析研判報告表</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">治安顧慮人口統計表</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">行方不明報表</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">到期除管通報名冊列印</a>
+				</div>
+				<div class="accordionContent">
+					<a href="template01.html" target="mainFrame">動態名冊列印</a>
+				</div>
+			</div>
+	</div>
+    
+</body></html>
