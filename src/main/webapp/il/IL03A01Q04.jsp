@@ -256,9 +256,9 @@
 						<td width="15%">${iltb01Main.ilEnm}</td>
 						
 						<td colspan="4" rowspan="9" class="Label" style='text-align:right'>
-						<img align='right' src="${arcnoPath}" alt="照片" width="120" height="145">
-						<%-- <img align='right' src="${arcnoPath}1-0.JPG" alt="照片" width="120" height="145">
-						<img align='right' src="${arcnoPath}0-0.JPG" alt="照片" width="120" height="145"> --%></td>
+						<%-- <img align='right' src="${arcnoPath}" alt="照片" width="120" height="145">--%>
+						<img align='right' src="${arcnoPath}1-0.JPG" alt="照片" width="120" height="145">
+						<img align='right' src="${arcnoPath}0-0.JPG" alt="照片" width="120" height="145"> </td>
                         
                     </tr>
 					<tr>
@@ -346,7 +346,7 @@
 							<s:elseif test="iltb01Main.ilArcrsn==4">投資</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==5">傳教</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==6">其他</s:elseif>
-							<s:elseif test="iltb01Main.ilArcrsn==7">外勞</s:elseif>
+							<s:elseif test="iltb01Main.ilArcrsn==7">移工</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==8">永居(連續居留七年)</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==9">永居(依親五年配偶)</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn=='A'.toString()">永居(依親五年子女)</s:elseif>

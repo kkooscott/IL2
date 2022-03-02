@@ -49,7 +49,7 @@
 
 <div class="accordion">
 	<%--目錄結構 --%>	
-	<s:iterator value="getMenuList" id="m1" status="m1Cnt">
+	<s:iterator value="getMenuList" var="m1" status="m1Cnt">
 		<div id="${m1.index}" class="accordionHeaders">
         
         	<s:if test='%{#m1.url==0}'>
@@ -61,7 +61,7 @@
 	    </div>
 	    <div class="contentHolder">
 	    		    	       
-		    <s:iterator value="top.childList" id="m2" status="m2Cnt">
+		    <s:iterator value="top.childList" var="m2" status="m2Cnt">
 		    	<s:set var="isNull" value="1" />		    
 		        <div class="accordionContent">
 		            <a href="${m2.url}" target="mainFrame"><span></span>${m2.stepName}</a>

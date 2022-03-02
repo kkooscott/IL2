@@ -119,7 +119,7 @@
 							<s:elseif test="iltb01Main.ilArcrsn==4">投資</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==5">傳教</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==6">其他</s:elseif>
-							<s:elseif test="iltb01Main.ilArcrsn==7">外勞</s:elseif>
+							<s:elseif test="iltb01Main.ilArcrsn==7">移工</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==8">永居(連續居留七年)</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn==9">永居(依親五年配偶)</s:elseif>
 							<s:elseif test="iltb01Main.ilArcrsn=='A'.toString()">永居(依親五年子女)</s:elseif>

@@ -91,7 +91,7 @@
 		    </tr>
 		     -->
 		     
-		     <s:iterator value="il02A01U02BeanList" id="il02A01U02Bean" status="count">
+		     <s:iterator value="il02A01U02BeanList" var="il02A01U02Bean" status="count">
 		     	<tr bgcolor=lightcyan>
 			      <td>
 			      	<s:if test="#count.count == 1">

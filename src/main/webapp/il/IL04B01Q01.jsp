@@ -309,7 +309,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 	            $.each(data.secondUnitCdList, function (i, detail) {
 	            	option = option + "<option value=\"" + detail.e0UnitCd + "-" + detail.e0UnitNm + "\"></option>"
 	            });
-
+				$("#secondUnitCdList").empty();
 				$("#secondUnitCdList").append(option);
 				$("#" + breadUnitSelectId).attr("disabled", false);;
 				
@@ -333,7 +333,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 	function onFormSubmit() {
 		mergeSelectedARCST();
 		mergeSelectedEDU();
-		if($('#isNpaUnit').val()=='' || $('#PHQ').val()==''){
+		if($('#PHQ').val()==''){
 			$.alert.open("warning", "管轄警局為必填");
 			return;
 		}

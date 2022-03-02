@@ -3,7 +3,7 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <select id="ilZipCode" name="ilZipCode" class="InputSelect" multiple size="4">
-	<s:iterator value="npaZipCodeBeanList" id="result" status="count">		
+	<s:iterator value="npaZipCodeBeanList" var="result" status="count">		
 		<option value="${result.KT_PZONE}">${result.KT_PZONE}${result.KT_TOWN}</option>					
 	</s:iterator>
 </select>

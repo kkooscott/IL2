@@ -205,27 +205,20 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
    	function onSubmit(url){	
 
 		if($("#main")[0].selectedIndex==0){
-			alert("請輸入查詢用途");
+			swal("請輸入查詢用途");
 			return;
 		}
 
 		if($("#main")[0].selectedIndex==6&&$("#other").val()==""){
-			alert("請輸入查詢用途");
-			return;
-		}
-		
-		if(myBestTrim(document.myForm.ilNtcd.value)==""&&myBestTrim(document.myForm.ilPspt.value)==""&&myBestTrim(document.myForm.ilEnm.value)==""&&myBestTrim(document.myForm.ilArcno.value)==""){
-			window.alert("國籍該欄不可為空 !!!");
-			document.myForm.NTCD.focus();
+			swal("請輸入查詢用途");
 			return;
 		}
 	
-   		if(myBestTrim(document.myForm.ilPspt.value)==""&&myBestTrim(document.myForm.ilEnm.value)==""&&myBestTrim(document.myForm.ilArcno.value)==""){
-			alert("星號條件至少輸入一項");
+   		if(myBestTrim(document.myForm.ilNtcd.value)==""&&myBestTrim(document.myForm.ilPspt.value)==""&&myBestTrim(document.myForm.ilEnm.value)==""&&myBestTrim(document.myForm.ilArcno.value)==""){
+			swal("星號條件至少輸入一項");
 			return;
 		}
-		
-		  /**  
+		/**    
 	    if(myBestTrim(document.myForm.ilNtcd.value)==""&&myBestTrim(document.myForm.ilPspt.value)==""&&myBestTrim(document.myForm.ilEnm.value)==""&&myBestTrim(document.myForm.ilArcno.value)==""){
 			window.alert("國籍該欄不可為空 !!!");
 			document.myForm.NTCD.focus();

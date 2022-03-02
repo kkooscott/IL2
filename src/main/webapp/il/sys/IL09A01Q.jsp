@@ -106,15 +106,15 @@
                         <tr>
                             <th class="First" scope="col">群組</th>
                             <th scope="col">功能名稱</th>
-                            <s:iterator value="tbRoleList" id="tbRoleSet" status="count">
+                            <s:iterator value="tbRoleList" var="tbRoleSet" status="count">
                                 <th scope="col">${tbRoleSet.roleNm}<p>${tbRoleSet.role}</p></th>
                             </s:iterator>
                         </tr>
                         </thead>
                         <tbody>
-                        <s:iterator value="tbFuncList.{?#this.functag==1}" id="tbFuncSet" status="st">
+                        <s:iterator value="tbFuncList.{?#this.functag==1}" var="tbFuncSet" status="st">
                             <tr id="tr${st.count}" class="<s:if test="#st.odd == true">odd</s:if><s:else>even</s:else>">
-                                <s:iterator value="tbFuncList" id="tbFuncGroupSet" status="gCount">
+                                <s:iterator value="tbFuncList" var="tbFuncGroupSet" status="gCount">
                                     <s:if test="%{#tbFuncGroupSet.functag==0}">
                                         <s:if test="%{#tbFuncGroupSet.indexid==#tbFuncSet.indexid.substring(0,1)}">
                                             <td class="Center">${tbFuncGroupSet.stepname}</td>
@@ -122,7 +122,7 @@
                                     </s:if>
                                 </s:iterator>
                                 <td class="Center">${tbFuncSet.stepname}</td>
-                                <s:iterator value="tbFuncRoleGroupList" id="tbFuncRoleGroupSet" status="count">
+                                <s:iterator value="tbFuncRoleGroupList" var="tbFuncRoleGroupSet" status="count">
                                     <s:if test="%{#tbFuncRoleGroupSet.funcNo == #tbFuncSet.stepid}">
                                         <s:if test="%{#tbFuncRoleGroupSet.enable == 0}">
                                             <td class="Center"><input type="checkbox" id="${tbFuncRoleGroupSet.funcRoleNo}" name="btnCheckBox${tbFuncSet.stepid}" /></td >

@@ -47,7 +47,9 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 	
 	
 	function toSubmit() {
-
+		
+		
+		
     	var errMsg = "";
 
  		var counts = 0;
@@ -88,7 +90,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 		 mergeSelectedOP();
 		 mergeSelectedNT();
 		 mergeSelectedEDU();
-		   
+		$('#queryBtn').prop('disabled', true);   
 		 document.form1.action = "IL03A01Q02.action";
 		 document.form1.submit();
 		}
@@ -257,7 +259,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 										</td>
 										<td class="Label" width="5%">護照號碼：</td>
 										<td width="25%"><input id="ilPspt" name="ilPspt"
-											maxlength="25" tabindex="2" class="InputText"
+											maxlength="250" tabindex="2" class="InputText"
 											style="WIDTH: 150px" value="">(多筆輸入請以「,」隔開)</td>
 									</tr>
 									<tr>
@@ -316,7 +318,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 											<%-- <select id="e0dtUintSelect" name="e0dtUintSelect" tabindex=12 class='InputText' multiple size='5'> --%>	
 											<input id="ilPhq" name="ilPhq" list="e0dtUints" class="InputText" /> 
 											<datalist id="e0dtUints">
-												<s:iterator value="e0dtUints" id="e0dtUint" status="count">
+												<s:iterator value="e0dtUints" var="e0dtUint" status="count">
 												<option value="${e0dtUint.e0UnitCd}">${e0dtUint.e0UnitCd} ${e0dtUint.e0UnitNm}</option>	
 											</s:iterator>
 											</datalist>
@@ -420,7 +422,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 									<INPUT id=btnUV type=button value=查詢 tabindex=15 title=查詢>-->
 									<select id="UV" name="UV" tabindex=15 class='InputText'>					
 										<option value=""></option>
-										<s:iterator value="schoolCodes" id="schoolCode" status="count">
+										<s:iterator value="schoolCodes" var="schoolCode" status="count">
 											<option value="${schoolCode.ilUvcd}">${schoolCode.ilUvcd} ${schoolCode.ilUvcnm}</option>	
 										</s:iterator>									
 									</select>
@@ -433,7 +435,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 									<INPUT id=btnOP type=button value=查詢 tabindex=12 title=查詢 />-->
 									<select id="OP" name="OP" tabindex=12 class='InputText' multiple size='5'>				
 										<option value=""></option>
-										<s:iterator value="jobCodes" id="jobCode" status="count">
+										<s:iterator value="jobCodes" var="jobCode" status="count">
 											<option value="${jobCode.ilOpcd}">${jobCode.ilOpcd} ${jobCode.ilOpnm}</option>	
 										</s:iterator>									
 									</select>
@@ -451,7 +453,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 									<INPUT id=btnNT type=button value=查詢 tabindex=13 title=查詢 /> -->
 									<select id="NT" name="NT" tabindex=13 class='InputText' multiple size='5'>					
 										<option value=""></option>
-										<s:iterator value="countryCodes" id="countryCode" status="count">
+										<s:iterator value="countryCodes" var="countryCode" status="count">
 											<option value="${countryCode.ilNtcd}">${countryCode.ilNtcd} ${countryCode.ilNtnm}</option>	
 										</s:iterator>									
 									</select>
@@ -905,7 +907,7 @@ if(session.getAttribute("LOGUID")==null||session.getAttribute("LOGUID").equals("
 			<tr>
 				<td>
 					<div class="FunctionArea">
-						<input type="button" class="InputButton" value="確 定" onclick="toSubmit();" />
+						<input type="button" class="InputButton" id="queryBtn" value="確 定" onclick="toSubmit();" />
 						<input type="button" class="InputButton" value="清 除" onclick="location.replace(location.href);" />
 					</div>
 				</td>

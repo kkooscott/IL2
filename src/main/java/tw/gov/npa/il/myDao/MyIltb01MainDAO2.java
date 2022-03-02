@@ -1,25 +1,12 @@
 package tw.gov.npa.il.myDao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Example;
-import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.Type;
 import org.jfree.util.Log;
-
 import tw.gov.npa.il.action.bean.IL03A01Q02Bean;
 import tw.gov.npa.il.action.bean.IL03A01Query02Bean;
 import tw.gov.npa.il.dao.HibernateSessionFactory;
@@ -66,7 +53,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 
 	public List<Iltb01Main> getIL02C01U02Q(String[] ilPstArr, String ilZipCode, String txtBEGIN_DT, String txtBEGIN_DF,
 			String ilPstext, String[] ilArccsArr) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * FROM ILTB_01_MAIN");
@@ -90,13 +77,19 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				if (ilArccsArr.length == 2) {
 					sqlStr.append(" AND IL_ARCCS in ('0','1')");
 				} else {
-					for (String ilArccs : ilArccsArr) {
+					byte b;
+					int i;
+					String[] arrayOfString;
+					for (i = (arrayOfString = ilArccsArr).length, b = 0; b < i;) {
+						String ilArccs = arrayOfString[b];
 						if (ilArccs.equals(Integer.valueOf(0))) {
 							sqlStr.append(" AND IL_ARCCS in ('0')");
 						} else if (ilArccs.equals(Integer.valueOf(1))) {
 							sqlStr.append(" AND IL_ARCCS in ('1')");
 						}
+						b++;
 					}
+
 				}
 			sqlStr.append(" ORDER BY IL_ARADDR");
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
@@ -111,7 +104,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<IL03A01Q02Bean> getIL03A01Q02A(String ilMicro, String ilRepmdc, String ilRepmdcNic) {
-		List<IL03A01Q02Bean> list = new ArrayList<IL03A01Q02Bean>();
+		List<IL03A01Q02Bean> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append(
@@ -155,7 +148,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 					if (!"".equals(objArr[5]) && objArr[5] != null)
 						IL_NTNM = (String) objArr[5];
 					bean.setId(i + 1);
-					bean.setIlArcid(IL_ARCID);
+					bean.setIlArcid(Integer.valueOf(IL_ARCID));
 					bean.setIlBthdt(IL_BTHDT);
 					bean.setIlEnm(IL_ENM);
 					bean.setIlNtcd(IL_NTCD);
@@ -180,23 +173,23 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			String FNDDID, String txtFIND_FROM, String txtFIND_TO, String txtIN_FROM, String txtIN_TO, String MANTYPE,
 			String txtEXIT_FROM, String txtEXIT_TO, String chkILARCNO, String chkILPSPT, String chkILENM, String chkNT,
 			String chkLBLBTHDTFM, String chkILCNM, String chkARC_FROM, String chkSEX, String chkOP, String chkARCST) {
-		List<IL03A01Q02Bean> list = new ArrayList<IL03A01Q02Bean>();
+		List<IL03A01Q02Bean> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
-//			sqlStr.append("SELECT a.IL_ARCID, a.IL_PSPT, a.IL_ENM, a.IL_NTCD, a.IL_BTHDT, b.IL_NTNM FROM ILTB_01_MAIN a, ILTB_15_COUNTRY_CODE b");
-			sqlStr.append("SELECT a.IL_ARCID, ");
-			if ("1".equals(chkILARCNO)) // 外來人口證號
-				sqlStr.append("a.IL_ARCNO, ");
-			if ("1".equals(chkILPSPT)) // 護照號碼
-				sqlStr.append("a.IL_PSPT, ");
-			if ("1".equals(chkILENM)) // 英文姓名
-				sqlStr.append("a.IL_ENM, ");
-			if ("1".equals(chkNT)) // 國籍
-				sqlStr.append("a.IL_NTCD, ");
-			if ("1".equals(chkLBLBTHDTFM)) // 出生日期
-				sqlStr.append("a.IL_BTHDT, ");
 
-//			a.IL_ARCID, a.IL_PSPT, a.IL_ENM, a.IL_NTCD, a.IL_BTHDT, b.IL_NTNM FROM ILTB_01_MAIN a, ILTB_15_COUNTRY_CODE b");
+			sqlStr.append("SELECT a.IL_ARCID, ");
+			if ("1".equals(chkILARCNO))
+				sqlStr.append("a.IL_ARCNO, ");
+			if ("1".equals(chkILPSPT))
+				sqlStr.append("a.IL_PSPT, ");
+			if ("1".equals(chkILENM))
+				sqlStr.append("a.IL_ENM, ");
+			if ("1".equals(chkNT))
+				sqlStr.append("a.IL_NTCD, ");
+			if ("1".equals(chkLBLBTHDTFM)) {
+				sqlStr.append("a.IL_BTHDT, ");
+			}
+
 			sqlStr.append(" b.IL_NTNM FROM ILTB_01_MAIN a, ILTB_15_COUNTRY_CODE b WHERE a.IL_NTCD = b.IL_NTCD");
 			if (!"".equals(ilArcno) || ilArcno == null)
 				sqlStr.append(" AND a.IL_ARCNO = '" + ilArcno + "'");
@@ -206,9 +199,9 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				sqlStr.append(" AND a.IL_ENM like '" + ilEnm + "%'");
 			if (!"".equals(ilCnm) || ilCnm == null)
 				sqlStr.append(" AND a.IL_CNM = '" + ilCnm + "'");
-			if (!"".equals(ilOfnm) || ilOfnm == null)
+			if (!"".equals(ilOfnm) || ilOfnm == null) {
 				sqlStr.append(" AND a.IL_OFNM = '" + ilOfnm + "'");
-
+			}
 			if (!"".equals(txtBthdFrom) || txtBthdFrom == null) {
 				sqlStr.append(" AND a.IL_BTHDT >= '" + this.getDateUtil.getNoSpiltDate(txtBthdFrom) + "'");
 			}
@@ -259,43 +252,58 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			if (!"".equals(FRCEXIT) || FRCEXIT == null)
 				sqlStr.append(" AND a.IL_FRCEXIT ='" + FRCEXIT + "'");
 			if (!"".equals(txtAPY_FROM) || txtAPY_FROM == null)
-				sqlStr.append("AND a.IL_APYDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtAPY_FROM) + "'");
+				sqlStr.append("AND a.IL_APYDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtAPY_FROM)) + "'");
 			if (!"".equals(txtAPY_TO) || txtAPY_TO == null)
-				sqlStr.append("AND a.IL_APYDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtAPY_TO) + "'");
+				sqlStr.append("AND a.IL_APYDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtAPY_TO)) + "'");
 			if (!"".equals(txtARC_FROM) || txtARC_FROM == null)
-				sqlStr.append("AND a.IL_ARCTO >= '").append(this.getDateUtil.getSepSpiltDateStart(txtARC_FROM) + "'");
+				sqlStr.append("AND a.IL_ARCTO >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtARC_FROM)) + "'");
 			if (!"".equals(txtARC_TO) || txtARC_TO == null)
-				sqlStr.append("AND a.IL_ARCTO <= '").append(this.getDateUtil.getSepSpiltDateStart(txtARC_TO) + "'");
+				sqlStr.append("AND a.IL_ARCTO <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtARC_TO)) + "'");
 			if (!"".equals(txtREAPY_FROM) || txtREAPY_FROM == null)
 				sqlStr.append("AND a.IL_REAPYDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(txtREAPY_FROM) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtREAPY_FROM)) + "'");
 			if (!"".equals(txtREAPY_TO) || txtREAPY_TO == null)
-				sqlStr.append("AND a.IL_REAPYDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtREAPY_TO) + "'");
+				sqlStr.append("AND a.IL_REAPYDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtREAPY_TO)) + "'");
 			if (!"".equals(txtMISS_FROM) || txtMISS_FROM == null)
-				sqlStr.append("AND a.IL_MISSDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtMISS_FROM) + "'");
+				sqlStr.append("AND a.IL_MISSDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtMISS_FROM)) + "'");
 			if (!"".equals(txtMISS_TO) || txtMISS_TO == null)
-				sqlStr.append("AND a.IL_MISSDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtMISS_TO) + "'");
+				sqlStr.append("AND a.IL_MISSDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtMISS_TO)) + "'");
 			if (!"".equals(txtSBMT_FROM) || txtSBMT_FROM == null)
-				sqlStr.append("AND a.IL_SBMTDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtSBMT_FROM) + "'");
-			if (!"".equals(txtSBMT_TO) || txtSBMT_TO == null)
-				sqlStr.append("AND a.IL_SBMTDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtSBMT_TO) + "'");
-
+				sqlStr.append("AND a.IL_SBMTDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtSBMT_FROM)) + "'");
+			if (!"".equals(txtSBMT_TO) || txtSBMT_TO == null) {
+				sqlStr.append("AND a.IL_SBMTDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtSBMT_TO)) + "'");
+			}
 			if (!"".equals(txtFIND_FROM) || txtFIND_FROM == null)
-				sqlStr.append("AND a.IL_FNDDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtFIND_FROM) + "'");
+				sqlStr.append("AND a.IL_FNDDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtFIND_FROM)) + "'");
 			if (!"".equals(txtFIND_TO) || txtFIND_TO == null)
-				sqlStr.append("AND a.IL_FNDDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtFIND_TO) + "'");
+				sqlStr.append("AND a.IL_FNDDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtFIND_TO)) + "'");
 			if (!"".equals(txtIN_FROM) || txtIN_FROM == null)
-				sqlStr.append("AND a.IL_INDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtIN_FROM) + "'");
+				sqlStr.append("AND a.IL_INDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtIN_FROM)) + "'");
 			if (!"".equals(txtIN_TO) || txtIN_TO == null)
-				sqlStr.append("AND a.IL_INDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtIN_TO) + "'");
+				sqlStr.append("AND a.IL_INDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtIN_TO)) + "'");
 			if (!"".equals(txtEXIT_FROM) || txtEXIT_FROM == null)
-				sqlStr.append("AND a.IL_EXDT >= '").append(this.getDateUtil.getSepSpiltDateStart(txtEXIT_FROM) + "'");
-			if (!"".equals(txtEXIT_TO) || txtEXIT_TO == null)
-				sqlStr.append("AND a.IL_EXDT <= '").append(this.getDateUtil.getSepSpiltDateStart(txtEXIT_TO) + "'");
-
-			if (!"".equals(FNDDID) || FNDDID == null)
+				sqlStr.append("AND a.IL_EXDT >= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtEXIT_FROM)) + "'");
+			if (!"".equals(txtEXIT_TO) || txtEXIT_TO == null) {
+				sqlStr.append("AND a.IL_EXDT <= '")
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(txtEXIT_TO)) + "'");
+			}
+			if (!"".equals(FNDDID) || FNDDID == null) {
 				sqlStr.append(" AND a.IL_FNDDID = '" + FNDDID + "'");
-
+			}
 			Log.info("sqlStr=" + sqlStr);
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 			q.addScalar("IL_ARCID", (Type) Hibernate.INTEGER);
@@ -328,7 +336,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 					if (!"".equals(objArr[5]) && objArr[5] != null)
 						IL_NTNM = (String) objArr[5];
 					bean.setId(i + 1);
-					bean.setIlArcid(IL_ARCID);
+					bean.setIlArcid(Integer.valueOf(IL_ARCID));
 					bean.setIlBthdt(IL_BTHDT);
 					bean.setIlEnm(IL_ENM);
 					bean.setIlNtcd(IL_NTCD);
@@ -345,7 +353,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<IL03A01Q02Bean> getIL03A01Q02ToSQL(IL03A01Query02Bean bean, String[] ilPhqArr, List<IL07D> srchstList) {
-		List<IL03A01Q02Bean> list = new ArrayList<IL03A01Q02Bean>();
+		List<IL03A01Q02Bean> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append(
@@ -353,20 +361,22 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			if (!"".equals(bean.getIlArcno()) || bean.getIlArcno() == null) {
 				String[] arcno = bean.getIlArcno().split(",");
 				sqlStr.append(" AND(");
-				for(int i = 0 ; i < arcno.length ; i++) {
+				for (int i = 0; i < arcno.length; i++) {
 					if (i == 0) {
 						sqlStr.append("a.IL_ARCNO='" + arcno[i].trim() + "'");
 					} else {
 						sqlStr.append(" OR a.IL_ARCNO='" + arcno[i].trim() + "'");
 					}
+
+					sqlStr.append(" OR a.IL_OLDARCNO='" + arcno[i].trim() + "'");
 				}
 				sqlStr.append(")");
 			}
-			
+
 			if (!"".equals(bean.getIlPspt()) || bean.getIlPspt() == null) {
 				String[] pspt = bean.getIlPspt().split(",");
 				sqlStr.append(" AND(");
-				for(int i = 0 ; i < pspt.length ; i++) {
+				for (int i = 0; i < pspt.length; i++) {
 					if (i == 0) {
 						sqlStr.append("a.IL_PSPT='" + pspt[i].trim() + "'");
 					} else {
@@ -435,57 +445,57 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				sqlStr.append(" AND a.IL_FRCEXIT ='" + bean.getIlFrcexit() + "'");
 			if (!"".equals(bean.getIlApydtFrom()) || bean.getIlApydtFrom() == null)
 				sqlStr.append("AND a.IL_APYDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlApydtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlApydtFrom())) + "'");
 			if (!"".equals(bean.getIlApydtTo()) || bean.getIlApydtTo() == null)
 				sqlStr.append("AND a.IL_APYDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlApydtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlApydtTo())) + "'");
 			if (!"".equals(bean.getIlArcfm()) || bean.getIlArcfm() == null)
 				sqlStr.append("AND a.IL_ARCTO >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlArcfm()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlArcfm())) + "'");
 			if (!"".equals(bean.getIlArcto()) || bean.getIlArcto() == null)
 				sqlStr.append("AND a.IL_ARCTO <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlArcto()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlArcto())) + "'");
 			if (!"".equals(bean.getIlReapydtFrom()) || bean.getIlReapydtFrom() == null)
 				sqlStr.append("AND a.IL_REAPYDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlReapydtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlReapydtFrom())) + "'");
 			if (!"".equals(bean.getIlReapydtTo()) || bean.getIlReapydtTo() == null)
 				sqlStr.append("AND a.IL_REAPYDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlReapydtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlReapydtTo())) + "'");
 			if (!"".equals(bean.getIlMissdtFrom()) || bean.getIlMissdtFrom() == null)
 				sqlStr.append("AND a.IL_MISSDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlMissdtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlMissdtFrom())) + "'");
 			if (!"".equals(bean.getIlMissdtTo()) || bean.getIlMissdtTo() == null)
 				sqlStr.append("AND a.IL_MISSDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlMissdtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlMissdtTo())) + "'");
 			if (!"".equals(bean.getIlSbmtdtFrom()) || bean.getIlSbmtdtFrom() == null)
 				sqlStr.append("AND a.IL_SBMTDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlSbmtdtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlSbmtdtFrom())) + "'");
 			if (!"".equals(bean.getIlSbmtdtTo()) || bean.getIlSbmtdtTo() == null)
 				sqlStr.append("AND a.IL_SBMTDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlSbmtdtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlSbmtdtTo())) + "'");
 			if (!"".equals(bean.getIlFinddtFrom()) || bean.getIlFinddtFrom() == null)
 				sqlStr.append("AND a.IL_FNDDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlFinddtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlFinddtFrom())) + "'");
 			if (!"".equals(bean.getIlFinddtTo()) || bean.getIlFinddtTo() == null)
 				sqlStr.append("AND a.IL_FNDDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlFinddtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlFinddtTo())) + "'");
 			if (!"".equals(bean.getIlIndtFrom()) || bean.getIlIndtFrom() == null)
 				sqlStr.append("AND a.IL_INDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlIndtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlIndtFrom())) + "'");
 			if (!"".equals(bean.getIlIndtTo()) || bean.getIlIndtTo() == null)
 				sqlStr.append("AND a.IL_INDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlIndtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlIndtTo())) + "'");
 			if (!"".equals(bean.getIlExdtFrom()) || bean.getIlExdtFrom() == null)
 				sqlStr.append("AND a.IL_EXDT >= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlExdtFrom()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlExdtFrom())) + "'");
 			if (!"".equals(bean.getIlExdtTo()) || bean.getIlExdtTo() == null)
 				sqlStr.append("AND a.IL_EXDT <= '")
-						.append(this.getDateUtil.getSepSpiltDateStart(bean.getIlExdtTo()) + "'");
+						.append(String.valueOf(this.getDateUtil.getSepSpiltDateStart(bean.getIlExdtTo())) + "'");
 			if (!"".equals(bean.getIlFnddid()) || bean.getIlFnddid() == null)
 				sqlStr.append(" AND a.IL_FNDDID = '" + bean.getIlFnddid() + "'");
-			if (!"0".equals(bean.getIlMANTYPE()) || bean.getIlMANTYPE() == null)
+			if (!"0".equals(bean.getIlMANTYPE()) || bean.getIlMANTYPE() == null) {
 				sqlStr.append(" AND c.IL_MANTYPE = '" + bean.getIlMANTYPE() + "'");
-
+			}
 			System.out.println("sqlStr=" + sqlStr);
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 			q.addScalar("IL_ARCID", (Type) Hibernate.INTEGER);
@@ -564,6 +574,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			q.addScalar("IL_12ARCID", (Type) Hibernate.STRING);
 			q.addScalar("IL_NTNM", (Type) Hibernate.STRING);
 			q.addScalar("IL_MANTYPE", (Type) Hibernate.STRING);
+			q.addScalar("IL_OLDARCNO", (Type) Hibernate.STRING);
 
 			List<Object[]> objList = q.list();
 			if (objList.size() > 0)
@@ -573,510 +584,816 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 
 					Object[] objArr = objList.get(i);
 					iL03A01Q02Bean.setId(i + 1);
-					iL03A01Q02Bean.setIlArcid(
-							!"".equals(objArr[0]) && objArr[0] != null ? ((Integer) objArr[0]).intValue() : 0);
-					iL03A01Q02Bean.setIlArctp(!"".equals(objArr[1]) && objArr[1] != null ? (String) objArr[1] : "");
-					iL03A01Q02Bean.setIlArccs(!"".equals(objArr[2]) && objArr[2] != null ? (String) objArr[2] : "");
-					iL03A01Q02Bean.setIlEnm(!"".equals(objArr[3]) && objArr[3] != null ? (String) objArr[3] : "");
-					iL03A01Q02Bean.setIlCnm(!"".equals(objArr[4]) && objArr[4] != null ? (String) objArr[4] : "");
-					iL03A01Q02Bean.setIlSex(!"".equals(objArr[5]) && objArr[5] != null ? (String) objArr[5] : "");
-					iL03A01Q02Bean.setIlBthdt(!"".equals(objArr[6]) && objArr[6] != null ? (String) objArr[6] : "");
-					iL03A01Q02Bean.setIlNtcd(!"".equals(objArr[7]) && objArr[7] != null ? (String) objArr[7] : "");
-					iL03A01Q02Bean.setIlPspt(!"".equals(objArr[8]) && objArr[8] != null ? (String) objArr[8] : "");
-					iL03A01Q02Bean.setIlPsdt(!"".equals(objArr[9]) && objArr[9] != null ? (String) objArr[9] : "");
-					iL03A01Q02Bean.setIlMst(!"".equals(objArr[10]) && objArr[10] != null ? (String) objArr[10] : "");
-					if(!"".equals(objArr[11]) && objArr[11] != null) {
-						switch ((String)objArr[11]) {
-						case "00":
+					iL03A01Q02Bean.setIlArcid(Integer.valueOf(
+							(!"".equals(objArr[0]) && objArr[0] != null) ? ((Integer) objArr[0]).intValue() : 0));
+					iL03A01Q02Bean.setIlArctp((!"".equals(objArr[1]) && objArr[1] != null) ? (String) objArr[1] : "");
+					iL03A01Q02Bean.setIlArccs((!"".equals(objArr[2]) && objArr[2] != null) ? (String) objArr[2] : "");
+					iL03A01Q02Bean.setIlEnm((!"".equals(objArr[3]) && objArr[3] != null) ? (String) objArr[3] : "");
+					iL03A01Q02Bean.setIlCnm((!"".equals(objArr[4]) && objArr[4] != null) ? (String) objArr[4] : "");
+					iL03A01Q02Bean.setIlSex((!"".equals(objArr[5]) && objArr[5] != null) ? (String) objArr[5] : "");
+					iL03A01Q02Bean.setIlBthdt((!"".equals(objArr[6]) && objArr[6] != null) ? (String) objArr[6] : "");
+					iL03A01Q02Bean.setIlNtcd((!"".equals(objArr[7]) && objArr[7] != null) ? (String) objArr[7] : "");
+					iL03A01Q02Bean.setIlPspt((!"".equals(objArr[8]) && objArr[8] != null) ? (String) objArr[8] : "");
+					iL03A01Q02Bean.setIlPsdt((!"".equals(objArr[9]) && objArr[9] != null) ? (String) objArr[9] : "");
+					iL03A01Q02Bean.setIlMst((!"".equals(objArr[10]) && objArr[10] != null) ? (String) objArr[10] : "");
+					if (!"".equals(objArr[11]) && objArr[11] != null) {
+						String str;
+						switch ((str = (String) objArr[11]).hashCode()) {
+						case 1536:
+							if (!str.equals("00"))
+								break;
 							iL03A01Q02Bean.setIlEdu("");
 							break;
-						case "01":
-							iL03A01Q02Bean.setIlEdu("博士");
+						case 1537:
+							if (!str.equals("01"))
+								break;
+							iL03A01Q02Bean.setIlEdu("��ㄚ");
 							break;
-						case "02":
-							iL03A01Q02Bean.setIlEdu("碩士");
+						case 1538:
+							if (!str.equals("02"))
+								break;
+							iL03A01Q02Bean.setIlEdu("蝣拙ㄚ");
 							break;
-						case "03":
-							iL03A01Q02Bean.setIlEdu("大學畢業");
+						case 1539:
+							if (!str.equals("03"))
+								break;
+							iL03A01Q02Bean.setIlEdu("憭批飛�璆�");
 							break;
-						case "04":
-							iL03A01Q02Bean.setIlEdu("大學肄業");
+						case 1540:
+							if (!str.equals("04"))
+								break;
+							iL03A01Q02Bean.setIlEdu("憭批飛��平");
 							break;
-						case "05":
-							iL03A01Q02Bean.setIlEdu("專科畢業");
+						case 1541:
+							if (!str.equals("05"))
+								break;
+							iL03A01Q02Bean.setIlEdu("撠�璆�");
 							break;
-						case "06":
-							iL03A01Q02Bean.setIlEdu("專科肄業");
+						case 1542:
+							if (!str.equals("06"))
+								break;
+							iL03A01Q02Bean.setIlEdu("撠��平");
 							break;
-						case "07":
-							iL03A01Q02Bean.setIlEdu("高中畢業");
+						case 1543:
+							if (!str.equals("07"))
+								break;
+							iL03A01Q02Bean.setIlEdu("擃葉�璆�");
 							break;
-						case "08":
-							iL03A01Q02Bean.setIlEdu("高中肄業");
+						case 1544:
+							if (!str.equals("08"))
+								break;
+							iL03A01Q02Bean.setIlEdu("擃葉��平");
 							break;
-						case "09":
-							iL03A01Q02Bean.setIlEdu("初中畢業");
+						case 1545:
+							if (!str.equals("09"))
+								break;
+							iL03A01Q02Bean.setIlEdu("��葉�璆�");
 							break;
-						case "10":
-							iL03A01Q02Bean.setIlEdu("初中肄業");
+						case 1567:
+							if (!str.equals("10"))
+								break;
+							iL03A01Q02Bean.setIlEdu("��葉��平");
 							break;
-						case "11":
-							iL03A01Q02Bean.setIlEdu("小學畢業");
+						case 1568:
+							if (!str.equals("11"))
+								break;
+							iL03A01Q02Bean.setIlEdu("撠飛�璆�");
 							break;
-						case "12":
-							iL03A01Q02Bean.setIlEdu("小學肄業");
+						case 1569:
+							if (!str.equals("12"))
+								break;
+							iL03A01Q02Bean.setIlEdu("撠飛��平");
 							break;
-						case "13":
-							iL03A01Q02Bean.setIlEdu("識字");
+						case 1570:
+							if (!str.equals("13"))
+								break;
+							iL03A01Q02Bean.setIlEdu("霅��");
 							break;
-						case "14":
-							iL03A01Q02Bean.setIlEdu("不識字");
+						case 1571:
+							if (!str.equals("14"))
+								break;
+							iL03A01Q02Bean.setIlEdu("銝���");
 							break;
-						case "15":
-							iL03A01Q02Bean.setIlEdu("不明");
+						case 1572:
+							if (!str.equals("15"))
+								break;
+							iL03A01Q02Bean.setIlEdu("銝��");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlEdu("");
 					}
-					iL03A01Q02Bean.setIlIndt(!"".equals(objArr[12]) && objArr[12] != null ? (String) objArr[12] : "");
-					iL03A01Q02Bean.setIlExdt(!"".equals(objArr[13]) && objArr[13] != null ? (String) objArr[13] : "");
-					if(!"".equals(objArr[14]) && objArr[14] != null) {
-						
-						switch ((String)objArr[14]) {
-						case "0":
+					iL03A01Q02Bean.setIlIndt((!"".equals(objArr[12]) && objArr[12] != null) ? (String) objArr[12] : "");
+					iL03A01Q02Bean.setIlExdt((!"".equals(objArr[13]) && objArr[13] != null) ? (String) objArr[13] : "");
+					if (!"".equals(objArr[14]) && objArr[14] != null) {
+						String str;
+						switch ((str = (String) objArr[14]).hashCode()) {
+						case 48:
+							if (!str.equals("0"))
+								break;
 							iL03A01Q02Bean.setIlArcrsn("");
 							break;
-						case "1":
-							iL03A01Q02Bean.setIlArcrsn("依親");
+						case 49:
+							if (!str.equals("1"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("靘扛");
 							break;
-						case "2":
-							iL03A01Q02Bean.setIlArcrsn("就學");
+						case 50:
+							if (!str.equals("2"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("撠勗飛");
 							break;
-						case "3":
-							iL03A01Q02Bean.setIlArcrsn("應聘");
+						case 51:
+							if (!str.equals("3"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("����");
 							break;
-						case "4":
-							iL03A01Q02Bean.setIlArcrsn("投資");
+						case 52:
+							if (!str.equals("4"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("����");
 							break;
-						case "5":
-							iL03A01Q02Bean.setIlArcrsn("傳教");
+						case 53:
+							if (!str.equals("5"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("����");
 							break;
-						case "6":
-							iL03A01Q02Bean.setIlArcrsn("其他");
+						case 54:
+							if (!str.equals("6"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("�隞�");
 							break;
-						case "7":
-							iL03A01Q02Bean.setIlArcrsn("外勞");
+						case 55:
+							if (!str.equals("7"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("憭��");
 							break;
-						case "8":
-							iL03A01Q02Bean.setIlArcrsn("永居(連續居留七年)");
+						case 56:
+							if (!str.equals("8"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(��蝥���僑)");
 							break;
-						case "9":
-							iL03A01Q02Bean.setIlArcrsn("永居(依親五年配偶)");
+						case 57:
+							if (!str.equals("9"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(靘扛鈭僑��)");
 							break;
-						case "A":
-							iL03A01Q02Bean.setIlArcrsn("永居(依親五年子女)");
+						case 65:
+							if (!str.equals("A"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(靘扛鈭僑摮戊)");
 							break;
-						case "B":
-							iL03A01Q02Bean.setIlArcrsn("永居(依親居住十五年)");
+						case 66:
+							if (!str.equals("B"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(靘扛撅���僑)");
 							break;
-						case "C":
-							iL03A01Q02Bean.setIlArcrsn("永居(依親居住十年)");
+						case 67:
+							if (!str.equals("C"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(靘扛撅��僑)");
 							break;
-						case "D":
-							iL03A01Q02Bean.setIlArcrsn("永居(居住二十年者)");
+						case 68:
+							if (!str.equals("D"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(撅���僑��)");
 							break;
-						case "E":
-							iL03A01Q02Bean.setIlArcrsn("永居(高科技人士)");
+						case 69:
+							if (!str.equals("E"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(擃��鈭箏ㄚ)");
 							break;
-						case "F":
-							iL03A01Q02Bean.setIlArcrsn("永居(特殊貢獻者)");
+						case 70:
+							if (!str.equals("F"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(�畾甜���)");
 							break;
-						case "G":
-							iL03A01Q02Bean.setIlArcrsn("永居(其他)");
+						case 71:
+							if (!str.equals("G"))
+								break;
+							iL03A01Q02Bean.setIlArcrsn("瘞詨��(�隞�)");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlArcrsn("");
 					}
-					if(!"".equals(objArr[15]) && objArr[15] != null) {
-						switch ((String)objArr[15]) {
-						case "1":
-							iL03A01Q02Bean.setIlArcst("改變國籍(原具我國籍者)");
+					if (!"".equals(objArr[15]) && objArr[15] != null) {
+						String str;
+						switch ((str = (String) objArr[15]).hashCode()) {
+						case 49:
+							if (!str.equals("1"))
+								break;
+							iL03A01Q02Bean.setIlArcst("�霈���(��������)");
 							break;
-						case "2":
-							iL03A01Q02Bean.setIlArcst("在台");
+						case 50:
+							if (!str.equals("2"))
+								break;
+							iL03A01Q02Bean.setIlArcst("��");
 							break;
-						case "3":
-							iL03A01Q02Bean.setIlArcst("離台");
+						case 51:
+							if (!str.equals("3"))
+								break;
+							iL03A01Q02Bean.setIlArcst("��");
 							break;
-						case "4":
-							iL03A01Q02Bean.setIlArcst("死亡");
+						case 52:
+							if (!str.equals("4"))
+								break;
+							iL03A01Q02Bean.setIlArcst("甇颱滿");
 							break;
-						case "5":
-							iL03A01Q02Bean.setIlArcst("註銷居留證");
+						case 53:
+							if (!str.equals("5"))
+								break;
+							iL03A01Q02Bean.setIlArcst("閮駁撅���");
 							break;
-						case "6":
-							iL03A01Q02Bean.setIlArcst("棄原國籍取我國籍");
+						case 54:
+							if (!str.equals("6"))
+								break;
+							iL03A01Q02Bean.setIlArcst("璉��������");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlArcst("");
 					}
-					iL03A01Q02Bean.setIlJbcd(!"".equals(objArr[16]) && objArr[16] != null ? (String) objArr[16] : "");
-					iL03A01Q02Bean.setIlJbpsn(!"".equals(objArr[17]) && objArr[17] != null ? (String) objArr[17] : "");
-					iL03A01Q02Bean.setIlOfcd(!"".equals(objArr[18]) && objArr[18] != null ? (String) objArr[18] : "");
-					iL03A01Q02Bean.setIlOfnm(!"".equals(objArr[19]) && objArr[19] != null ? (String) objArr[19] : "");
-					iL03A01Q02Bean.setIlOftel(!"".equals(objArr[20]) && objArr[20] != null ? (String) objArr[20] : "");
-					iL03A01Q02Bean.setIlOfnmbf(!"".equals(objArr[21]) && objArr[21] != null ? (String) objArr[21] : "");
-					iL03A01Q02Bean.setIlJbpzone(!"".equals(objArr[22]) && objArr[22] != null ? (String) objArr[22] : "");
-					iL03A01Q02Bean.setIlJbaddr(!"".equals(objArr[23]) && objArr[23] != null ? (String) objArr[23] : "");
-					iL03A01Q02Bean.setIlJbtel(!"".equals(objArr[24]) && objArr[24] != null ? (String) objArr[24] : "");
-					iL03A01Q02Bean.setIlArpzone(!"".equals(objArr[25]) && objArr[25] != null ? (String) objArr[25] : "");
-					iL03A01Q02Bean.setIlAraddr(!"".equals(objArr[26]) && objArr[26] != null ? (String) objArr[26] : "");
-					iL03A01Q02Bean.setIlArtel(!"".equals(objArr[27]) && objArr[27] != null ? (String) objArr[27] : "");
-					iL03A01Q02Bean.setIlAgnco(!"".equals(objArr[28]) && objArr[28] != null ? (String) objArr[28] : "");
-					iL03A01Q02Bean.setIlAgntel(!"".equals(objArr[29]) && objArr[29] != null ? (String) objArr[29] : "");
-					if(!"".equals(objArr[30]) && objArr[30] != null) {
-						switch ((String)objArr[30]) {
-						case "0":
+					iL03A01Q02Bean.setIlJbcd((!"".equals(objArr[16]) && objArr[16] != null) ? (String) objArr[16] : "");
+					iL03A01Q02Bean
+							.setIlJbpsn((!"".equals(objArr[17]) && objArr[17] != null) ? (String) objArr[17] : "");
+					iL03A01Q02Bean.setIlOfcd((!"".equals(objArr[18]) && objArr[18] != null) ? (String) objArr[18] : "");
+					iL03A01Q02Bean.setIlOfnm((!"".equals(objArr[19]) && objArr[19] != null) ? (String) objArr[19] : "");
+					iL03A01Q02Bean
+							.setIlOftel((!"".equals(objArr[20]) && objArr[20] != null) ? (String) objArr[20] : "");
+					iL03A01Q02Bean
+							.setIlOfnmbf((!"".equals(objArr[21]) && objArr[21] != null) ? (String) objArr[21] : "");
+					iL03A01Q02Bean
+							.setIlJbpzone((!"".equals(objArr[22]) && objArr[22] != null) ? (String) objArr[22] : "");
+					iL03A01Q02Bean
+							.setIlJbaddr((!"".equals(objArr[23]) && objArr[23] != null) ? (String) objArr[23] : "");
+					iL03A01Q02Bean
+							.setIlJbtel((!"".equals(objArr[24]) && objArr[24] != null) ? (String) objArr[24] : "");
+					iL03A01Q02Bean
+							.setIlArpzone((!"".equals(objArr[25]) && objArr[25] != null) ? (String) objArr[25] : "");
+					iL03A01Q02Bean
+							.setIlAraddr((!"".equals(objArr[26]) && objArr[26] != null) ? (String) objArr[26] : "");
+					iL03A01Q02Bean
+							.setIlArtel((!"".equals(objArr[27]) && objArr[27] != null) ? (String) objArr[27] : "");
+					iL03A01Q02Bean
+							.setIlAgnco((!"".equals(objArr[28]) && objArr[28] != null) ? (String) objArr[28] : "");
+					iL03A01Q02Bean
+							.setIlAgntel((!"".equals(objArr[29]) && objArr[29] != null) ? (String) objArr[29] : "");
+					if (!"".equals(objArr[30]) && objArr[30] != null) {
+						String str;
+						switch ((str = (String) objArr[30]).hashCode()) {
+						case 45:
+							if (!str.equals("-")) {
+								break;
+							}
+
+							iL03A01Q02Bean.setIlJbpmcd("銵�蔡");
+							break;
+						case 48:
+							if (!str.equals("0"))
+								break;
 							iL03A01Q02Bean.setIlJbpmcd("");
 							break;
-						case "1":
-							iL03A01Q02Bean.setIlJbpmcd("勞動部");
+						case 49:
+							if (!str.equals("1"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���");
 							break;
-						case "2":
-							iL03A01Q02Bean.setIlJbpmcd("內政部");
+						case 50:
+							if (!str.equals("2"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���");
 							break;
-						case "3":
-							iL03A01Q02Bean.setIlJbpmcd("經濟部");
+						case 51:
+							if (!str.equals("3"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("蝬�");
 							break;
-						case "4":
-							iL03A01Q02Bean.setIlJbpmcd("經濟部投審會");
+						case 52:
+							if (!str.equals("4"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("蝬���祟���");
 							break;
-						case "5":
-							iL03A01Q02Bean.setIlJbpmcd("科學園區管理局");
+						case 53:
+							if (!str.equals("5"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("蝘飛���蝞∠��");
 							break;
-						case "6":
-							iL03A01Q02Bean.setIlJbpmcd("教育部");
+						case 54:
+							if (!str.equals("6"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���");
 							break;
-						case "7":
-							iL03A01Q02Bean.setIlJbpmcd("交通部");
+						case 55:
+							if (!str.equals("7"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("鈭日�");
 							break;
-						case "8":
-							iL03A01Q02Bean.setIlJbpmcd("國防部");
+						case 56:
+							if (!str.equals("8"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���");
 							break;
-						case "9":
-							iL03A01Q02Bean.setIlJbpmcd("新聞局");
+						case 57:
+							if (!str.equals("9"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("����");
 							break;
-						case "-":
-							iL03A01Q02Bean.setIlJbpmcd("衛生署");
+						case 65:
+							if (!str.equals("A"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("����摨�");
 							break;
-						case "A":
-							iL03A01Q02Bean.setIlJbpmcd("台北市政府");
+						case 66:
+							if (!str.equals("B"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("�銝剖�摨�");
 							break;
-						case "B":
-							iL03A01Q02Bean.setIlJbpmcd("台中市政府");
+						case 67:
+							if (!str.equals("C"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("����摨�");
 							break;
-						case "C":
-							iL03A01Q02Bean.setIlJbpmcd("基隆市政府");
+						case 68:
+							if (!str.equals("D"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("����摨�");
 							break;
-						case "D":
-							iL03A01Q02Bean.setIlJbpmcd("台南市政府");
+						case 69:
+							if (!str.equals("E"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("擃��摨�");
 							break;
-						case "E":
-							iL03A01Q02Bean.setIlJbpmcd("高雄市政府");
+						case 70:
+							if (!str.equals("F"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���腦�摨�");
 							break;
-						case "F":
-							iL03A01Q02Bean.setIlJbpmcd("台北縣政府");
+						case 71:
+							if (!str.equals("G"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("摰蝮��摨�");
 							break;
-						case "G":
-							iL03A01Q02Bean.setIlJbpmcd("宜蘭縣政府");
+						case 72:
+							if (!str.equals("H"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("獢�腦�摨�");
 							break;
-						case "H":
-							iL03A01Q02Bean.setIlJbpmcd("桃園縣政府");
+						case 73:
+							if (!str.equals("I"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("��儔撣摨�");
 							break;
-						case "I":
-							iL03A01Q02Bean.setIlJbpmcd("嘉義市政府");
+						case 74:
+							if (!str.equals("J"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("�蝡寧腦�摨�");
 							break;
-						case "J":
-							iL03A01Q02Bean.setIlJbpmcd("新竹縣政府");
+						case 75:
+							if (!str.equals("K"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���腦�摨�");
 							break;
-						case "K":
-							iL03A01Q02Bean.setIlJbpmcd("苗栗縣政府");
+						case 76:
+							if (!str.equals("L"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("�銝剔腦�摨�");
 							break;
-						case "L":
-							iL03A01Q02Bean.setIlJbpmcd("台中縣政府");
+						case 77:
+							if (!str.equals("M"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���腦�摨�");
 							break;
-						case "M":
-							iL03A01Q02Bean.setIlJbpmcd("南投縣政府");
+						case 78:
+							if (!str.equals("N"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("敶啣�腦�摨�");
 							break;
-						case "N":
-							iL03A01Q02Bean.setIlJbpmcd("彰化縣政府");
+						case 79:
+							if (!str.equals("O"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("�蝡孵�摨�");
 							break;
-						case "O":
-							iL03A01Q02Bean.setIlJbpmcd("新竹市政府");
+						case 80:
+							if (!str.equals("P"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���腦�摨�");
 							break;
-						case "P":
-							iL03A01Q02Bean.setIlJbpmcd("雲林縣政府");
+						case 81:
+							if (!str.equals("Q"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("��儔蝮��摨�");
 							break;
-						case "Q":
-							iL03A01Q02Bean.setIlJbpmcd("嘉義縣政府");
+						case 82:
+							if (!str.equals("R"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���腦�摨�");
 							break;
-						case "R":
-							iL03A01Q02Bean.setIlJbpmcd("台南縣政府");
+						case 83:
+							if (!str.equals("S"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("擃�腦�摨�");
 							break;
-						case "S":
-							iL03A01Q02Bean.setIlJbpmcd("高雄縣政府");
+						case 84:
+							if (!str.equals("T"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("撅蝮��摨�");
 							break;
-						case "T":
-							iL03A01Q02Bean.setIlJbpmcd("屏東縣政府");
+						case 85:
+							if (!str.equals("U"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("��蝮��摨�");
 							break;
-						case "U":
-							iL03A01Q02Bean.setIlJbpmcd("花蓮縣政府");
+						case 86:
+							if (!str.equals("V"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("��蝮��摨�");
 							break;
-						case "V":
-							iL03A01Q02Bean.setIlJbpmcd("台東縣政府");
+						case 87:
+							if (!str.equals("W"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("���蝮��摨�");
 							break;
-						case "W":
-							iL03A01Q02Bean.setIlJbpmcd("金門縣政府");
+						case 88:
+							if (!str.equals("X"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("瞉�腦�摨�");
 							break;
-						case "X":
-							iL03A01Q02Bean.setIlJbpmcd("澎湖縣政府");
+						case 89:
+							if (!str.equals("Y"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("��瘙腦�摨�");
 							break;
-						case "Y":
-							iL03A01Q02Bean.setIlJbpmcd("連江縣政府");
-							break;
-						case "Z":
-							iL03A01Q02Bean.setIlJbpmcd("其他");
+						case 90:
+							if (!str.equals("Z"))
+								break;
+							iL03A01Q02Bean.setIlJbpmcd("�隞�");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlJbpmcd("");
 					}
-					
-					iL03A01Q02Bean.setIlJbpmdc(!"".equals(objArr[31]) && objArr[31] != null ? (String) objArr[31] : "");
-					iL03A01Q02Bean.setIlJbpmdt(!"".equals(objArr[32]) && objArr[32] != null ? (String) objArr[32] : "");
-					iL03A01Q02Bean.setIlJbpmfm(!"".equals(objArr[33]) && objArr[33] != null ? (String) objArr[33] : "");
-					iL03A01Q02Bean.setIlJbpmto(!"".equals(objArr[34]) && objArr[34] != null ? (String) objArr[34] : "");
-					iL03A01Q02Bean.setIlMicro(!"".equals(objArr[35]) && objArr[35] != null ? (String) objArr[35] : "");
-					iL03A01Q02Bean.setIlApydt(!"".equals(objArr[36]) && objArr[36] != null ? (String) objArr[36] : "");
-					iL03A01Q02Bean.setIlArcrcp(!"".equals(objArr[37]) && objArr[37] != null ? (String) objArr[37] : "");
-					iL03A01Q02Bean.setIlArcno(!"".equals(objArr[38]) && objArr[38] != null ? (String) objArr[38] : "");
-					iL03A01Q02Bean.setIlArcfm(!"".equals(objArr[39]) && objArr[39] != null ? (String) objArr[39] : "");
-					iL03A01Q02Bean.setIlArcto(!"".equals(objArr[40]) && objArr[40] != null ? (String) objArr[40] : "");
-					iL03A01Q02Bean.setIlPst(!"".equals(objArr[41]) && objArr[41] != null ? (String) objArr[41] : "");
-					iL03A01Q02Bean.setIlPhq(!"".equals(objArr[42]) && objArr[42] != null ? (String) objArr[42] : "");
-					iL03A01Q02Bean.setIlPstext(!"".equals(objArr[43]) && objArr[43] != null ? (String) objArr[43] : "");
-					iL03A01Q02Bean.setIlRemrk(!"".equals(objArr[44]) && objArr[44] != null ? (String) objArr[44] : "");
-					iL03A01Q02Bean.setIlArcisu(!"".equals(objArr[45]) && objArr[45] != null ? (String) objArr[45] : "");
-					if(!"".equals(objArr[46]) && objArr[46] != null) {
-						switch ((String)objArr[46]) {
-						case "00":
+
+					iL03A01Q02Bean
+							.setIlJbpmdc((!"".equals(objArr[31]) && objArr[31] != null) ? (String) objArr[31] : "");
+					iL03A01Q02Bean
+							.setIlJbpmdt((!"".equals(objArr[32]) && objArr[32] != null) ? (String) objArr[32] : "");
+					iL03A01Q02Bean
+							.setIlJbpmfm((!"".equals(objArr[33]) && objArr[33] != null) ? (String) objArr[33] : "");
+					iL03A01Q02Bean
+							.setIlJbpmto((!"".equals(objArr[34]) && objArr[34] != null) ? (String) objArr[34] : "");
+					iL03A01Q02Bean
+							.setIlMicro((!"".equals(objArr[35]) && objArr[35] != null) ? (String) objArr[35] : "");
+					iL03A01Q02Bean
+							.setIlApydt((!"".equals(objArr[36]) && objArr[36] != null) ? (String) objArr[36] : "");
+					iL03A01Q02Bean
+							.setIlArcrcp((!"".equals(objArr[37]) && objArr[37] != null) ? (String) objArr[37] : "");
+					iL03A01Q02Bean
+							.setIlArcno((!"".equals(objArr[38]) && objArr[38] != null) ? (String) objArr[38] : "");
+					iL03A01Q02Bean
+							.setIlArcfm((!"".equals(objArr[39]) && objArr[39] != null) ? (String) objArr[39] : "");
+					iL03A01Q02Bean
+							.setIlArcto((!"".equals(objArr[40]) && objArr[40] != null) ? (String) objArr[40] : "");
+					iL03A01Q02Bean.setIlPst((!"".equals(objArr[41]) && objArr[41] != null) ? (String) objArr[41] : "");
+					iL03A01Q02Bean.setIlPhq((!"".equals(objArr[42]) && objArr[42] != null) ? (String) objArr[42] : "");
+					iL03A01Q02Bean
+							.setIlPstext((!"".equals(objArr[43]) && objArr[43] != null) ? (String) objArr[43] : "");
+					iL03A01Q02Bean
+							.setIlRemrk((!"".equals(objArr[44]) && objArr[44] != null) ? (String) objArr[44] : "");
+					iL03A01Q02Bean
+							.setIlArcisu((!"".equals(objArr[45]) && objArr[45] != null) ? (String) objArr[45] : "");
+					if (!"".equals(objArr[46]) && objArr[46] != null) {
+						String str;
+						switch ((str = (String) objArr[46]).hashCode()) {
+						case 1536:
+							if (!str.equals("00"))
+								break;
 							iL03A01Q02Bean.setIlFrshp("");
 							break;
-						case "01":
-							iL03A01Q02Bean.setIlFrshp("夫");
+						case 1537:
+							if (!str.equals("01"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("憭�");
 							break;
-						case "02":
-							iL03A01Q02Bean.setIlFrshp("妻");
+						case 1538:
+							if (!str.equals("02"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("憒�");
 							break;
-						case "03":
-							iL03A01Q02Bean.setIlFrshp("父");
+						case 1539:
+							if (!str.equals("03"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("�");
 							break;
-						case "04":
-							iL03A01Q02Bean.setIlFrshp("母");
+						case 1540:
+							if (!str.equals("04"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("瘥�");
 							break;
-						case "05":
-							iL03A01Q02Bean.setIlFrshp("子");
+						case 1541:
+							if (!str.equals("05"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("摮�");
 							break;
-						case "06":
-							iL03A01Q02Bean.setIlFrshp("女");
+						case 1542:
+							if (!str.equals("06"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("憟�");
 							break;
-						case "07":
-							iL03A01Q02Bean.setIlFrshp("祖父");
+						case 1543:
+							if (!str.equals("07"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("蟡");
 							break;
-						case "08":
-							iL03A01Q02Bean.setIlFrshp("祖母");
+						case 1544:
+							if (!str.equals("08"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("蟡��");
 							break;
-						case "09":
-							iL03A01Q02Bean.setIlFrshp("兄");
+						case 1545:
+							if (!str.equals("09"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("���");
 							break;
-						case "10":
-							iL03A01Q02Bean.setIlFrshp("弟");
+						case 1567:
+							if (!str.equals("10"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("撘�");
 							break;
-						case "11":
-							iL03A01Q02Bean.setIlFrshp("姊");
+						case 1568:
+							if (!str.equals("11"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("憪�");
 							break;
-						case "12":
-							iL03A01Q02Bean.setIlFrshp("妹");
+						case 1569:
+							if (!str.equals("12"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("憒�");
 							break;
-						case "13":
-							iL03A01Q02Bean.setIlFrshp("其他");
+						case 1570:
+							if (!str.equals("13"))
+								break;
+							iL03A01Q02Bean.setIlFrshp("�隞�");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlFrshp("");
 					}
-					iL03A01Q02Bean.setIlFnm(!"".equals(objArr[47]) && objArr[47] != null ? (String) objArr[47] : "");
-					iL03A01Q02Bean.setIlFpid(!"".equals(objArr[48]) && objArr[48] != null ? (String) objArr[48] : "");
-					iL03A01Q02Bean.setIlFntcd(!"".equals(objArr[49]) && objArr[49] != null ? (String) objArr[49] : "");
-					iL03A01Q02Bean.setIlFrcexit(!"".equals(objArr[50]) && objArr[50] != null ? (String) objArr[50] : "");
-					iL03A01Q02Bean.setIlReapydt(!"".equals(objArr[51]) && objArr[51] != null ? (String) objArr[51] : "");
-					if(!"".equals(objArr[52]) && objArr[52] != null) {
+					iL03A01Q02Bean.setIlFnm((!"".equals(objArr[47]) && objArr[47] != null) ? (String) objArr[47] : "");
+					iL03A01Q02Bean.setIlFpid((!"".equals(objArr[48]) && objArr[48] != null) ? (String) objArr[48] : "");
+					iL03A01Q02Bean
+							.setIlFntcd((!"".equals(objArr[49]) && objArr[49] != null) ? (String) objArr[49] : "");
+					iL03A01Q02Bean
+							.setIlFrcexit((!"".equals(objArr[50]) && objArr[50] != null) ? (String) objArr[50] : "");
+					iL03A01Q02Bean
+							.setIlReapydt((!"".equals(objArr[51]) && objArr[51] != null) ? (String) objArr[51] : "");
+					if (!"".equals(objArr[52]) && objArr[52] != null) {
 						if ("1".equals(iL03A01Q02Bean.getIlRetp())) {
-							iL03A01Q02Bean.setIlRetp("單次");
+							iL03A01Q02Bean.setIlRetp("�甈�");
 						} else if ("2".equals(iL03A01Q02Bean.getIlRetp())) {
-							iL03A01Q02Bean.setIlRetp("多次");
+							iL03A01Q02Bean.setIlRetp("憭活");
 						}
-					}else {
+					} else {
 						iL03A01Q02Bean.setIlRetp("");
 					}
-					iL03A01Q02Bean.setIlRepmdc(!"".equals(objArr[53]) && objArr[53] != null ? (String) objArr[53] : "");
-					iL03A01Q02Bean.setIlRepmdt(!"".equals(objArr[54]) && objArr[54] != null ? (String) objArr[54] : "");
-					iL03A01Q02Bean.setIlRrnote(!"".equals(objArr[55]) && objArr[55] != null ? (String) objArr[55] : "");
-					iL03A01Q02Bean.setIlMrkcs(!"".equals(objArr[56]) && objArr[56] != null ? (String) objArr[56] : "");
-					if(!"".equals(objArr[57]) && objArr[57] != null) {
-						switch ((String)objArr[57]) {
-						case "0":
+					iL03A01Q02Bean
+							.setIlRepmdc((!"".equals(objArr[53]) && objArr[53] != null) ? (String) objArr[53] : "");
+					iL03A01Q02Bean
+							.setIlRepmdt((!"".equals(objArr[54]) && objArr[54] != null) ? (String) objArr[54] : "");
+					iL03A01Q02Bean
+							.setIlRrnote((!"".equals(objArr[55]) && objArr[55] != null) ? (String) objArr[55] : "");
+					iL03A01Q02Bean
+							.setIlMrkcs((!"".equals(objArr[56]) && objArr[56] != null) ? (String) objArr[56] : "");
+					if (!"".equals(objArr[57]) && objArr[57] != null) {
+						String str;
+						switch ((str = (String) objArr[57]).hashCode()) {
+						case 48:
+							if (!str.equals("0"))
+								break;
 							iL03A01Q02Bean.setIlFbdrsn("");
 							break;
-						case "1":
-							iL03A01Q02Bean.setIlFbdrsn("申請資料係偽(變)造者");
+						case 49:
+							if (!str.equals("1"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�隢���(霈�)���");
 							break;
-						case "2":
-							iL03A01Q02Bean.setIlFbdrsn("經判處一年以上刑期者");
+						case 50:
+							if (!str.equals("2"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬���撟港誑銝����");
 							break;
-						case "3":
-							iL03A01Q02Bean.setIlFbdrsn("每年居住未達183天者");
+						case 51:
+							if (!str.equals("3"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("瘥僑撅����183憭抵��");
 							break;
-						case "4":
-							iL03A01Q02Bean.setIlFbdrsn("回復或取得我國國籍者");
+						case 52:
+							if (!str.equals("4"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("��儔����������");
 							break;
-						case "5":
-							iL03A01Q02Bean.setIlFbdrsn("已取得外僑永久居留證者");
+						case 53:
+							if (!str.equals("5"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("撌脣����偶銋�����");
 							break;
-						case "6":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷聘僱許可並限令出國者");
+						case 54:
+							if (!str.equals("6"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬���閮勗銝阡�誘�����");
 							break;
-						case "7":
-							iL03A01Q02Bean.setIlFbdrsn("其他");
+						case 55:
+							if (!str.equals("7"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�隞�");
 							break;
-						case "8":
-							iL03A01Q02Bean.setIlFbdrsn("休學");
+						case 56:
+							if (!str.equals("8"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("隡飛");
 							break;
-						case "9":
-							iL03A01Q02Bean.setIlFbdrsn("退學");
+						case 57:
+							if (!str.equals("9"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("��摮�");
 							break;
-						case "A":
-							iL03A01Q02Bean.setIlFbdrsn("畢業");
+						case 65:
+							if (!str.equals("A"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�璆�");
 							break;
-						case "B":
-							iL03A01Q02Bean.setIlFbdrsn("申請資料虛偽或不實");
+						case 66:
+							if (!str.equals("B"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�隢������祕");
 							break;
-						case "C":
-							iL03A01Q02Bean.setIlFbdrsn("持用不法取得、偽造或變造之證件");
+						case 67:
+							if (!str.equals("C"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("��銝����������辣");
 							break;
-						case "D":
-							iL03A01Q02Bean.setIlFbdrsn("回復我國籍");
+						case 68:
+							if (!str.equals("D"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("��儔�����");
 							break;
-						case "E":
-							iL03A01Q02Bean.setIlFbdrsn("取得我國籍");
+						case 69:
+							if (!str.equals("E"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�������");
 							break;
-						case "F":
-							iL03A01Q02Bean.setIlFbdrsn("兼具我國籍，以國民身分入出國、居留或定居");
+						case 70:
+							if (!str.equals("F"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�������誑���澈������������");
 							break;
-						case "G":
-							iL03A01Q02Bean.setIlFbdrsn("受驅逐出國");
+						case 71:
+							if (!str.equals("G"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�������");
 							break;
-						case "H":
-							iL03A01Q02Bean.setIlFbdrsn("經許可定居");
+						case 72:
+							if (!str.equals("H"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬迂�摰��");
 							break;
-						case "I":
-							iL03A01Q02Bean.setIlFbdrsn("離婚");
+						case 73:
+							if (!str.equals("I"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�憍�");
 							break;
-						case "J":
-							iL03A01Q02Bean.setIlFbdrsn("離婚配偶喪失子女扶養權");
+						case 74:
+							if (!str.equals("J"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�憍��憭勗�戊�擗��");
 							break;
-						case "K":
-							iL03A01Q02Bean.setIlFbdrsn("依親對象居留事由消失者");
+						case 75:
+							if (!str.equals("K"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("靘扛撠情撅��瘨仃��");
 							break;
-						case "L":
-							iL03A01Q02Bean.setIlFbdrsn("當事人主動撤銷");
+						case 76:
+							if (!str.equals("L"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("�鈭犖銝餃��");
 							break;
-						case "M":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-中途解約");
+						case 77:
+							if (!str.equals("M"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-銝剝�圾蝝�");
 							break;
-						case "N":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-連續三日曠職");
+						case 78:
+							if (!str.equals("N"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-��蝥���");
 							break;
-						case "O":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-非法工作");
+						case 79:
+							if (!str.equals("O"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-���極雿�");
 							break;
-						case "P":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-健檢不合格");
+						case 80:
+							if (!str.equals("P"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-�瑼Ｖ��");
 							break;
-						case "Q":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-轉換雇主不成功");
+						case 81:
+							if (!str.equals("Q"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-頧��蜓銝���");
 							break;
-						case "R":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-投資");
+						case 82:
+							if (!str.equals("R"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-����");
 							break;
-						case "S":
-							iL03A01Q02Bean.setIlFbdrsn("經撤銷、廢止居留許可(居留原因消失)-傳教");
+						case 83:
+							if (!str.equals("S"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("蝬��誥甇Ｗ��迂�(撅����仃)-����");
 							break;
-						case "T":
-							iL03A01Q02Bean.setIlFbdrsn("死亡");
+						case 84:
+							if (!str.equals("T"))
+								break;
+							iL03A01Q02Bean.setIlFbdrsn("甇颱滿");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlFbdrsn("");
 					}
-					iL03A01Q02Bean.setIlMrkdt(!"".equals(objArr[58]) && objArr[58] != null ? (String) objArr[58] : "");
-					iL03A01Q02Bean.setIlMrkdc(!"".equals(objArr[59]) && objArr[59] != null ? (String) objArr[59] : "");
-					if(!"".equals(objArr[60]) && objArr[60] != null) {
-						switch ((String)objArr[60]) {
-						case "0":
+					iL03A01Q02Bean
+							.setIlMrkdt((!"".equals(objArr[58]) && objArr[58] != null) ? (String) objArr[58] : "");
+					iL03A01Q02Bean
+							.setIlMrkdc((!"".equals(objArr[59]) && objArr[59] != null) ? (String) objArr[59] : "");
+					if (!"".equals(objArr[60]) && objArr[60] != null) {
+						String str;
+						switch ((str = (String) objArr[60]).hashCode()) {
+						case 48:
+							if (!str.equals("0"))
+								break;
 							iL03A01Q02Bean.setIlSbmttp("");
 							break;
-						case "1":
-							iL03A01Q02Bean.setIlSbmttp("關係人報案");
+						case 49:
+							if (!str.equals("1"))
+								break;
+							iL03A01Q02Bean.setIlSbmttp("���犖�獢�");
 							break;
-						case "2":
-							iL03A01Q02Bean.setIlSbmttp("警局主動註記");
+						case 50:
+							if (!str.equals("2"))
+								break;
+							iL03A01Q02Bean.setIlSbmttp("霅血�銝餃�酉閮�");
 							break;
-						case "3":
-							iL03A01Q02Bean.setIlSbmttp("雇主書面通知");
+						case 51:
+							if (!str.equals("3"))
+								break;
+							iL03A01Q02Bean.setIlSbmttp("��蜓���");
 							break;
 						}
-					}else {
+
+					} else {
 						iL03A01Q02Bean.setIlSbmttp("");
 					}
-					iL03A01Q02Bean.setIlMissdt(!"".equals(objArr[61]) && objArr[61] != null ? (String) objArr[61] : "");
-					iL03A01Q02Bean.setIlSbmtdt(!"".equals(objArr[62]) && objArr[62] != null ? (String) objArr[62] : "");
-					if(!"".equals(objArr[63]) && objArr[63] != null) {
-						String srchstnm = (String)objArr[63];
-						for(int j = 0; j<srchstList.size(); j++) {
-							if(srchstnm.equals(srchstList.get(j).getSRCHST())) {
-								iL03A01Q02Bean.setIlSrchst(srchstList.get(j).getSRCHSTNM());
+					iL03A01Q02Bean
+							.setIlMissdt((!"".equals(objArr[61]) && objArr[61] != null) ? (String) objArr[61] : "");
+					iL03A01Q02Bean
+							.setIlSbmtdt((!"".equals(objArr[62]) && objArr[62] != null) ? (String) objArr[62] : "");
+					if (!"".equals(objArr[63]) && objArr[63] != null) {
+						String srchstnm = (String) objArr[63];
+						for (int j = 0; j < srchstList.size(); j++) {
+							if (srchstnm.equals(((IL07D) srchstList.get(j)).getSRCHST())) {
+								iL03A01Q02Bean.setIlSrchst(((IL07D) srchstList.get(j)).getSRCHSTNM());
 							}
 						}
-					}else {
-						iL03A01Q02Bean.setIlSrchst("無特殊身份");
+					} else {
+						iL03A01Q02Bean.setIlSrchst("��畾澈隞�");
 					}
-					iL03A01Q02Bean.setIlFnddid(!"".equals(objArr[64]) && objArr[64] != null ? (String) objArr[64] : "");
-					iL03A01Q02Bean.setIlFnddt(!"".equals(objArr[65]) && objArr[65] != null ? (String) objArr[65] : "");
-					iL03A01Q02Bean.setIlOldarc(!"".equals(objArr[66]) && objArr[66] != null ? (String) objArr[66] : "");
-					iL03A01Q02Bean.setIlHcst(!"".equals(objArr[67]) && objArr[67] != null ? (String) objArr[67] : "");
-					iL03A01Q02Bean.setIlHcctr(!"".equals(objArr[68]) && objArr[68] != null ? (String) objArr[68] : "");
-					iL03A01Q02Bean.setIlLmd(!"".equals(objArr[69]) && objArr[69] != null ? (String) objArr[69] : "");
-					iL03A01Q02Bean.setIlFstapydt(!"".equals(objArr[70]) && objArr[70] != null ? (String) objArr[70] : "");
-					iL03A01Q02Bean.setIlRepmdcNic(!"".equals(objArr[71]) && objArr[71] != null ? (String) objArr[71] : "");
-					iL03A01Q02Bean.setIlForfere(!"".equals(objArr[72]) && objArr[72] != null ? (String) objArr[72] : "");
-					iL03A01Q02Bean.setIl12ArcId(!"".equals(objArr[73]) && objArr[73] != null ? (String) objArr[73] : "");
-					iL03A01Q02Bean.setIlNTNM(!"".equals(objArr[74]) && objArr[74] != null ? (String) objArr[74] : "");
 					iL03A01Q02Bean
-							.setIlMANTYPE(!"".equals(objArr[75]) && objArr[75] != null ? (String) objArr[75] : "");
+							.setIlFnddid((!"".equals(objArr[64]) && objArr[64] != null) ? (String) objArr[64] : "");
+					iL03A01Q02Bean
+							.setIlFnddt((!"".equals(objArr[65]) && objArr[65] != null) ? (String) objArr[65] : "");
+					iL03A01Q02Bean
+							.setIlOldarc((!"".equals(objArr[66]) && objArr[66] != null) ? (String) objArr[66] : "");
+					iL03A01Q02Bean.setIlHcst((!"".equals(objArr[67]) && objArr[67] != null) ? (String) objArr[67] : "");
+					iL03A01Q02Bean
+							.setIlHcctr((!"".equals(objArr[68]) && objArr[68] != null) ? (String) objArr[68] : "");
+					iL03A01Q02Bean.setIlLmd((!"".equals(objArr[69]) && objArr[69] != null) ? (String) objArr[69] : "");
+					iL03A01Q02Bean
+							.setIlFstapydt((!"".equals(objArr[70]) && objArr[70] != null) ? (String) objArr[70] : "");
+					iL03A01Q02Bean
+							.setIlRepmdcNic((!"".equals(objArr[71]) && objArr[71] != null) ? (String) objArr[71] : "");
+					iL03A01Q02Bean
+							.setIlForfere((!"".equals(objArr[72]) && objArr[72] != null) ? (String) objArr[72] : "");
+					iL03A01Q02Bean
+							.setIl12ArcId((!"".equals(objArr[73]) && objArr[73] != null) ? (String) objArr[73] : "");
+					iL03A01Q02Bean.setIlNTNM((!"".equals(objArr[74]) && objArr[74] != null) ? (String) objArr[74] : "");
+					iL03A01Q02Bean
+							.setIlMANTYPE((!"".equals(objArr[75]) && objArr[75] != null) ? (String) objArr[75] : "");
 					if ("1".equals(bean.getChkARCNO()))
 						iL03A01Q02Bean.setChkARCNO("ilArcno");
 					if ("1".equals(bean.getChkPSPT()))
@@ -1165,9 +1482,8 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 		return list;
 	}
 
-
 	public List<Iltb01Main> getIL03ByDBQueryA(String whereCondition) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT IL_SEX, IL_BTHDT, IL_NTCD, IL_ARCRSN, IL_JBCD from ILTB_01_MAIN");
@@ -1218,7 +1534,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03ByDBQueryB(String whereCondition) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * from ILTB_01_MAIN");
@@ -1239,7 +1555,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03B01P01_2P(String[] ilPstArr, String[] ilZipCodeArr, String ilPstext) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT IL_SEX, IL_BTHDT, IL_NTCD, IL_ARCRSN, IL_JBCD from ILTB_01_MAIN WHERE ");
@@ -1272,6 +1588,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			sqlStr.append(" AND IL_NTCD <> '35'");
 			sqlStr.append(" GROUP BY IL_NTCD, IL_JBCD, IL_SEX");
 			sqlStr.append(" ORDER BY IL_NTCD, IL_JBCD, IL_SEX");
+
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 			q.addScalar("IL_SEX", (Type) Hibernate.STRING);
 			q.addScalar("IL_BTHDT", (Type) Hibernate.STRING);
@@ -1314,7 +1631,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03B01P01_3P(String[] ilPstArr, String[] ilZipCodeArr, String ilPstext) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * FROM ILTB_01_MAIN WHERE");
@@ -1340,13 +1657,15 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				}
 				sqlStr.append(")");
 			}
-			if (!"".equals(ilPstext) && ilPstext != null)
+			if (!"".equals(ilPstext) && ilPstext != null) {
 				sqlStr.append(" AND IL_PSTEXT='" + ilPstext + "'");
+			}
 			sqlStr.append(" AND IL_SEX = '1'");
 			sqlStr.append(" AND IL_ARCST <> '4'");
 			sqlStr.append(" AND IL_JBCD = '37'");
 			sqlStr.append(" AND convert(char(8), isnull(IL_ARCTO, ''), 112) >= convert(char(8), getdate(), 112)");
 			System.out.println("sqlStr=" + sqlStr);
+
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 			q.addEntity(Iltb01Main.class);
 			list = q.list();
@@ -1359,7 +1678,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03B01P01_4P(String[] ilPstArr, String[] ilZipCodeArr, String ilPstext) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * FROM ILTB_01_MAIN WHERE ");
@@ -1393,6 +1712,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				sqlStr.append(")");
 				System.out.println("sqlStr=" + sqlStr);
 				logger.info(sqlStr);
+
 				SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 				q.addEntity(Iltb01Main.class);
 				list = q.list();
@@ -1406,7 +1726,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03B01P01_5P(String[] ilPstArr, String[] ilZipCodeArr, String ilPstext) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * FROM ILTB_01_MAIN WHERE");
@@ -1433,6 +1753,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 				}
 				sqlStr.append(")");
 				System.out.println("sqlStr=" + sqlStr);
+
 				SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 				q.addEntity(Iltb01Main.class);
 				list = q.list();
@@ -1446,7 +1767,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 	}
 
 	public List<Iltb01Main> getIL03B01P01_6P(String[] ilPstArr, String[] ilZipCodeArr, String ilPstext) {
-		List<Iltb01Main> list = new ArrayList<Iltb01Main>();
+		List<Iltb01Main> list = new ArrayList<>();
 		try {
 			StringBuffer sqlStr = new StringBuffer();
 			sqlStr.append("SELECT * FROM ILTB_01_MAIN WHERE");
@@ -1478,6 +1799,7 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 			sqlStr.append(" AND IL_ARCTO IS NOT NULL");
 			sqlStr.append(" AND IL_ARCTO < getdate()");
 			System.out.println("sqlStr=" + sqlStr);
+
 			SQLQuery q = HibernateSessionFactory.getSession().createSQLQuery(sqlStr.toString());
 			q.addEntity(Iltb01Main.class);
 			list = q.list();
@@ -1489,9 +1811,3 @@ public class MyIltb01MainDAO2 extends Iltb01MainDAO {
 		return list;
 	}
 }
-
-/*
- * Location: D:\Qian\IL
- * 居留系統\20200529取得最新程式\IL2\WEB-INF\classes\!\tw\gov\npa\il\myDao\
- * MyIltb01MainDAO2.class Java compiler version: 5 (49.0) JD-Core Version: 1.1.3
- */

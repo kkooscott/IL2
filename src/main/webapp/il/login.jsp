@@ -6,7 +6,7 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
 	<link rel="Stylesheet" type="text/css" href="css/e8.css" />
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.10.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.12.4.js"></script>
 	<script type="text/javascript">
     $(function() {
         $('#btnLogin').click(function () {

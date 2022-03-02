@@ -85,12 +85,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="iltbSystemFlowStepConfigList.{?#this.ilFunctag==1}" id="iltbFuncSet" status="count">		                
+					<s:iterator value="iltbSystemFlowStepConfigList.{?#this.ilFunctag==1}" var="iltbFuncSet" status="count">		                
 		                <tr id="tr${count.count}">		                
 							<td class="Center">${iltbFuncSet.ilFunc}</td>
 							<td class="Center">${iltbFuncSet.ilStepname}</td>
 							<td class="Center">${iltbFuncSet.ilStepurl}</td>						
-							<s:iterator value="iltbSystemFlowStepConfigList.{?#this.ilFunctag==0}" id="iltbFuncGroupSet" status="gCount">													
+							<s:iterator value="iltbSystemFlowStepConfigList.{?#this.ilFunctag==0}" var="iltbFuncGroupSet" status="gCount">													
 								<s:if test="%{#iltbFuncGroupSet.ilIndexid==#iltbFuncSet.ilIndexid.substring(0,1)}">
 									<td class="Center">${iltbFuncGroupSet.ilStepname}</td>
 								</s:if>																						

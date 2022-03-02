@@ -47,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="iltbFuncList" id="iltbFuncSet" status="count">
+					<s:iterator value="iltbFuncList" var="iltbFuncSet" status="count">
 		                <tr bgcolor =lightcyan>
 							<td class="Center">${iltbFuncSet.ilFuncGroup}</td>
 							<td class="Center">${iltbFuncSet.ilFuncNm}</td>
