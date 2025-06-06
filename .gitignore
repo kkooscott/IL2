@@ -22,3 +22,10 @@ HELP.md
 
 ### log
 /log
+
+## big fat file
+*.jasper
+*.jrxml
+*.zip
+*.pdf
+*.log
