@@ -24,8 +24,8 @@ HELP.md
 /log
 
 ## big fat file
-*.jasper
-*.jrxml
+##*.jasper
+##*.jrxml
 *.zip
 *.pdf
 *.log
