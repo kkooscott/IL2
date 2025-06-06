@@ -41,8 +41,8 @@ public class Portal extends ActionSupport {
 		long start = System.currentTimeMillis();
 		logger.info("init ");
 		HttpServletRequest request = ServletActionContext.getRequest();
-		logger.info("cookie");
-		Cookie[] cookies = request.getCookies();
+//		logger.info("cookie");
+//		Cookie[] cookies = request.getCookies();
 		String LOGUID = "", LOGUIP = "", LOGDID = "";
 		String LOGDLV = "", LOGDIDCN = "", LOGCN = "";
 		String LOGPHQ = "", LOGPHQNAME = "";
@@ -68,10 +68,14 @@ public class Portal extends ActionSupport {
 		LOGTDT = notNullString(request.getHeader("logtdt"));
 
 		if (LOGUID.equals("") || LOGDID.equals("")) {
-
+			logger.info(LOGUID.equals("") + "/" + LOGDID.equals(""));
+			logger.info("cookie");
+			Cookie[] cookies = request.getCookies();
+			Cookie cookie;
+			String cookie_name;
 			for (int i = 0; i < cookies.length; i++) {
-				Cookie cookie = cookies[i];
-				String cookie_name = cookie.getName();
+				cookie = cookies[i];
+				cookie_name = cookie.getName();
 				logger.info(cookie_name + "/" + cookies[i].getValue());
 				if ("LOGDID".equals(cookie_name)) {
 					LOGDID = cookie.getValue();
@@ -94,16 +98,37 @@ public class Portal extends ActionSupport {
 			}
 		}
 		try {
-			logger.info(this.wsUtil.getUserRoles(LOGUID));
-			USERROLES = this.wsUtil.getUserRoles(LOGUID);
-			logger.info(this.wsUtil.getUserAttribute(LOGUID, "fullName"));
-			LOGCN = this.wsUtil.getUserAttribute(LOGUID, "fullName");
-			logger.info(this.wsUtil.getOrgList(LOGDID));
-			String[] orgList = this.wsUtil.getOrgList(LOGDID).split(".", -1);
+//			logger.info(this.wsUtil.getUserRoles(LOGUID));
+//			USERROLES = this.wsUtil.getUserRoles(LOGUID);
+//			logger.info(this.wsUtil.getUserAttribute(LOGUID, "fullName"));
+//			LOGCN = this.wsUtil.getUserAttribute(LOGUID, "fullName");
+//			logger.info(this.wsUtil.getOrgList(LOGDID));
+//			String[] orgList = this.wsUtil.getOrgList(LOGDID).split(".", -1);
+//			LOGPST = orgList[1];
+//			LOGPHQ = orgList[2];
+//			logger.info(this.wsUtil.getOrgCnameList(LOGDID));
+//			String[] cnameList = this.wsUtil.getOrgCnameList(LOGDID).split(".", -1);
+//			LOGDIDCN = cnameList[0];
+//			LOGPSTNAME = cnameList[1];
+//			LOGPHQNAME = cnameList[2];
+
+			String userRoles = this.wsUtil.getUserRoles(LOGUID);
+			logger.info(userRoles);
+			USERROLES = userRoles;
+
+			String userFullName = this.wsUtil.getUserAttribute(LOGUID, "fullName");
+			logger.info(userFullName);
+			LOGCN = userFullName;
+
+			String orgListStr = this.wsUtil.getOrgList(LOGDID);
+			logger.info(orgListStr);
+			String[] orgList = orgListStr.split("\\.", -1);  // 注意點號需要用 \\ 轉義
 			LOGPST = orgList[1];
 			LOGPHQ = orgList[2];
-			logger.info(this.wsUtil.getOrgCnameList(LOGDID));
-			String[] cnameList = this.wsUtil.getOrgCnameList(LOGDID).split(".", -1);
+
+			String cnameListStr = this.wsUtil.getOrgCnameList(LOGDID);
+			logger.info(cnameListStr);
+			String[] cnameList = cnameListStr.split("\\.", -1);
 			LOGDIDCN = cnameList[0];
 			LOGPSTNAME = cnameList[1];
 			LOGPHQNAME = cnameList[2];
@@ -122,23 +147,43 @@ public class Portal extends ActionSupport {
 		context.getSession().put("LOGPHQNAME", LOGPHQNAME);
 		context.getSession().put("LOGPST", LOGPST);
 		context.getSession().put("LOGPSTNAME", LOGPSTNAME);
-		if (Strings.isNullOrEmpty(LOGTDT)) {
-			logger.warn("LOGTDT is null");
+//		if (Strings.isNullOrEmpty(LOGTDT)) {
+//			logger.warn("LOGTDT is null");
+//			LOGTDT = CVUtil.getCurrentTime();
+//		} else {
 			LOGTDT = CVUtil.getCurrentTime();
-		} else {
-			LOGTDT = CVUtil.getCurrentTime();
-		}
+//		}
 		context.getSession().put("LOGTDT", LOGTDT);
-		if (!"".equals(LOGDID) && LOGDID != null) {
+//		if (!"".equals(LOGDID) && LOGDID != null) {
+//			this.e0dtNpaunit = this.myE0dtNpaunitDAO.findById(LOGDID);
+//			context.getSession().put("UNITFLAG", this.e0dtNpaunit.getE0UnitFlag());
+//			context.getSession().put("LOGDLV", this.e0dtNpaunit.getE0UnitLevel());
+//			if(this.e0dtNpaunit.getE0UnitNm()!=null) {
+//				context.getSession().put("LOGDIDCN", this.e0dtNpaunit.getE0UnitNm());
+//				context.getSession().put("LOGUNITNM", this.e0dtNpaunit.getE0UnitNm());
+//			}
+//	        context.getSession().put("LOGDEPTCD", this.e0dtNpaunit.getE0DeptCd());
+//		}
+		if (LOGDID != null && !"".equals(LOGDID)) {
 			this.e0dtNpaunit = this.myE0dtNpaunitDAO.findById(LOGDID);
-			context.getSession().put("UNITFLAG", this.e0dtNpaunit.getE0UnitFlag());
-			context.getSession().put("LOGDLV", this.e0dtNpaunit.getE0UnitLevel());
-			if(this.e0dtNpaunit.getE0UnitNm()!=null) {
-				context.getSession().put("LOGDIDCN", this.e0dtNpaunit.getE0UnitNm());
-				context.getSession().put("LOGUNITNM", this.e0dtNpaunit.getE0UnitNm());
+
+			// 如果 e0dtNpaunit 非空，則繼續放入 session
+			if (this.e0dtNpaunit != null) {
+				context.getSession().put("UNITFLAG", this.e0dtNpaunit.getE0UnitFlag());
+				context.getSession().put("LOGDLV", this.e0dtNpaunit.getE0UnitLevel());
+
+				String unitNm = this.e0dtNpaunit.getE0UnitNm();
+				if (unitNm != null) {
+					context.getSession().put("LOGDIDCN", unitNm);
+					context.getSession().put("LOGUNITNM", unitNm);
+				}
+
+				context.getSession().put("LOGDEPTCD", this.e0dtNpaunit.getE0DeptCd());
+			} else {
+				logger.warn("No e0dtNpaunit found for LOGDID: " + LOGDID);
 			}
-	        context.getSession().put("LOGDEPTCD", this.e0dtNpaunit.getE0DeptCd());
 		}
+
 		context.getSession().put("USERROLES", USERROLES);
 		if ("FGSBYSKM".equals(LOGUID)) {
 			context.getSession().put("USERROLES", "ILN00001");

@@ -39,9 +39,10 @@ public class Constant {
 
 	private String backupFolder;
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private Integer logMethod = Integer.valueOf(Integer.parseInt(this.rb.getString("LogWriteMode").toString()));
+//	private Integer logMethod = Integer.valueOf(Integer.parseInt(this.rb.getString("LogWriteMode").toString()));
+	private Integer logMethod = Integer.valueOf("0");
 
 	private String apName;
 

@@ -17,13 +17,20 @@
 		<property name="connection.username">ILU001</property>
 		<property name="connection.password">#il-ps01</property>
 		 -->
-		<!-- 本機端環境-->
+		<!-- 本機端環境
 		<property name="connection.url">
 			jdbc:sybase:Tds:10.0.2.15:4100/ABDB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=3
 		</property>		 		
 		<property name="connection.username">ilu001</property>
-		<property name="connection.password">ilu001</property>	
-		  	
+		<property name="connection.password">ilu001</property>
+        -->
+		<!-- 公司端環境 77DB	   -->
+		<property name="connection.url">
+			jdbc:sybase:Tds:172.16.220.77:5000/ABDB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=4
+		</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password">syscom#1</property>
+
 		<!-- 公司端環境 	 
 		<property name="connection.url">
 			jdbc:sybase:Tds:192.168.2.253:4100/ABDB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=3
@@ -32,7 +39,7 @@
 		<property name="connection.password">ilu001</property>
 		-->
 		<property name="connection.driver_class">
-			com.sybase.jdbc3.jdbc.SybDataSource
+			com.sybase.jdbc4.jdbc.SybDataSource
 		</property>
 		<property name="myeclipse.connection.profile">
 			10.0.2.15

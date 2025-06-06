@@ -275,8 +275,9 @@ public class IL02A01U04 extends ActionSupport {
 						: session.getAttribute("LOGTDT").toString();
 				String name = "";
 				String idno = "";
-				ResourceBundle rb = ResourceBundle.getBundle("config");
-				String changeMode = rb.getString("changeMode").toString();
+				//ResourceBundle rb = ResourceBundle.getBundle("config");
+//				String changeMode = rb.getString("changeMode").toString();
+				String changeMode = "1";
 				if ("1".equals(changeMode))
 					doInsertLog("IL03A01Q02", LOGCN, LOGDID, LOGUID, LOGUIP, LOGTUP, LOGTDT, this.logcn,
 							this.logpstname, this.main + this.detail, name, idno, Boolean.valueOf(resultBoo),
@@ -324,8 +325,9 @@ public class IL02A01U04 extends ActionSupport {
 			String LOGTDT = (session.getAttribute("LOGTDT") == null) ? "" : session.getAttribute("LOGTDT").toString();
 			String name = "";
 			String idno = "";
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if ("1".equals(changeMode))
 				doUpdateLog("IL03A01Q02", LOGCN, LOGDID, LOGUID, LOGUIP, LOGTUP, LOGTDT, this.logcn, this.logpstname,
 						this.main + this.detail, name, idno, Boolean.valueOf(resultBoo), iltb04InRecordbf,

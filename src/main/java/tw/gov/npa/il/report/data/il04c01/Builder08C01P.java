@@ -3,6 +3,9 @@ package tw.gov.npa.il.report.data.il04c01;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import tw.gov.npa.il.dao.Iltb01Main;
 import tw.gov.npa.il.dao.Iltb15CountryCode;
 import tw.gov.npa.il.dao.Iltb15CountryCodeDAO;
@@ -10,8 +13,12 @@ import tw.gov.npa.il.dao.Iltb16JobCodeDAO;
 import tw.gov.npa.il.myDao.MyIltb01MainDAO;
 import tw.gov.npa.il.report.CommonDataGetter;
 import tw.gov.npa.il.report.bean.IL04CColumnBean;
+import tw.gov.npa.il.report.data.IL04C01ReportData;
 
 public class Builder08C01P {
+	
+  private static final Logger logger = Logger.getLogger(IL04C01ReportData.class);
+
   private static int RPT_MAXLEN = 200;
   
   private static String firstSeperator = "================================================================================================================================================================================================================";
@@ -196,8 +203,12 @@ public class Builder08C01P {
   }
   
   private static String getIltb01MainDataByIndex(Iltb01Main obj, int idx) {
+	  String back = "";
+	  try {
+		  
+	 
     Iltb15CountryCode iltb15CountryCode;
-    String back = "";
+    
     switch (idx) {
       case 1:
         back = obj.getIlArcno();
@@ -236,7 +247,8 @@ public class Builder08C01P {
         back = obj.getIlBthdt();
         break;
       case 10:
-        back = jobDao.findById(obj.getIlJbcd()).getIlOpnm();
+		  back = jobDao.findById(obj.getIlJbcd()) != null ? jobDao.findById(obj.getIlJbcd()).getIlOpnm() :"";
+			          
         break;
       case 11:
         if (obj.getIlArcst().equals("1")) {
@@ -551,6 +563,9 @@ public class Builder08C01P {
         back = obj.getIlMicro();
         break;
     } 
+	  } catch (Exception e) {
+	      e.printStackTrace();
+	  }
     return back;
   }
 }

@@ -94,9 +94,10 @@ public class IL03A01Q04 extends ActionSupport {
 
 	HttpServletRequest request;
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String contextPath = this.rb.getString("templatePath").toString();
+//	private String contextPath = this.rb.getString("templatePath").toString();
+	private String contextPath = "D\\:\\reportTemplate\\";
 
 	MyIltb01MainDAO myIltb01MainDAO = new MyIltb01MainDAO();
 
@@ -666,7 +667,7 @@ public class IL03A01Q04 extends ActionSupport {
 				this.ilFnddNm = othersDAO.queryCodeDetail(ilFnddid);
 				this.ilRemrk = othersDAO.queryIlRemrk(ilArcid);
 
-//				Class.forName("com.sybase.jdbc3.jdbc.SybDriver").newInstance();
+//				Class.forName("com.sybase.jdbc4.jdbc.SybDriver").newInstance();
 //				String url = "jdbc:sybase:Tds:200.200.68.70:4100/IL2DB";
 //				Properties sysProps = System.getProperties();
 //				sysProps.put("user", "ILU001");
@@ -716,8 +717,9 @@ public class IL03A01Q04 extends ActionSupport {
 			queryMethodBuffer.append("國籍名稱=" + this.ilNTNM);
 			String queryMethodStr = queryMethodBuffer.toString();
 			logEntity.setOtherQeryStr(queryMethodStr);
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if ("1".equals(changeMode))
 				if (this.iltb01Main != null) {
 					logEntity.setQueryRes("S");

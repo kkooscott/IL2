@@ -44,9 +44,11 @@ public class IL03B01P02 extends ActionSupport {
   
   private E0dtNpaunit e0dtNpaunit = new E0dtNpaunit();
   
-  ResourceBundle rb = ResourceBundle.getBundle("config");
+//  ResourceBundle rb = ResourceBundle.getBundle("config");
   
-  private String contextPath = this.rb.getString("ReportRoot").toString();
+//  private String contextPath = this.rb.getString("ReportRoot").toString();
+
+  private String contextPath = "D\\:\\IL2\\";
   
   Constant constant = new Constant();
   

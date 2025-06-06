@@ -6,26 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import npa.ldap.ws.Attr;
-import npa.ldap.ws.AttrSet;
-import npa.ldap.ws.CheckAuth;
-import npa.ldap.ws.CheckAuthDocument;
-import npa.ldap.ws.CheckAuthResponseDocument;
-import npa.ldap.ws.GetOrgAttribute;
-import npa.ldap.ws.GetOrgAttributeDocument;
-import npa.ldap.ws.GetOrgAttributeResponseDocument;
-import npa.ldap.ws.GetOrgDotCNameDn;
-import npa.ldap.ws.GetOrgDotCNameDnDocument;
-import npa.ldap.ws.GetOrgDotCNameDnResponseDocument;
-import npa.ldap.ws.GetOrgDotDn;
-import npa.ldap.ws.GetOrgDotDnDocument;
-import npa.ldap.ws.GetOrgDotDnResponseDocument;
-import npa.ldap.ws.GetUserAttribute;
-import npa.ldap.ws.GetUserAttributeDocument;
-import npa.ldap.ws.GetUserAttributeResponseDocument;
-import npa.ldap.ws.GetUserRoles;
-import npa.ldap.ws.GetUserRolesDocument;
-import npa.ldap.ws.GetUserRolesResponseDocument;
+import npa.ldap.ws.*;
 import org.apache.axis2.client.Options;
 import org.apache.axis2.transport.http.HttpTransportProperties;
 import org.apache.log4j.Logger;
@@ -46,6 +27,16 @@ public class WSUtil {
 	String OE_USERNAME = rb.getString("ldapOEUSER").toString();
 
 	String OE_PASSWORD = rb.getString("ldapOEPASS").toString();
+
+//	String url = "http://10.100.125.61:8085/NPALdapws/services/LdapWebServices";
+//
+//	String _USERNAME = "CN=TESTSID,OU=APIDS,O=npa";
+//
+//	String _PASSWORD = "novell";
+//
+//	String OE_USERNAME = "IL001";
+//
+//	String OE_PASSWORD = "17f1-49f4-9301";
 
 	public boolean checkAuth(String username, String password) throws RemoteException {
 		HttpTransportProperties.Authenticator basicAuth = new HttpTransportProperties.Authenticator();
@@ -120,18 +111,26 @@ public class WSUtil {
 		basicAuth.setUsername(this._USERNAME);
 		basicAuth.setPassword(this._PASSWORD);
 		basicAuth.setPreemptiveAuthentication(true);
+
 		LdapWebServicesStub stub = new LdapWebServicesStub();
+
 		Options clientOptions = stub._getServiceClient().getOptions();
 		clientOptions.setProperty("_NTLM_DIGEST_BASIC_AUTHENTICATION_", basicAuth);
+
 		GetUserAttributeDocument reqDoc = GetUserAttributeDocument.Factory.newInstance();
 		GetUserAttribute req = reqDoc.addNewGetUserAttribute();
+
 		req.setArg0(account);
 		req.setArg1(attr);
+
 		GetUserAttributeResponseDocument doc = stub.getUserAttribute(reqDoc);
 		Attr att = doc.getGetUserAttributeResponse().getReturn();
+
 		String[] str = att.getValuesArray();
+
 		Joiner joiner = Joiner.on(",");
 		logger.info(joiner.join((Object[]) str));
+
 		return str[0];
 	}
 
@@ -140,17 +139,32 @@ public class WSUtil {
 		basicAuth.setUsername(this._USERNAME);
 		basicAuth.setPassword(this._PASSWORD);
 		basicAuth.setPreemptiveAuthentication(true);
+
 		LdapWebServicesStub stub = new LdapWebServicesStub();
+
 		Options clientOptions = stub._getServiceClient().getOptions();
 		clientOptions.setProperty("_NTLM_DIGEST_BASIC_AUTHENTICATION_", basicAuth);
+		
 		GetUserRolesDocument reqDoc = GetUserRolesDocument.Factory.newInstance();
 		GetUserRoles req = reqDoc.addNewGetUserRoles();
+
 		req.setArg0(account);
+
 		GetUserRolesResponseDocument doc = stub.getUserRoles(reqDoc);
 		AttrSet[] attrSets = doc.getGetUserRolesResponse().getReturnArray();
+
+
+//		GetUserRolesByAPPDocument reqDoc = GetUserRolesByAPPDocument.Factory.newInstance();
+//		GetUserRolesByAPP req = reqDoc.getGetUserRolesByAPP();
+//		req.setArg0(account);
+//		req.setArg1("IL2");
+//		GetUserRolesByAPPResponseDocument doc = stub.getUserRolesByAPP(reqDoc);
+//		AttrSet[] attrSets = doc.getGetUserRolesByAPPResponse().getReturnArray();
+
 		AttrSet attrSet = null;
 		String name = "";
 		List<String> strs = new ArrayList<String>();
+
 		for (int i = 0; i < attrSets.length; i++) {
 			attrSet = attrSets[i];
 			Attr[] attrs = attrSet.getAttributesArray();

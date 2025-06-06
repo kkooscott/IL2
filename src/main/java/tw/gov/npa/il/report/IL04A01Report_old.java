@@ -20,10 +20,12 @@ public class IL04A01Report_old {
   private NTPCUtil ntpcUtil = new NTPCUtil();
   
   private IL04A01ReportData iL04A01ReportData = new IL04A01ReportData();
-  
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  private String contextPath = this.rb.getString("ReportRoot").toString();
+
+  //  ResourceBundle rb = ResourceBundle.getBundle("config");
+
+//  private String contextPath = this.rb.getString("ReportRoot").toString();
+
+  private String contextPath = "D\\:\\IL2\\";
   
   private InputStream excelStream;
   

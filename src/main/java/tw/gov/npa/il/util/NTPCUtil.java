@@ -146,11 +146,13 @@ public class NTPCUtil {
 		return createExcel(contextPath, fileName, fileName, param, jRMainTotalDS);
 	}
 
-	public static BufferedInputStream createExcelOtherFileName(String contextPath, String fileName,
-			String jasperFileName, HashMap<String, Object> param, JRBeanCollectionDataSource jRMainTotalDS,
-			String exportFile, String LOGCN, String LOGDIDNM) throws JRException {
+	public static void createExcelOtherFileName(String contextPath, String fileName,
+												String jasperFileName, HashMap<String, Object> param, JRBeanCollectionDataSource jRMainTotalDS,
+												String exportFile, String LOGCN, String LOGDIDNM) throws JRException {
+		System.out.println("HCHC");
 		JasperPrint jasperPrint;
 		NTPCUtil ntpcUtil = new NTPCUtil();
+		System.out.println("FFFF");
 		String baseDir = "report";
 		String jasperFile = jasperFileName + ".jasper";
 		String auditJasperFileName = "jrxml" + File.separator + jasperFile;
@@ -159,10 +161,11 @@ public class NTPCUtil {
 		String auditJasperFile = contextPath + File.separator + auditJasperFileName;
 		String excelFile = contextPath + File.separator + baseDir + File.separator + exportFile + ".xls";
 		String time = (String)param.get("PRINTTIME");
-		logger.debug("excelFile location:" + excelFile);
-		logger.debug("jasperFile location:" + auditJasperFile);
-		logger.debug("jrprintFile location:" + auditJrprintFile);
+		System.out.println("excelFile location:" + excelFile);
+		System.out.println("jasperFile location:" + auditJasperFile);
+		System.out.println("jrprintFile location:" + auditJrprintFile);
 		File folder = new File(contextPath + File.separator + baseDir);
+		System.out.println("JKJK");
 		if (!folder.exists())
 			folder.mkdirs();
 		if (jRMainTotalDS != null) {
@@ -170,14 +173,17 @@ public class NTPCUtil {
 		} else {
 			jasperPrint = JasperFillManager.fillReport(auditJasperFile, param);
 		}
+		System.out.println("USIS");
 		JExcelApiExporter exporterXLS = new JExcelApiExporter();
 		exporterXLS.setParameter(JRXlsExporterParameter.JASPER_PRINT, jasperPrint);
 		exporterXLS.setParameter((JRExporterParameter) JRXlsExporterParameter.IS_DETECT_CELL_TYPE, Boolean.TRUE);
 		exporterXLS.setParameter((JRExporterParameter) JRXlsExporterParameter.IS_WHITE_PAGE_BACKGROUND, Boolean.FALSE);
 		exporterXLS.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, excelFile);
+		System.out.println("OKIO");
 		exporterXLS.exportReport();
+		System.out.println("UDIIDSJO");
 		try {
-			
+			System.out.println("DJSIPOJD");
 			String watermark = LOGDIDNM.trim() + "-" + LOGCN.trim() + "-" + time;
 			com.aspose.cells.License license = new com.aspose.cells.License();
 			license.setLicense("Aspose.Total.Java.lic");
@@ -193,15 +199,24 @@ public class NTPCUtil {
 				}
 //				i++;i++;
 //			}
+			System.out.println("FAEKOFAP");
 			WorkbookDesigner designer = new WorkbookDesigner();
+			System.out.println("POPKOFEDNFI");
 			designer.setWorkbook(wb);
+			System.out.println("HOGIFHSDF");
 			wb.save(excelFile, wb.getFileFormat());
-			FileInputStream fis = new FileInputStream(excelFile);
-			BufferedInputStream excelStream = new BufferedInputStream(fis);
-			return excelStream;
+			System.out.println("DJSIPDJ");
+			try(FileInputStream fis = new FileInputStream(excelFile);) {
+				System.out.println("FEDOIHEF");
+				BufferedInputStream excelStream = new BufferedInputStream(fis);
+				System.out.println("DWSDPOKKD");
+			}catch (FileNotFoundException e) {
+				System.out.println(e);
+			} catch (IOException e) {
+				System.out.println(e);
+			}
 		} catch (Exception e) {
-			logger.error(e, e);
-			return null;
+			System.out.println(e);
 		}
 	}
 	

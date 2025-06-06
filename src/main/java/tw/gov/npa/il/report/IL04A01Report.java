@@ -13,9 +13,10 @@ import tw.gov.npa.il.util.NTPCUtil;
 public class IL04A01Report {
 	private static final Logger logger = Logger.getLogger(IL04A01Report.class);
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+	//  ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	public String contextPath = this.rb.getString("contextPath").toString();
+	//  private String contextPath = this.rb.getString("FileRoot").toString();
+	private String contextPath = "D:\\IL2\\file";
 
 	public String getContextPath() {
 		return this.contextPath;
@@ -682,357 +683,364 @@ public class IL04A01Report {
 	}
 
 	public static void main(String[] args) throws JRException {
-		IL04A01Report iL04A01Report = new IL04A01Report();
-		try {
-			iL04A01Report.IL04A01Q03A_01();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_02();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_01();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_02();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_03();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_04();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_05();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_06();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_07();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_08();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_09();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_10();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_11();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_12();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_13();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_14();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_15();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_16();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_17();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_18();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_19();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_20();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_21();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_22();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_23();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_24();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_25();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_07_26();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_08();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_09();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_10();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_11();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_12();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_13();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_2();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_3();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_4();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_5();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_6();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_7();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_8();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_9();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_10();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_11();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_12();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_13();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_14();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_15();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_16();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_17();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_18();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_19();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_20();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_14_21();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_15();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_16();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_17();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_18();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_19();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_29();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_22();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_23();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_27();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_30();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_28();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_33();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_31();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		try {
-			iL04A01Report.IL04A01Q03A_32();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+		//202505 jasper problem
+	if ("true".equalsIgnoreCase(System.getProperty("skipJasperStartup"))) {
+        System.out.println("⚠️ [JASPER] IL04A01Report.main() skipped due to -DskipJasperStartup=true");
+        return;
+    }
+		//202505 jasper problem
+//		IL04A01Report iL04A01Report = new IL04A01Report();
+//		try {
+//			iL04A01Report.IL04A01Q03A_01();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_02();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_01();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_02();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_03();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_04();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_05();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_06();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_07();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_08();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_09();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_10();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_11();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_12();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_13();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_14();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_15();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_16();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_17();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_18();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_19();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_20();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_21();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_22();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_23();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_24();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_25();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_07_26();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_08();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_09();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_10();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_11();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_12();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_13();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_2();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_3();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_4();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_5();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_6();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_7();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_8();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_9();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_10();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_11();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_12();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_13();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_14();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_15();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_16();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_17();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_18();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_19();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_20();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_14_21();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_15();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_16();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_17();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_18();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_19();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_29();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_22();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_23();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_27();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_30();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_28();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_33();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_31();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		try {
+//			iL04A01Report.IL04A01Q03A_32();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 	}
 }
 

@@ -26,7 +26,7 @@ import org.json.simple.JSONObject;
 
 public class NPALog4J {
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 	private static final Logger logger = Logger.getLogger(NPALog4J.class);
 
 	public int logging(int mesgSendWay, int big5ToUnicode, String LOG_UID, String LOG_DID, String LOG_UIP,
@@ -52,7 +52,8 @@ public class NPALog4J {
 		try {
 			LocalDateTime now = LocalDateTime.now();
 //            String url = "http://10.100.195.137:8080/NPALogService/sendLogMessage.do";
-			String url = rb.getString("logURL").toString();
+//			String url = rb.getString("logURL").toString();
+			String url = "http://192.168.52.20:9090/NPALogService/sendLogMessage.do";
 			DefaultHttpClient client = new DefaultHttpClient();
 
 			HttpPost post = new HttpPost(url);

@@ -20,12 +20,13 @@ public class ReportScheduler {
 
 	MyIltb01MainDAO2 myIltb01MainDAO2 = new MyIltb01MainDAO2();
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 	
 	private WSUtil wsUtil;
 
-	private int countLimit = Integer.parseInt(this.rb.getString("countLimit").toString());
-	
+//	private int countLimit = Integer.parseInt(this.rb.getString("countLimit").toString());
+	private int countLimit = Integer.parseInt("3000");
+
 	public WSUtil getWsUtil() {
 		return wsUtil;
 	}
@@ -37,7 +38,7 @@ public class ReportScheduler {
 	public void scheduleIL03B01() {
 		IL03B01Report il03B01Report = new IL03B01Report();
 		List<Iltb20OnlineReport> iltb20OnlineReportList = this.myIltb20OnlineReportDAO.queryDataIL03B01UnProcess();
-		logger.info("scheduleIL03B01:轄區狀況統計資料 待處理筆數=" + iltb20OnlineReportList.size());
+		logger.info("scheduleIL03B01:轄區狀況統計資料 待處理筆數==>" + iltb20OnlineReportList.size());
 		for (Iltb20OnlineReport bean : iltb20OnlineReportList) {
 			if (!"".equals(bean.getId().getIlRptid()) && bean.getId().getIlRptid() != null) {
 				String LOGUID = bean.getId().getIlUid();
@@ -165,11 +166,12 @@ public class ReportScheduler {
 				if(logUid.equals("TESTTEST")) {
 					logCn = "陳測試";
 				} else {
-					try {
-						logCn = wsUtil.getUserAttribute(logUid, "fullName");
-					} catch(RemoteException e) {
-						logger.error(e.getMessage(), e);
-					}
+//					try {
+						//logCn = wsUtil.getUserAttribute(logUid, "fullName");
+						logCn = logUid;
+//					} catch(RemoteException e) {
+//						logger.error(e.getMessage(), e);
+//					}
 				}
 				String logDidNM = bean.getIlDidnm();
 				logger.info("報表種類:" + Integer.parseInt(bean.getId().getIlRptid()));

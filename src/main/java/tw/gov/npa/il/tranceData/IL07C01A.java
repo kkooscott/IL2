@@ -76,9 +76,10 @@ public class IL07C01A {
 
 	private File file;
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String contextPath = this.rb.getString("FileRoot").toString();
+//	private String contextPath = this.rb.getString("FileRoot").toString();
+	private String contextPath = "D:\\IL2\\file";
 
 	public RelationDAO relationDAO;
 

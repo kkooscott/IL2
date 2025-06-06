@@ -2,10 +2,8 @@ package tw.gov.npa.il.decorator;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import javax.servlet.jsp.PageContext;
 import org.apache.log4j.Logger;
 import org.displaytag.decorator.TableDecorator;
-import org.displaytag.model.TableModel;
 import tw.gov.npa.il.dao.Iltb18DataProcessResult;
 
 public class IL05C01Q01Decorator extends TableDecorator {

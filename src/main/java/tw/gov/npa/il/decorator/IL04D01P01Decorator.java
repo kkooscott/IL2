@@ -1,14 +1,12 @@
 package tw.gov.npa.il.decorator;
 
-import javax.servlet.jsp.PageContext;
 import org.apache.log4j.Logger;
 import org.displaytag.decorator.TableDecorator;
-import org.displaytag.model.TableModel;
 import tw.gov.npa.il.action.bean.IL04D01P01Bean;
 import tw.gov.npa.il.util.Constant;
 
 public class IL04D01P01Decorator extends TableDecorator {
-  private static final Logger logger = Logger.getLogger(IL04D01P01Decorator.class);
+//  private static final Logger logger = Logger.getLogger(IL04D01P01Decorator.class);
   
   private boolean ifCheck = false;
   

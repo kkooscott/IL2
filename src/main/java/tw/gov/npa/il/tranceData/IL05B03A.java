@@ -67,10 +67,12 @@ public class IL05B03A {
   
   private int h_nImpErr10 = 0;
   
-  ResourceBundle rb = ResourceBundle.getBundle("config");
+//  ResourceBundle rb = ResourceBundle.getBundle("config");
   
-  private String contextPath = this.rb.getString("FileRoot").toString();
-  
+//  private String contextPath = this.rb.getString("FileRoot").toString();
+private String contextPath = "D:\\IL2\\file";
+
+
   private String path = String.valueOf(this.contextPath) + "\\IL7A\\";
   
   private RelationDAO relationDAO;

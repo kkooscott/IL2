@@ -10,10 +10,11 @@ import java.io.OutputStream;
 import java.util.ResourceBundle;
 
 public class UploadFile {
-  ResourceBundle rb = ResourceBundle.getBundle("config");
+//  ResourceBundle rb = ResourceBundle.getBundle("config");
   
-  private String savePath = this.rb.getString("FileRoot").toString();
-  
+//  private String savePath = this.rb.getString("FileRoot").toString();
+  private String savePath = "D\\:\\IL2\\file\\";
+
   public void upFile(File upFile, String fileName) {
     try {
       File saveFile = new File(String.valueOf(this.savePath) + "\\" + fileName);

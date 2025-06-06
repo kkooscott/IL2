@@ -2,17 +2,15 @@ package tw.gov.npa.il.decorator;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import javax.servlet.jsp.PageContext;
 import org.apache.log4j.Logger;
 import org.displaytag.decorator.TableDecorator;
-import org.displaytag.model.TableModel;
 import tw.gov.npa.il.dao.Iltb03MainRecord;
 import tw.gov.npa.il.dao.Iltb16JobCode;
 import tw.gov.npa.il.myDao.MyIltb16JobCodeDAO;
 import tw.gov.npa.il.util.Constant;
 
 public class IL03A01Q06Decorator extends TableDecorator {
-  private static final Logger logger = Logger.getLogger(IL03A01Q06Decorator.class);
+//  private static final Logger logger = Logger.getLogger(IL03A01Q06Decorator.class);
   
   Constant constant = new Constant();
   

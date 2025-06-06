@@ -7,9 +7,10 @@ import tw.gov.npa.il.dao.Iltb20OnlineReport;
 import tw.gov.npa.il.dao.Iltb20OnlineReportDAO;
 
 public class IL04Report {
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  public String contextPath = this.rb.getString("contextPath").toString();
+  //  ResourceBundle rb = ResourceBundle.getBundle("config");
+
+  //  private String contextPath = this.rb.getString("FileRoot").toString();
+  private String contextPath = "D:\\IL2\\file";
   
   public static void main(String[] arg) throws Exception {
     IL04A01Report iL04A01Report = new IL04A01Report();

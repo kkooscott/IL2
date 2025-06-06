@@ -84,9 +84,15 @@ public class LdapWebServicesStub extends Stub {
 
 	private static int counter = 0;
 
-	private static ResourceBundle rb = ResourceBundle.getBundle("config");
+//	private static ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private static String url = rb.getString("ldapURL").toString();
+//	private static String url = rb.getString("ldapURL").toString();
+
+	private static String url = "http://10.100.125.61:8085/NPALdapws/services/LdapWebServices";
+
+//	private static String url = "";
+//
+//	private static String url = "";
 
 	private QName[] opNameArray;
 

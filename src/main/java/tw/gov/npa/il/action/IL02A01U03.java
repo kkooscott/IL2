@@ -279,8 +279,9 @@ public class IL02A01U03 extends ActionSupport {
 						: session.getAttribute("LOGTDT").toString();
 				String name = "";
 				String idno = "";
-				ResourceBundle rb = ResourceBundle.getBundle("config");
-				String changeMode = rb.getString("changeMode").toString();
+				//ResourceBundle rb = ResourceBundle.getBundle("config");
+//				String changeMode = rb.getString("changeMode").toString();
+				String changeMode = "1";
 				if (this.main.equals("600"))
 					this.detail = this.other;
 				logger.info("用途=" + this.main + "-" + this.detail);

@@ -13,9 +13,10 @@ import tw.gov.npa.il.util.NTPCUtil;
 public class IL04B01Report {
 	private static final Logger logger = Logger.getLogger(IL04B01Report.class);
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+	//  ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	public String contextPath = this.rb.getString("contextPath").toString();
+	//  private String contextPath = this.rb.getString("FileRoot").toString();
+	private String contextPath = "D:\\IL2\\file";
 
 	public String getContextPath() {
 		return this.contextPath;
@@ -26,11 +27,13 @@ public class IL04B01Report {
 	}
 
 	public String IL04B01_01(String whereCondition, String exportfileName, String LOGCN, String LOGDIDNM) throws JRException {
+		logger.info("IL04B01 按國籍及職業分 Execute");
 		String fileName = "IL04B01_01";
 		String jasperFileName = "IL04_r1c2";
 		logger.debug("IL04B01 按國籍及職業分 Execute");
 		String unitName = "按國籍及職業分";
 		JRBeanCollectionDataSource jRMainTotalDS = IL04B01ReportData.buildDataSourceIL08B01P(whereCondition);
+		logger.info("IL04B01 SSASASASAS");
 		return IL04B01CommonPart(this.contextPath, fileName, jasperFileName, unitName, jRMainTotalDS, exportfileName, LOGCN, LOGDIDNM);
 	}
 
@@ -91,6 +94,7 @@ public class IL04B01Report {
 	private String IL04B01CommonPart(String contextPath, String fileName, String jasperFileName, String unitName,
 			JRBeanCollectionDataSource jRMainTotalDS, String exportfileName, String LOGCN, String LOGDIDNM)
 			throws JRException {
+		logger.info("DKDK");
 		HashMap<String, Object> param = new HashMap<String, Object>();
 		NTPCUtil ntpcUtil = new NTPCUtil();
 		GetDateUtil getDateUtil = new GetDateUtil();
@@ -101,8 +105,10 @@ public class IL04B01Report {
 		param.put("UNITNAME", unitName);
 		param.put("PRINTUNIT", "警政署資訊室作業設計科");
 		param.put("PRINTTIME", NTPCUtil.dateFormat.format(new Date()));
+		logger.info("DSIODHSPI");
 		NTPCUtil.createExcelOtherFileName(contextPath, fileName, jasperFileName, param, jRMainTotalDS, exportfileName, LOGCN, LOGDIDNM);
 		String contentDisposition = "filename=\"" + fileName + ".xls\"";
+		logger.info("DRDR");
 		return contentDisposition;
 	}
 

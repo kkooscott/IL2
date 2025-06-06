@@ -29,9 +29,11 @@ public class ILMenuList extends ActionSupport {
   
   private List<E0dtNpaunit> e0dtNpaunitList = new ArrayList<E0dtNpaunit>();
   
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  String changeMode = this.rb.getString("changeMode").toString();
+//  ResourceBundle rb = ResourceBundle.getBundle("config");
+//
+//  String changeMode = this.rb.getString("changeMode").toString();
+
+  String changeMode = "1";
   
   public List<Menu> getGetMenuList() {
     return this.getMenuList;
@@ -108,17 +110,31 @@ public class ILMenuList extends ActionSupport {
     } 
     String tmpRoles = (String)context.getSession().get("USERROLES");
     logger.info("tmpRoles: " + tmpRoles);
+
+//    if (null != tmpRoles) {
+//      logger.info("----tmpRoles is not null----");
+//      String[] tmp = tmpRoles.split(",");
+//      if (null != tmp) {
+//        for (int i = 0; i < tmp.length; i++)
+//          this.sByTitleId.add(tmp[i]);
+//      } else {
+//        this.sByTitleId.add("ILN00004");
+//      }
+//    } else {
+//      this.sByTitleId.add("ILN00004");
+//    }
     if (null != tmpRoles) {
+      logger.info("----tmpRoles is not null----");
       String[] tmp = tmpRoles.split(",");
       if (null != tmp) {
         for (int i = 0; i < tmp.length; i++)
-          this.sByTitleId.add(tmp[i]); 
+          this.sByTitleId.add(tmp[i]);
       } else {
-        this.sByTitleId.add("ILN00004");
-      } 
+        this.sByTitleId.add("ILN00001");
+      }
     } else {
-      this.sByTitleId.add("ILN00004");
-    } 
+      this.sByTitleId.add("ILN00001");
+    }
     try {
       this.getMenuList = MiscMain.getMenuList(true, this.sByTitleId);
     } catch (Exception e) {

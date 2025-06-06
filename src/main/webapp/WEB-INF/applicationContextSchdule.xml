@@ -13,7 +13,11 @@
   						   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
   						   http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
     
+    <!--202505改成和主檔applicationConotext.xml
     <util:properties id="applicationProps" location="file:${user.home}/il.properties"/>
+	-->
+	<util:properties id="applicationProps" location="classpath:il.properties"/>
+	
     <context:property-placeholder
             properties-ref="applicationProps"/>
     
@@ -29,6 +33,11 @@
     </bean>
 	<bean id="wsUtil" class="tw.gov.npa.il.util.WSUtil">
 	</bean>
+    <bean id="il05B03A" class="tw.gov.npa.il.tranceData.IL05B03A"/>
+    <bean id="iL07C01A" class="tw.gov.npa.il.tranceData.IL07C01A"/>
+    <bean id="iL07C01B" class="tw.gov.npa.il.tranceData.IL07C01B"/>
+    <bean id="iL08A01" class="tw.gov.npa.il.tranceData.IL08A01"/>
+    <bean id="myIlScheduleDAO" class="tw.gov.npa.il.myDao.MyIlScheduleDAO"/>
     <task:scheduled-tasks> 
     	<!--排程測試
     	<task:scheduled ref="testScheduler" method="test1" cron="#{applicationProps['cron.expression']}"/> 
@@ -37,7 +46,7 @@
     	<task:scheduled ref="ilReportSchedule" method="runMonthReport" cron="#{applicationProps['cron.expressionMonth']}"/>
     	-->
     	<!--轄區狀況統計資料排程管理-->
-    	<task:scheduled ref="ilReportSchedule" method="runIL03Report" cron="#{applicationProps['cron.expression']}"/>   	
+    	<task:scheduled ref="ilReportSchedule" method="runIL03Report" cron="#{applicationProps['cron.expression']}"/>
     	
     	
     	<!--自由檢索(固定欄項)排程管理-->

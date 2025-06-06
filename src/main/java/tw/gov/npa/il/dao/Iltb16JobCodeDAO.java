@@ -40,7 +40,7 @@ public class Iltb16JobCodeDAO extends BaseHibernateDAO {
   }
   
   public Iltb16JobCode findById(String id) {
-    log.debug("getting Iltb16JobCode instance with id: " + id);
+    log.info("getting Iltb16JobCode instance with id: " + id);
     try {
       Iltb16JobCode instance = (Iltb16JobCode)getSession().get("tw.gov.npa.il.dao.Iltb16JobCode", id);
       return instance;

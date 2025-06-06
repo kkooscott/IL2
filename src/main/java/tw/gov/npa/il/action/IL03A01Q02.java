@@ -1,71 +1,36 @@
 package tw.gov.npa.il.action;
 
 import com.aspose.cells.Color;
-import com.aspose.cells.CountryCode;
 import com.aspose.cells.LoadOptions;
-import com.aspose.cells.MsoFillFormat;
-import com.aspose.cells.MsoLineFormat;
-import com.aspose.cells.MsoPresetTextEffect;
 import com.aspose.cells.PdfSaveOptions;
 import com.aspose.cells.SaveFormat;
-import com.aspose.cells.WorkbookDesigner;
-import com.aspose.cells.Worksheet;
-import com.aspose.pdf.FontRepository;
-import com.aspose.pdf.FontStyles;
-import com.aspose.pdf.HorizontalAlignment;
-import com.aspose.pdf.PageNumberStamp;
+import com.aspose.cells.*;
 import com.aspose.pdf.VerticalAlignment;
+import com.aspose.pdf.*;
 import com.aspose.words.PaperSize;
 import com.opensymphony.xwork2.ActionSupport;
-
 import jxl.Workbook;
 import jxl.format.Alignment;
 import jxl.write.Label;
-import jxl.write.WritableCellFormat;
-import jxl.write.WritableFont;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Properties;
-import java.util.ResourceBundle;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import npalog.NPALog4J;
+import jxl.write.*;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import tw.gov.npa.il.action.bean.IL03A01Q02Bean;
 import tw.gov.npa.il.action.bean.IL03A01Query02Bean;
-import tw.gov.npa.il.action.bean.OprType;
 import tw.gov.npa.il.dao.Iltb20OnlineReport;
 import tw.gov.npa.il.entity.IL07D;
 import tw.gov.npa.il.myDao.IL07DDao;
 import tw.gov.npa.il.myDao.MyIltb01MainDAO;
 import tw.gov.npa.il.myDao.MyIltb01MainDAO2;
-import tw.gov.npa.il.util.CVUtil;
 import tw.gov.npa.il.util.Constant;
 import tw.gov.npa.il.util.GetDateUtil;
 import tw.gov.npa.il.util.NTPCUtil;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class IL03A01Q02 extends ActionSupport {
 	private static final Logger logger = Logger.getLogger(IL03A01Q02.class);
@@ -74,9 +39,11 @@ public class IL03A01Q02 extends ActionSupport {
 
 	List<IL07D> srchstCodes = new ArrayList<IL07D>();
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String contextPath = this.rb.getString("templatePath").toString();
+//	private String contextPath = this.rb.getString("templatePath").toString();
+
+	private String contextPath = "D\\:\\reportTemplate\\";
 
 	private String flag;
 
@@ -369,11 +336,15 @@ public class IL03A01Q02 extends ActionSupport {
 			String LOGTDT = (session.getAttribute("LOGTDT") == null) ? "" : session.getAttribute("LOGTDT").toString();
 			String name = this.ilCnm;
 			String idno = "";
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if (this.main.equals("600")) {
 				this.detail = this.other;
 			}
+			System.out.println("查詢用途:" + this.main);
+			System.out.println("查詢用途明細:" + this.detail);
+			System.out.println("用途自行輸入:" + this.other);
 			transQueryStr(bean);
 			/*
 			if ("1".equals(changeMode))

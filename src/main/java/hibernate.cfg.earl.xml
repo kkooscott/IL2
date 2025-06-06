@@ -14,16 +14,16 @@
 	<!-- 	<property name="connection.url">jdbc:sybase:Tds:10.160.1.21:4100/IL2DB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=3</property>  -->
 		<!-- 	-->
 			<property name="connection.url">
-			jdbc:sybase:Tds:10.0.2.15:4100/ILDB?language=us_english&amp;Unicode=true&amp;characterEncoding=utf8&amp;noAccessToProcedureBodies=true
+			jdbc:sybase:Tds:172.16.220.77:5000/IL2DB?language=us_english&amp;Unicode=true&amp;characterEncoding=utf8&amp;noAccessToProcedureBodies=true
 			</property>
 	
-		<property name="connection.username">ilu001</property>
-		<property name="connection.password">ilu001</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password">syscom#1</property>
 		<property name="connection.driver_class">
-			com.sybase.jdbc3.jdbc.SybDataSource
+			com.sybase.jdbc4.jdbc.SybDataSource
 		</property>
 		<property name="myeclipse.connection.profile">
-			10.0.2.15
+			172.16.220.77
 		</property>
 
 		<property name="hibernate.statement_cache.size">25</property>
@@ -63,28 +63,28 @@
 			<property name="hibernate.c3p0.validate">true</property>
 		-->
 
-		<mapping resource="tw/gov/npa/il/dao/IltbFuncRole.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/IltbFunc.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/IltbFuncRole.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/IltbFunc.hbm.xml" />
 		<mapping
-			resource="tw/gov/npa/il/dao/Iltb18DataProcessResult.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb23ImgIdx.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb03MainRecord.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb01MainIdx.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb19DataProcess.hbm.xml" />
+			resource="tw.gov.npa.il.dao/Iltb18DataProcessResult.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb23ImgIdx.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb03MainRecord.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb01MainIdx.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb19DataProcess.hbm.xml" />
 		<mapping
-			resource="tw/gov/npa/il/dao/Iltb20OnlineReport.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb01Main.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb15CountryCode.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb04InRecord.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb16JobCode.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/IltbAnnounce.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/E0dtSn.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb17SchoolCode.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/Iltb22IaRecord.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/E0dtNpaunit.hbm.xml" />
-		<mapping resource="tw/gov/npa/il/dao/IltbRole.hbm.xml" />
+			resource="tw.gov.npa.il.dao/Iltb20OnlineReport.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb01Main.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb15CountryCode.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb04InRecord.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb16JobCode.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/IltbAnnounce.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/E0dtSn.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb17SchoolCode.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/Iltb22IaRecord.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/E0dtNpaunit.hbm.xml" />
+		<mapping resource="tw.gov.npa.il.dao/IltbRole.hbm.xml" />
 		<mapping
-			resource="tw/gov/npa/il/dao/IltbSystemFlowStepConfig.hbm.xml" />
+			resource="tw.gov.npa.il.dao/IltbSystemFlowStepConfig.hbm.xml" />
 
 	</session-factory>
 

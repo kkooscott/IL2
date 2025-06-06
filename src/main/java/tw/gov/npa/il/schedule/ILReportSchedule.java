@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
 import tw.gov.npa.il.dao.HibernateSessionFactory;
 import tw.gov.npa.il.myDao.MyIlScheduleDAO;
 import tw.gov.npa.il.report.IL04A01Report;
@@ -20,17 +22,27 @@ import tw.gov.npa.il.util.FtpGetFile;
 import tw.gov.npa.il.util.WSUtil;
 
 public class ILReportSchedule {
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String savePath = this.rb.getString("FileRoot").toString();
+//	private String savePath = this.rb.getString("FileRoot").toString();
+//
+//	private String ftpIp = this.rb.getString("ftpIp").toString();
+//
+//	private String ftpUser = this.rb.getString("ftpUser").toString();
+//
+//	private String ftpPassword = this.rb.getString("ftpPassword").toString();
+//
+//	private String ftpPath = this.rb.getString("ftpPath").toString();
 
-	private String ftpIp = this.rb.getString("ftpIp").toString();
+	private String savePath = "D\\:\\IL2\\file\\";
 
-	private String ftpUser = this.rb.getString("ftpUser").toString();
+	private String ftpIp = "10.100.68.71";
 
-	private String ftpPassword = this.rb.getString("ftpPassword").toString();
+	private String ftpUser = "wrsong";
 
-	private String ftpPath = this.rb.getString("ftpPath").toString();
+	private String ftpPassword = "w98-song";
+
+	private String ftpPath = "IL";
 
 	private static final Logger logger = Logger.getLogger(ILReportSchedule.class);
 
@@ -107,29 +119,7 @@ public class ILReportSchedule {
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.info("轄區狀況統計資料排程失敗：" + e.getMessage());
-		} finally {
-			try {
-				HibernateSessionFactory.getSession().close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void runMonthReport() {
-		logger.info("月統計報表排程開始：" + new Date());
-		try {
-			long startTime = System.currentTimeMillis();
-			new IL04A01Report();
-			IL04A01Report.main(null);
-			DecimalFormat myformat = new DecimalFormat("0.00");
-			long endTime = System.currentTimeMillis();
-			long costLong = (endTime - startTime) / 1000L;
-			String cost = myformat.format(costLong);
-			logger.info(new Date() + ": 月統計報表排程結束, 執行時間=" + cost + "秒");
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.info("月統計報表排程失敗：" + e.getMessage());
+			logger.error(e.getMessage(),e);
 		} finally {
 			try {
 				HibernateSessionFactory.getSession().close();
@@ -153,6 +143,29 @@ public class ILReportSchedule {
 			e.printStackTrace();
 			logger.info("自由檢索報表排程失敗：" + e.getMessage());
 			logger.error(e.getMessage(),e);
+		} finally {
+			try {
+				HibernateSessionFactory.getSession().close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void runMonthReport() {
+		logger.info("月統計報表排程開始：" + new Date());
+		try {
+			long startTime = System.currentTimeMillis();
+			new IL04A01Report();
+			IL04A01Report.main(null);
+			DecimalFormat myformat = new DecimalFormat("0.00");
+			long endTime = System.currentTimeMillis();
+			long costLong = (endTime - startTime) / 1000L;
+			String cost = myformat.format(costLong);
+			logger.info(new Date() + ": 月統計報表排程結束, 執行時間=" + cost + "秒");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.info("月統計報表排程失敗：" + e.getMessage());
 		} finally {
 			try {
 				HibernateSessionFactory.getSession().close();
@@ -428,12 +441,12 @@ public class ILReportSchedule {
 		String fileName = "IL71" + dateConvert(autoDate, "year") + dateConvert(autoDate.substring(4, 6), "month")
 				+ dateConvert(autoDate.substring(6, 8), "day") + ".txt";
 		System.out.println("主檔檔名:" + fileName);
-		fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath);
+		//fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath);
 		fileName = "IL72" + dateConvert(autoDate, "year") + dateConvert(autoDate.substring(4, 6), "month")
 				+ dateConvert(autoDate.substring(6, 8), "day") + ".txt";
 		System.out.println("查察紀事檔名:" + fileName);
 		fgf = new FtpGetFile();
-		fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath);
+		//fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath);
 	}
 
 	public String[] getFtpFile_IL07C01A() {
@@ -477,13 +490,13 @@ public class ILReportSchedule {
 			String fileName = "IL5T" + dateConvert(autoDate, "year") + dateConvert(autoDate.substring(4, 6), "month")
 					+ dateConvert(autoDate.substring(6, 8), "day") + "_2.txt";
 			logger.info("主檔檔名:" + fileName);
-			if (fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath))
-				try {
-					this.iL07C01A.il07C01ADao.insertLog("System", fileName);
-					val[i] = fileName;
-				} catch (Exception ex) {
-					logger.info(ex.getMessage());
-				}
+//			if (fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath))
+//				try {
+//					this.iL07C01A.il07C01ADao.insertLog("System", fileName);
+//					val[i] = fileName;
+//				} catch (Exception ex) {
+//					logger.info(ex.getMessage());
+//				}
 			continue;
 		}
 		return val;
@@ -531,13 +544,13 @@ public class ILReportSchedule {
 					+ dateConvert(autoDate.substring(6, 8), "day") + "_2.txt";
 			logger.info("查察紀事檔名:" + fileName);
 			fgf = new FtpGetFile();
-			if (fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath))
-				try {
-					this.iL07C01B.il07C01BDao.insertLog("System", fileName);
-					val[i] = fileName;
-				} catch (Exception ex) {
-					ex.printStackTrace();
-				}
+//			if (fgf.getFile(this.ftpIp, this.ftpUser, this.ftpPassword, fileName, this.ftpPath, this.savePath))
+//				try {
+//					this.iL07C01B.il07C01BDao.insertLog("System", fileName);
+//					val[i] = fileName;
+//				} catch (Exception ex) {
+//					ex.printStackTrace();
+//				}
 			continue;
 		}
 		return val;

@@ -11,11 +11,13 @@
 	<build>
 		<resources>
 			<resource>
-				<directory>src/main/java</directory>
+				<directory>src/main/resources</directory>
 				<includes>
 					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+					<!--202505為了要將il.properties 吃進來-->
 				</includes>
-				<filtering>true</filtering>
+				<filtering>false</filtering>
 			</resource>
 		</resources>
 		<plugins>
@@ -28,9 +30,16 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+			<!--202505 關鍵！使用新版 WAR Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.2</version> <!-- ← 關鍵！使用新版 WAR Plugin -->
+			</plugin>
 		</plugins>
 		<finalName>IL2</finalName>
 	</build>
+
 	<properties>
 		<!-- 文件拷貝編碼 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,7 +50,7 @@
 		<axis2.version>1.6.2</axis2.version>
 		<spring.version>3.0.5.RELEASE</spring.version>
 		<hibernate.version>3.5.6-Final</hibernate.version>
-		<struts2.version>2.5.22</struts2.version>
+		<struts2.version>2.5.33</struts2.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,10 +59,16 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>javax.servlet</groupId>-->
+<!--			<artifactId>jstl</artifactId>-->
+<!--			<version>1.2</version>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.apache.xmlbeans/xmlbeans -->
@@ -97,6 +112,14 @@
 			<artifactId>axis2-transport-local</artifactId>
 			<version>${axis2.version}</version>
 		</dependency>
+		<!--202505
+		<dependency>
+			<groupId>com.sybase</groupId>
+			<artifactId>jconn4</artifactId>
+			<version>7.0</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/jconn4.jar</systemPath>
+		</dependency>-->
 
 		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-xmlbeans -->
 		<dependency>
@@ -130,9 +153,9 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.1.0</version>
+			<version>4.1.1</version>
 		</dependency>
-
+		<!--package 失敗，GPT建議降版 jasperreports5.1.0->4.1.1，避免用到 .js2-->
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -288,15 +311,129 @@
 			<version>2.4</version>
 			<classifier>jdk15</classifier>
 		</dependency>
-
-
-		<!-- 解決沒有HttpServletResponse.setCharacterEncoding(String)此方法問題 使用servlet2.4替代Tomcat9預設的2.0 -->
-		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.4</version>
-			<scope>provided</scope>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version> <!-- Or the latest version -->
 		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<!-- ❌ 移除 202505
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.20.0</version>
+		</dependency>
+		-->
+
+		<!-- log4j 1.2（Struts2 和 xwork 預設用這個） -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+		<!-- 如果你專案有用到 slf4j（Logback 風格），加這個轉接器 -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.apache.activemq</groupId>
+			<artifactId>activemq-all</artifactId>
+			<version>5.14.5</version>
+		</dependency>
+		<!--
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-cells</artifactId>
+			<scope>system</scope>
+			<systemPath>D:\git\IL2\src\main\webapp\WEB-INF\lib\aspose-cells-8.9.0.jar</systemPath>
+			<version>8.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-pdf</artifactId>
+			<scope>system</scope>
+			<systemPath>D:\git\IL2\src\main\webapp\WEB-INF\lib\aspose.pdf-11.7.0.jar</systemPath>
+			<version>11.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-words</artifactId>
+			<scope>system</scope>
+			<systemPath>D:\git\IL2\src\main\webapp\WEB-INF\lib\aspose-words-14.7.0-jdk16.jar</systemPath>
+			<version>14.7.0</version>
+		</dependency>
+		202505阿哲版本-->
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-cells</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/aspose-cells-8.9.0.jar</systemPath>
+			<version>8.9.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-pdf</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/aspose.pdf-11.7.0.jar</systemPath>
+			<version>11.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-words</artifactId>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/aspose-words-14.7.0-jdk16.jar</systemPath>
+			<version>14.7.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.5.13</version> <!-- Or the latest version -->
+		</dependency>
+		<!--202505 todo log4j ERROR
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.20.0</version>  版本依你的相容性而定
+			ERROR StatusLogger Log4j2 could not find a logging implementation. Please add log4j-core to the classpath. Using SimpleLogger to log to the console...
+		</dependency>-->
+		<!--202505 加jasperreports相關6.20.0  5.1.0 4.1.1-->
+		<!-- 主核心 -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>4.1.1</version>
+		</dependency>
+
+		<!-- 字型支援
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>6.20.0</version>
+		</dependency> -->
+
+		<!-- PDF 輸出所需 -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+
+		<!-- 如果你有用 crosstab 或 charts（非必要，但推薦）
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-functions</artifactId>
+			<version>6.20.0</version>
+		</dependency>
+		-->
 	</dependencies>
 </project>

@@ -10,12 +10,20 @@
 		<property name="dialect">
 			org.hibernate.dialect.SybaseDialect
 		</property>
-		<!-- 警署環境      --> 
+		<!-- 警署環境
 		<property name="connection.url">
 			jdbc:sybase:Tds:10.0.2.15:4100/ABDB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=3
 		</property>
 		<property name="connection.username">sa</property>
 		<property name="connection.password"></property>
+		-->
+
+		<!-- SYSCOM 77 DB環境 -->
+		<property name="connection.url">
+			jdbc:sybase:Tds:172.16.220.77:5000/ABDB?language=us_english&amp;characterEncoding=utf8&amp;jconnect_version=3
+		</property>
+		<property name="connection.username">sa</property>
+		<property name="connection.password">syscom#1</property>
 
 		<!-- 本機端環境	
 		<property name="connection.url">
@@ -33,7 +41,7 @@
 		-->
 		
 		<property name="connection.driver_class">
-			com.sybase.jdbc3.jdbc.SybDataSource
+			com.sybase.jdbc4.jdbc.SybDataSource
 		</property>		
 		<property name="myeclipse.connection.profile">
 			10.0.2.15

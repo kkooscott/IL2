@@ -15,10 +15,11 @@ import tw.gov.npa.il.util.NTPCUtil;
 
 public class IL04C01Report {
   private static final Logger logger = Logger.getLogger(IL04C01Report.class);
-  
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  public String contextPath = this.rb.getString("contextPath").toString();
+
+  //  ResourceBundle rb = ResourceBundle.getBundle("config");
+
+  //  private String contextPath = this.rb.getString("FileRoot").toString();
+  private String contextPath = "D:\\IL2\\file";
   
   public String getContextPath() {
     return this.contextPath;
@@ -35,6 +36,7 @@ public class IL04C01Report {
     logger.info("build list...");
     logger.info("whereCondition=" + whereCondition);
     logger.info("show=" + show);
+    logger.info("data=" + whereCondition +"----->"+ show+ "----->"+ exportfileName);
     List<String> il04c01Data = IL04C01ReportData.buildDataSourceIL08C01P(whereCondition, show);
     HashMap<String, Object> param = new HashMap<String, Object>();
     NTPCUtil ntpcUtil = new NTPCUtil();

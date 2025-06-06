@@ -154,14 +154,13 @@ public class Iltb20OnlineReportDAO extends BaseHibernateDAO {
   }
   
   public Iltb20OnlineReport merge(Iltb20OnlineReport detachedInstance) {
-    log.debug("merging Iltb20OnlineReport instance");
+    log.info("merging Iltb20OnlineReport instance");
     try {
-      Iltb20OnlineReport result = (Iltb20OnlineReport)getSession()
-        .merge(detachedInstance);
-      log.debug("merge successful");
+      Iltb20OnlineReport result = (Iltb20OnlineReport)getSession().merge(detachedInstance);
+      log.info("merge successful");
       return result;
     } catch (RuntimeException re) {
-      log.error("merge failed", re);
+      log.info("merge failed", re);
       throw re;
     } 
   }

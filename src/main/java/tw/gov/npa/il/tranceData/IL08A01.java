@@ -47,11 +47,13 @@ public class IL08A01 {
 
 	private int h_nImpErr4 = 0;
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String contextPath = this.rb.getString("ReportRoot").toString();
+//	private String contextPath = this.rb.getString("ReportRoot").toString();
+	private String contextPath = "ReportRoot=D\\:\\IL2\\";
 
-	private String filePath = this.rb.getString("zipPath").toString();
+//	private String filePath = this.rb.getString("zipPath").toString();
+	private String filePath = "IL";
 
 	private ArrayList<String> failList = new ArrayList<String>();
 

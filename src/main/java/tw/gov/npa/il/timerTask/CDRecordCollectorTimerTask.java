@@ -12,7 +12,15 @@ public class CDRecordCollectorTimerTask extends TimerTask {
     try {
       long startTime = System.currentTimeMillis();
       System.out.println("TimerTask Start");
-      IL04A01Report.main(null);
+      //202505 jasper 問題
+      //IL04A01Report.main(null);
+      if (!"true".equalsIgnoreCase(System.getProperty("skipJasperStartup"))) {
+        IL04A01Report.main(null);
+      } else {
+        System.out.println("⚠️ [JASPER] 啟動時略過 JasperReport 載入 (skipJasperStartup=true)");
+      }
+
+
       System.out.println("TimerTask Over");
       DecimalFormat myformat = new DecimalFormat("0.00");
       long endTime = System.currentTimeMillis();

@@ -29,10 +29,12 @@ public class IL03B01Report_old {
   MyIltb01MainDAO myIltb01MainDAO = new MyIltb01MainDAO();
   
   MyIltb01MainDAO2 myIltb01MainDAO2 = new MyIltb01MainDAO2();
-  
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  private String contextPath = this.rb.getString("ReportRoot").toString();
+
+  //  ResourceBundle rb = ResourceBundle.getBundle("config");
+
+//  private String contextPath = this.rb.getString("ReportRoot").toString();
+
+  private String contextPath = "D\\:\\IL2\\";
   
   private InputStream excelStream;
   

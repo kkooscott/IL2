@@ -16,6 +16,6 @@ public class ManualExec_IL07C01A {
     iLReportSchedule.iL07C01A.il07C01ADao.setDataSource((DataSource)new JdbcDataSourceImpl());
     iLReportSchedule.iL07C01A.relationDAO = new RelationDAO();
     iLReportSchedule.iL07C01A.relationDAO.setDataSource((DataSource)new JdbcDataSourceImpl());
-    iLReportSchedule.runIL05A_IL07C01A();
+    iLReportSchedule.runReportFixColumn();
   }
 }

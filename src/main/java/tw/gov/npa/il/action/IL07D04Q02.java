@@ -50,9 +50,11 @@ import tw.gov.npa.il.myDao.IL07DDao;
 public class IL07D04Q02 extends ActionSupport {
 	private static final Logger logger = Logger.getLogger(IL07D04Q02.class);
 
-	ResourceBundle rb = ResourceBundle.getBundle("config");
+//	ResourceBundle rb = ResourceBundle.getBundle("config");
 
-	private String contextPath = this.rb.getString("templatePath").toString();
+	//	private String contextPath = this.rb.getString("templatePath").toString();
+
+	private String contextPath = "D\\:\\reportTemplate\\";
 	
 	private Date nowDate = new Date();
 

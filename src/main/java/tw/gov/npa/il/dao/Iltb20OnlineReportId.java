@@ -2,6 +2,7 @@ package tw.gov.npa.il.dao;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Iltb20OnlineReportId implements Serializable {
   private String ilUid;

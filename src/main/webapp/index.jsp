@@ -11,6 +11,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <!--202505-->
+  <% response.sendRedirect("login/toSimuLogin.action"); %>
+  
 <frameset rows="60,*" cols="*" frameborder="no" border="0" framespacing="0">
   <frame src="Top.html" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" title="topFrame" />
   <frameset rows="*" cols="200,7,*" framespacing="0" frameborder="no" border="0" name="bottomFrame" id="bottomFrame">

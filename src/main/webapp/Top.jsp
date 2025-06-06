@@ -11,8 +11,9 @@
     <script type="text/javascript" src="./js/jquery-1.10.0.min.js"></script>   
     <link rel="stylesheet" type="text/css" href="css/common.css"/>    
     <script language="javascript" type="text/javascript">
-        var TIME_COUNTDOWN = 180 * 60;
-        /* 設定倒數計時時間總長度(秒) */
+        var TIME_COUNTDOWN = 40 * 60;
+        /* var TIME_COUNTDOWN = 180 * 60;
+         設定倒數計時時間總長度(秒) */
         var timeRemain;
         var timerID = null;
 
@@ -21,6 +22,7 @@
                 window.top.ResetCountDown = null;
                 //window.top.index.rows = "0,0,*";
                 alert("您已經太久沒有使用系統，為保護帳號及系統安全，請重新登入系統！");
+                closeSessionAndWindow(); // 呼叫關閉 session 的方法
                 window.top.close();
                 return;
             } else {
@@ -53,10 +55,23 @@
             start_countdown();
         }
 
+        function closeSessionAndWindow() {
+            // 發送 Ajax 請求，通知伺服器清除 session
+            $.ajax({
+                url: 'il/util/UserSessionCleaner.jsp', // 調用 UserSessionCleaner.jsp 來無效化 session
+                type: 'GET',
+                async: false, // 確保請求完成後再關閉視窗
+                complete: function () {
+                    window.top.close(); // 關閉視窗
+                }
+            });
+        }
+
 
         $(window).load(function () {
             $('#btnLeave').click(function () {
-                window.top.close();
+                closeSessionAndWindow(); // 手動關閉 session 並關閉視窗
+                // window.top.close();
                 return false;
             });
 
@@ -71,7 +86,6 @@
             });
 
         });
-
         window.top.ResetCountDown = reset_timer;
     </script>
     <style>

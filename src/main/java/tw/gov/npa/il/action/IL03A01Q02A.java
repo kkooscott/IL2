@@ -232,8 +232,9 @@ public class IL03A01Q02A extends ActionSupport {
 				sb.append("重入國許可證號-移民署=").append(this.ilRepmdcNic.trim());
 			}
 			logEntity.setOtherQeryStr(sb.toString());
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if ("1".equals(changeMode))
 				if (this.queryList != null && this.queryList.size() > 0) {
 					logEntity.setQueryRes("S");

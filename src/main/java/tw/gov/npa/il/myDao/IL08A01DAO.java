@@ -20,10 +20,11 @@ public class IL08A01DAO {
   
   public DataSource dataSource;
   
-  ResourceBundle rb = ResourceBundle.getBundle("config");
-  
-  private String contextPath = this.rb.getString("ReportRoot").toString();
-  
+//  ResourceBundle rb = ResourceBundle.getBundle("config");
+
+  //	private String contextPath = this.rb.getString("ReportRoot").toString();
+  private String contextPath = "ReportRoot=D\\:\\IL2\\";
+
   public DataSource getDataSource() {
     return this.dataSource;
   }

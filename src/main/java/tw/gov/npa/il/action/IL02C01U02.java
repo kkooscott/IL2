@@ -288,8 +288,9 @@ public class IL02C01U02 extends ActionSupport {
 				sb.append("外僑識別=").append(this.ilArccs);
 			}
 			logEntity.setOtherQeryStr(sb.toString());
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if ("1".equals(changeMode))
 				if (this.iltb01MainList != null && this.iltb01MainList.size() > 0) {
 					logEntity.setQueryRes("S");
@@ -351,8 +352,9 @@ public class IL02C01U02 extends ActionSupport {
 			logEntity.setPageName("外責區資料顯示及登錄-IL02C01U02Update");
 			logEntity.setOprClass(OprType.Update.toString());
 			logEntity.setOtherQeryStr("居留資料關聯ID=" + this.ilArcid);
-			ResourceBundle rb = ResourceBundle.getBundle("config");
-			String changeMode = rb.getString("changeMode").toString();
+//			ResourceBundle rb = ResourceBundle.getBundle("config");
+//			String changeMode = rb.getString("changeMode").toString();
+			String changeMode = "1";
 			if ("1".equals(changeMode))
 				if (resultBoo) {
 					logEntity.setUpdateRes("S");

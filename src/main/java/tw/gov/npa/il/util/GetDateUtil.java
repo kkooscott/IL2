@@ -11,10 +11,16 @@ public class GetDateUtil {
     int[] nowDateArr = new int[2];
     Calendar c = Calendar.getInstance();
     c.setTime(new Date());
+
     int month = c.get(2);
     int year = c.get(1);
-    nowDateArr[0] = year;
-    nowDateArr[1] = month;
+    if(month == 0) {
+      nowDateArr[0] = year - 1;
+      nowDateArr[1] = 12;
+    }else {
+      nowDateArr[0] = year;
+      nowDateArr[1] = month;
+    }
     return nowDateArr;
   }
   
